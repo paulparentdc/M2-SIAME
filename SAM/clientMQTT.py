@@ -187,7 +187,8 @@ class CommModule(Thread):
         if( self._unitID is not None and payload['dest'] != "all" and payload['dest'] != str(self.unitID) ):
             log.debug("msg received on topic '%s' features destID='%s' != self._unitID='%s'" % (str(msg.topic),payload['dest'],self.unitID) )
             return
-        shutter.handle_message(payload)
+            
+        shutter.handle_message(payload)   
 
     ''' paho callback for topic subscriptions '''
     def _on_subscribe(self, client, userdata, mid, granted_qos):
