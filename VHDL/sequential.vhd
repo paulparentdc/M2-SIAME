@@ -56,3 +56,10 @@ ENTITY RegisterBank IS
 		clk : IN STD_LOGIC
 	);
 END ENTITY RegisterBank;
+
+architecture arch_RegisterBank of RegisterBank is 
+begin
+	process
+
+
+end arch_Reg;
