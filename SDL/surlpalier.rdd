@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE Diagram SYSTEM "rtdsDiagram.dtd">
+
+<MscDiagram message_params_visibility="full">
+<LifelineOrdering identifiers="_LIFELINE_3 _LIFELINE_5 _LIFELINE_6 _LIFELINE_7"/>
+<MscEventRow>
+<MscEvent lifeline_ids="_LIFELINE_3" event_type="PROCESS_START" color="-" text="RTDC_Env
+" text_size="64 -" background="-"/>
+<MscEvent lifeline_ids="_LIFELINE_5" event_type="PROCESS_START" color="-" text="pLocal
+" text_size="50 -" background="-"/>
+<MscEvent lifeline_ids="_LIFELINE_6" event_type="PROCESS_START" color="-" text="pCentral
+" text_size="64 -" background="-"/>
+<MscEvent lifeline_ids="_LIFELINE_7" event_type="PROCESS_START" color="-" text="pLocal
+" text_size="50 -" background="-"/>
+<MscEvent event_type="ABSOLUTE_TIME" color="#000000" text=""/>
+</MscEventRow>
+<MscEventRow>
+<MscEvent lifeline_ids="_LIFELINE_6" event_type="MESSAGE_SEND" color="#000000" text="sReady
+" identifier="_LINK_13"/>
+<MscEvent lifeline_ids="_LIFELINE_3" event_type="MESSAGE_RECEIVE" color="#000000" text="sReady
+" identifier="_LINK_13"/>
+<MscEvent event_type="ABSOLUTE_TIME" color="#000000" text=""/>
+</MscEventRow>
+<MscEventRow>
+<MscEvent lifeline_ids="_LIFELINE_3 _LIFELINE_5 _LIFELINE_6 _LIFELINE_7" event_type="CONDITION_START" color="-" text="Disconnected
+" identifier="_SYMBOL_1" background="-"/>
+<MscEvent event_type="ABSOLUTE_TIME" color="#000000" text=""/>
+</MscEventRow>
+<MscEventRow>
+<MscEvent event_type="CONDITION_END" color="-" text="Disconnected
+" identifier="_SYMBOL_1"/>
+<MscEvent event_type="ABSOLUTE_TIME" color="#000000" text=""/>
+</MscEventRow>
+<MscEventRow>
+<MscEvent lifeline_ids="_LIFELINE_3" event_type="MESSAGE_SEND" color="#000000" text="sCall(2)
+" identifier="_LINK_16"/>
+<MscEvent lifeline_ids="_LIFELINE_5" event_type="MESSAGE_RECEIVE" color="#000000" text="sCall(2)
+" identifier="_LINK_16"/>
+<MscEvent event_type="ABSOLUTE_TIME" color="#000000" text=""/>
+</MscEventRow>
+<MscEventRow>
+<MscEvent lifeline_ids="_LIFELINE_5" event_type="MESSAGE_SEND" color="#000000" text="sGetId(2)
+" identifier="_LINK_19"/>
+<MscEvent lifeline_ids="_LIFELINE_6" event_type="MESSAGE_RECEIVE" color="#000000" text="sGetId(2)
+" identifier="_LINK_19"/>
+<MscEvent event_type="ABSOLUTE_TIME" color="#000000" text=""/>
+</MscEventRow>
+<MscEventRow>
+<MscEvent lifeline_ids="_LIFELINE_6" event_type="MESSAGE_SEND" color="#000000" text="sId(...)
+" identifier="_LINK_22"/>
+<MscEvent lifeline_ids="_LIFELINE_5" event_type="MESSAGE_RECEIVE" color="#000000" text="sId(...)
+" identifier="_LINK_22"/>
+<MscEvent event_type="ABSOLUTE_TIME" color="#000000" text=""/>
+</MscEventRow>
+<MscEventRow>
+<MscEvent lifeline_ids="_LIFELINE_5" event_type="MESSAGE_SEND" color="#000000" text="sCnxReq
+" identifier="_LINK_25"/>
+<MscEvent lifeline_ids="_LIFELINE_7" event_type="MESSAGE_RECEIVE" color="#000000" text="sCnxReq
+" identifier="_LINK_25"/>
+<MscEvent event_type="ABSOLUTE_TIME" color="#000000" text=""/>
+</MscEventRow>
+<MscEventRow>
+<MscEvent lifeline_ids="_LIFELINE_7" event_type="MESSAGE_SEND" color="#000000" text="sCnxConf
+" identifier="_LINK_28"/>
+<MscEvent lifeline_ids="_LIFELINE_5" event_type="MESSAGE_RECEIVE" color="#000000" text="sCnxConf
+" identifier="_LINK_28"/>
+<MscEvent event_type="ABSOLUTE_TIME" color="#000000" text=""/>
+</MscEventRow>
+<MscEventRow>
+<MscEvent lifeline_ids="_LIFELINE_5" event_type="MESSAGE_SEND" color="#000000" text="sCallConf
+" identifier="_LINK_31"/>
+<MscEvent lifeline_ids="_LIFELINE_3" event_type="MESSAGE_RECEIVE" color="#000000" text="sCallConf
+" identifier="_LINK_31"/>
+<MscEvent event_type="ABSOLUTE_TIME" color="#000000" text=""/>
+</MscEventRow>
+<MscEventRow>
+<MscEvent lifeline_ids="_LIFELINE_3 _LIFELINE_5 _LIFELINE_6 _LIFELINE_7" event_type="CONDITION_START" color="-" text="Connected
+" identifier="_SYMBOL_2" background="-"/>
+<MscEvent event_type="ABSOLUTE_TIME" color="#000000" text=""/>
+</MscEventRow>
+<MscEventRow>
+<MscEvent event_type="CONDITION_END" color="-" text="Connected
+" identifier="_SYMBOL_2"/>
+<MscEvent event_type="ABSOLUTE_TIME" color="#000000" text=""/>
+</MscEventRow>
+<MscEventRow>
+<MscEvent lifeline_ids="_LIFELINE_3" event_type="MESSAGE_SEND" color="#000000" text="sHangUp
+" identifier="_LINK_36"/>
+<MscEvent lifeline_ids="_LIFELINE_5" event_type="MESSAGE_RECEIVE" color="#000000" text="sHangUp
+" identifier="_LINK_36"/>
+<MscEvent event_type="ABSOLUTE_TIME" color="#000000" text=""/>
+</MscEventRow>
+<MscEventRow>
+<MscEvent lifeline_ids="_LIFELINE_5" event_type="MESSAGE_SEND" color="#000000" text="sDisReq
+" identifier="_LINK_39"/>
+<MscEvent lifeline_ids="_LIFELINE_7" event_type="MESSAGE_RECEIVE" color="#000000" text="sDisReq
+" identifier="_LINK_39"/>
+<MscEvent event_type="ABSOLUTE_TIME" color="#000000" text=""/>
+</MscEventRow>
+<MscEventRow>
+<MscEvent lifeline_ids="_LIFELINE_7" event_type="MESSAGE_SEND" color="#000000" text="sDisConf
+" identifier="_LINK_42"/>
+<MscEvent lifeline_ids="_LIFELINE_5" event_type="MESSAGE_RECEIVE" color="#000000" text="sDisConf
+" identifier="_LINK_42"/>
+<MscEvent event_type="ABSOLUTE_TIME" color="#000000" text=""/>
+</MscEventRow>
+<MscEventRow>
+<MscEvent lifeline_ids="_LIFELINE_5" event_type="MESSAGE_SEND" color="#000000" text="sHangUpConf
+" identifier="_LINK_45"/>
+<MscEvent lifeline_ids="_LIFELINE_3" event_type="MESSAGE_RECEIVE" color="#000000" text="sHangUpConf
+" identifier="_LINK_45"/>
+<MscEvent event_type="ABSOLUTE_TIME" color="#000000" text=""/>
+</MscEventRow>
+<MscEventRow>
+<MscEvent event_type="ABSOLUTE_TIME" color="#000000" text=""/>
+</MscEventRow>
+<PageSpecification pageWidth="21" pageHeight="29.7" topMargin="0" bottomMargin="0" leftMargin="0" rightMargin="0" pageFooter="FALSE" scaleFactor="1.0"/>
+</MscDiagram>

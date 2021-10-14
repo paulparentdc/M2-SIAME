@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE Diagram SYSTEM "rtdsDiagram.dtd">
+
+<MscDiagram message_params_visibility="full">
+<LifelineOrdering identifiers="_LIFELINE_2 _LIFELINE_3 _LIFELINE_4 _LIFELINE_5 _LIFELINE_6 _LIFELINE_7 _LIFELINE_8"/>
+<MscEventRow>
+<MscEvent lifeline_ids="_LIFELINE_2" event_type="PROCESS_START" color="-" text="Operateur
+" text_size="71 -" background="-"/>
+<MscEvent lifeline_ids="_LIFELINE_3" event_type="PROCESS_START" color="-" text=":Superviseur
+" text_size="92 -" background="-"/>
+<MscEvent lifeline_ids="_LIFELINE_4" event_type="PROCESS_START" color="-" text=":Robot
+alimentation
+" text_size="92 -" background="-"/>
+<MscEvent lifeline_ids="_LIFELINE_5" event_type="PROCESS_START" color="-" text=":Machine1
+" text_size="71 -" background="-"/>
+<MscEvent lifeline_ids="_LIFELINE_6" event_type="PROCESS_START" color="-" text=":Machine2
+" text_size="71 -" background="-"/>
+<MscEvent lifeline_ids="_LIFELINE_7" event_type="PROCESS_START" color="-" text=":Machine3
+" text_size="71 -" background="-"/>
+<MscEvent lifeline_ids="_LIFELINE_8" event_type="PROCESS_START" color="-" text=":Robot
+retrait
+" text_size="57 -" background="-"/>
+<MscEvent event_type="ABSOLUTE_TIME" color="#000000" text=""/>
+</MscEventRow>
+<MscEventRow>
+<MscEvent lifeline_ids="_LIFELINE_3 _LIFELINE_2" event_type="OPERATION_CALL" color="#000000" text="Piece(infos1)
+" identifier="_LINK_2"/>
+<MscEvent event_type="ABSOLUTE_TIME" color="#000000" text=""/>
+</MscEventRow>
+<MscEventRow>
+<MscEvent lifeline_ids="_LIFELINE_4 _LIFELINE_3" event_type="OPERATION_CALL" color="#000000" text="DéposerSurConv
+" identifier="_LINK_6"/>
+<MscEvent event_type="ABSOLUTE_TIME" color="#000000" text=""/>
+</MscEventRow>
+<MscEventRow>
+<MscEvent lifeline_ids="_LIFELINE_3 _LIFELINE_4" event_type="OPERATION_CALL" color="#000000" text="FinDépotConv
+" identifier="_LINK_9"/>
+<MscEvent event_type="ABSOLUTE_TIME" color="#000000" text=""/>
+</MscEventRow>
+<MscEventRow>
+<MscEvent lifeline_ids="_LIFELINE_3 _LIFELINE_2" event_type="OPERATION_CALL" color="#000000" text="Piece(infos2)
+" identifier="_LINK_12"/>
+<MscEvent event_type="ABSOLUTE_TIME" color="#000000" text=""/>
+</MscEventRow>
+<MscEventRow>
+<MscEvent lifeline_ids="_LIFELINE_5 _LIFELINE_3" event_type="OPERATION_CALL" color="#000000" text="DéposerSurTable
+" identifier="_LINK_17"/>
+<MscEvent event_type="ABSOLUTE_TIME" color="#000000" text=""/>
+</MscEventRow>
+<MscEventRow>
+<MscEvent lifeline_ids="_LIFELINE_3 _LIFELINE_5" event_type="OPERATION_CALL" color="#000000" text="FinDépotTable
+" identifier="_LINK_21"/>
+<MscEvent event_type="ABSOLUTE_TIME" color="#000000" text=""/>
+</MscEventRow>
+<MscEventRow>
+<MscEvent lifeline_ids="_LIFELINE_4 _LIFELINE_3" event_type="OPERATION_CALL" color="#000000" text="DéposerSurConv
+" identifier="_LINK_24"/>
+<MscEvent event_type="ABSOLUTE_TIME" color="#000000" text=""/>
+</MscEventRow>
+<MscEventRow>
+<MscEvent lifeline_ids="_LIFELINE_3 _LIFELINE_4" event_type="OPERATION_CALL" color="#000000" text="FinDépotConv
+" identifier="_LINK_33"/>
+<MscEvent event_type="ABSOLUTE_TIME" color="#000000" text=""/>
+</MscEventRow>
+<MscEventRow>
+<MscEvent lifeline_ids="_LIFELINE_7 _LIFELINE_3" event_type="OPERATION_CALL" color="#000000" text="DéposerSurTable
+" identifier="_LINK_36"/>
+<MscEvent event_type="ABSOLUTE_TIME" color="#000000" text=""/>
+</MscEventRow>
+<MscEventRow>
+<MscEvent lifeline_ids="_LIFELINE_3 _LIFELINE_7" event_type="OPERATION_CALL" color="#000000" text="FinDépotTable
+" identifier="_LINK_40"/>
+<MscEvent event_type="ABSOLUTE_TIME" color="#000000" text=""/>
+</MscEventRow>
+<MscEventRow>
+<MscEvent lifeline_ids="_LIFELINE_3 _LIFELINE_7" event_type="OPERATION_CALL" color="#000000" text="FinUsinage
+" identifier="_LINK_51"/>
+<MscEvent event_type="ABSOLUTE_TIME" color="#000000" text=""/>
+</MscEventRow>
+<MscEventRow>
+<MscEvent lifeline_ids="_LIFELINE_7 _LIFELINE_3" event_type="OPERATION_CALL" color="#000000" text="DéposerSurConv
+" identifier="_LINK_57"/>
+<MscEvent event_type="ABSOLUTE_TIME" color="#000000" text=""/>
+</MscEventRow>
+<MscEventRow>
+<MscEvent lifeline_ids="_LIFELINE_3 _LIFELINE_7" event_type="OPERATION_CALL" color="#000000" text="FinDépotConv
+" identifier="_LINK_60"/>
+<MscEvent event_type="ABSOLUTE_TIME" color="#000000" text=""/>
+</MscEventRow>
+<MscEventRow>
+<MscEvent lifeline_ids="_LIFELINE_3 _LIFELINE_4" event_type="OPERATION_CALL" color="#000000" text="FinUsinage
+" identifier="_LINK_70"/>
+<MscEvent event_type="ABSOLUTE_TIME" color="#000000" text=""/>
+</MscEventRow>
+<MscEventRow>
+<MscEvent lifeline_ids="_LIFELINE_8 _LIFELINE_3" event_type="OPERATION_CALL" color="#000000" text="RetirerPiece
+" identifier="_LINK_74"/>
+<MscEvent event_type="ABSOLUTE_TIME" color="#000000" text=""/>
+</MscEventRow>
+<MscEventRow>
+<MscEvent lifeline_ids="_LIFELINE_3 _LIFELINE_8" event_type="OPERATION_CALL" color="#000000" text="FinRetraitPiece
+" identifier="_LINK_77"/>
+<MscEvent event_type="ABSOLUTE_TIME" color="#000000" text=""/>
+</MscEventRow>
+<MscEventRow>
+<MscEvent lifeline_ids="_LIFELINE_5 _LIFELINE_3" event_type="OPERATION_CALL" color="#000000" text="DéposerSurConv
+" identifier="_LINK_83"/>
+<MscEvent event_type="ABSOLUTE_TIME" color="#000000" text=""/>
+</MscEventRow>
+<MscEventRow>
+<MscEvent lifeline_ids="_LIFELINE_3 _LIFELINE_5" event_type="OPERATION_CALL" color="#000000" text="FinDépotConv
+" identifier="_LINK_86"/>
+<MscEvent event_type="ABSOLUTE_TIME" color="#000000" text=""/>
+</MscEventRow>
+<MscEventRow>
+<MscEvent lifeline_ids="_LIFELINE_8 _LIFELINE_3" event_type="OPERATION_CALL" color="#000000" text="RetirerPiece
+" identifier="_LINK_89"/>
+<MscEvent event_type="ABSOLUTE_TIME" color="#000000" text=""/>
+</MscEventRow>
+<MscEventRow>
+<MscEvent lifeline_ids="_LIFELINE_3 _LIFELINE_8" event_type="OPERATION_CALL" color="#000000" text="FinRetraitPiece
+" identifier="_LINK_92"/>
+<MscEvent event_type="ABSOLUTE_TIME" color="#000000" text=""/>
+</MscEventRow>
+<MscEventRow>
+<MscEvent event_type="ABSOLUTE_TIME" color="#000000" text=""/>
+</MscEventRow>
+<PageSpecification pageWidth="21" pageHeight="29.7" topMargin="0" bottomMargin="0" leftMargin="0" rightMargin="0" pageFooter="FALSE" scaleFactor="1.0"/>
+</MscDiagram>
