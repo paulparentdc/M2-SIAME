@@ -40,22 +40,21 @@ class CommModule(Thread):
     _mqtt_passwd    = None
     _mqtt_topics    = None  # list of topics to subscribe to
     _unitID         = None
+    _shutter        = None
 
 
     #
     # object initialization
-    def __init__(self, mqtt_user, mqtt_passwd, mqtt_topics, _unitID):
+    def __init__(self, mqtt_user, mqtt_passwd, mqtt_topics, unitID, shutter):
         super().__init__()
 
         log.debug("initializing comm module")
         self._mqtt_user     = mqtt_user
         self._mqtt_passwd   = mqtt_passwd
         self._mqtt_topics   = mqtt_topics
-        self._unitID   = mqtt_topics
-
-        # check for unitID
-        if( "unitID" in self._addons and self._addons.get('unitID') is not None ):
-            self._unitID = self._addons.get('unitID')
+        self._unitID        = unitID
+        self._shutter       = shutter
+    
 
         # setup MQTT connection
         self._mqtt_client = mqtt_client.Client()
@@ -71,6 +70,7 @@ class CommModule(Thread):
 
         self._connected = False
         log.debug("initialization done")
+
 
 
     #
@@ -113,21 +113,12 @@ class CommModule(Thread):
 
     ''' prepares and sends a payload in a MQTT message '''
     def send_message(self, topic, payload):
-        if not self.is_connected():
-            log.warn("tried to publish a message while not connected ...")
-            return
 
         if 'unitID' not in payload:
             payload['unitID'] = self._unitID
 
-        if( payload['unitID'] is None ):
-            log.warn("tried to publish a message while not having a unitID ... aborting")
-            return
+        self._mqtt_client.publish(topic, json.dumps(payload))
 
-        res, mid = self._mqtt_client.publish(topic, json.dumps(payload))
-
-        if res != mqtt_client.MQTT_ERR_SUCCESS:
-            log.error("on message published to topic " + topic)
 
 
     ''' paho callback for connection '''
@@ -196,9 +187,7 @@ class CommModule(Thread):
         if( self._unitID is not None and payload['dest'] != "all" and payload['dest'] != str(self.unitID) ):
             log.debug("msg received on topic '%s' features destID='%s' != self._unitID='%s'" % (str(msg.topic),payload['dest'],self.unitID) )
             return
-
-        self.handle_message( msg.topic, payload )
-
+        shutter.handle_message(payload)
 
     ''' paho callback for topic subscriptions '''
     def _on_subscribe(self, client, userdata, mid, granted_qos):
