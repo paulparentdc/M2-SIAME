@@ -14,7 +14,6 @@ def on_message(client, userdata, msg):
     nom_image = msg.topic.replace("pi19/image/","").replace("/","")
     print(nom_image)
     f = open('img/'+nom_image, 'wb')
-    f.write(msg.payload)
     f.close()
     
     
