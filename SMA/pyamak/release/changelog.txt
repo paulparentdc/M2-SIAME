@@ -1,0 +1,25 @@
+v0.1.2:
+ * Add : Save & load can now accept path to save & load file
+ * Fix : You could save in a middle of a cycle, which makes the backup file corrupted
+
+V0.1.1:
+ * Add mono threading scheduler
+ * Add seed in environment
+
+v0.1.0:
+ WARNING : all previous example will no longer work in this version, and all v0.1.0+ example won't work in previous version (need to create a scheduler)
+ * Way better thread management
+ * Add save and load
+
+v0.0.5:
+ * Fix rare bugs : an agent that would be removed in the cycle could be called by another agent
+ * CSV : Add method : add_ignore_attribute(self, attribute: str) -> None, remove_ignore_attribute(self, attribute: str) -> None
+	to manage ignored attribute
+
+v0.0.4:
+ * add AmasIHM (old examples will no longer work from now on if using AmasIHM )
+
+v0.0.3 :
+ * Add communicating agent
+
+v0.0.2
