@@ -16,7 +16,7 @@ class Mail:
     Class message
     """
 
-    def __init__(self, id_sender: int, id_receiver: int, message: Any, sending_date: int) -> None:
+    def __init__(self, id_sender:  int, id_receiver: int, message: Any, sending_date: int) -> None:
         self.__id_sender: int = id_sender
         self.__id_receiver: int = id_receiver
         self.__message: Any = message
