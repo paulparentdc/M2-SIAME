@@ -1,0 +1,3 @@
+[submodule "SMA/pyamak-noyau"]
+	path = SMA/pyamak-noyau
+	url = https://gitlab.com/be-pyamak/pyamak-noyau.git
