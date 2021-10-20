@@ -24,6 +24,7 @@ import json
 from threading import Thread, Event
 import paho.mqtt.client as mqtt_client
 from random import randint
+import logging as log
 
 # #############################################################################
 #
@@ -48,7 +49,8 @@ class CommModule(Thread):
         super().__init__()
 
         log.debug("initializing comm module")
-        self._mqtt_topics   = mqtt_topics
+        self._mqtt_topic_command   = mqtt_topic_command
+        self._mqtt_topic_publish   = mqtt_topic_publish
         self.mqtt_server    = mqtt_server
         self._unitID        = unitID
         self._shutter       = shutter
@@ -79,7 +81,7 @@ class CommModule(Thread):
 
         # start connection
         log.info("start MQTT connection to '%s:%d' ..." % (self._addons['mqtt_server'],self._addons['mqtt_port']))
-        self._mqtt_client.connect( host=self._addons['mqtt_server'], port=self._addons['mqtt_port'], keepalive=settings.MQTT_KEEP_ALIVE )
+        self._mqtt_client.connect( host=self._mqtt_server, port=1883, 60)
 
         # launch
         try:
@@ -114,7 +116,7 @@ class CommModule(Thread):
         if 'unitID' not in payload:
             payload['unitID'] = self._unitID
 
-        self._mqtt_client.publish(topic, json.dumps(payload))
+        self._mqtt_client.publish(self._mqtt_topic_publish, json.dumps(payload))
 
 
 
@@ -130,12 +132,12 @@ class CommModule(Thread):
 
         # subscribe to topics list
         try:
-            for topic in self._mqtt_topics:
-                log.debug("subscribing to " + str(topic))
-                self._mqtt_client.subscribe( topic )   # QoS=0 default
+            
+            log.debug("subscribing to " + str(self._mqtt_topic_command))
+            self._mqtt_client.subscribe( self._mqtt_topic_command )   # QoS=0 default
 
         except Exception as ex:
-            log.warn("exception while subscribing to topic '%s' :" % str(topic) + str(ex))
+            log.warn("exception while subscribing to topic '%s' :" % str(self._mqtt_topic_command) + str(ex))
 
 
     ''' paho callback for disconnection '''
@@ -184,9 +186,9 @@ class CommModule(Thread):
         if( self._unitID is not None and payload['dest'] != "all" and payload['dest'] != str(self.unitID) ):
             log.debug("msg received on topic '%s' features destID='%s' != self._unitID='%s'" % (str(msg.topic),payload['dest'],self.unitID) )
             return
-
             
-        shutter.handle_message(payload)   
+        self._shutter.handle_message(payload)   
+
 
     ''' paho callback for topic subscriptions '''
     def _on_subscribe(self, client, userdata, mid, granted_qos):

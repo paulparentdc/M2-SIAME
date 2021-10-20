@@ -20,7 +20,7 @@ import paho.mqtt.client as mqtt_client
 import os
 import sys
 import connect.py
-
+import logging
 
 
 # #############################################################################
@@ -69,19 +69,33 @@ class Shutter(object):
         self._clientMQTT = connect.CommModule(mqtt_server, mqtt_topic_command, mqtt_topic_publish, unitID, self)
         self._clientMQTT.start()
 
-    def handle_message(payload):
+    def handle_message(self, payload):
         order = payload['order']
 
         if(order == 'up'):
             print("Le volet monte")
+
         elif(order == 'down'):
             print("Le volet descend")
+
         elif(order == 'stop'):
             print("Le volet se stop")
+
         elif(order == 'status'):
-            print("Le status du volet est %")
+            print("Envoi du status ...")
+            payload = {}
+            
+            if self._status == Shutter.SHUTTER_POS_CLOSED :
+                payload["status"] = "CLOSED"
+            elif self._status == Shutter.SHUTTER_POS_OPEN :
+                payload["status"] = "OPEN"
+            elif self._status == Shutter.SHUTTER_POS_UNKNOWN :
+                payload["status"] = "UNKNOWN"
+
+            self.clientMQTT.send_message(payload)
         
         else:
+            print ("Commande non connue")
 
 
 
@@ -93,13 +107,7 @@ class Shutter(object):
 def main():
 
     #TODO: implement simple tests of your module
-    _______________
-    _______________
-    _______________
-    _______________
-    _______________
-    _______________
-
+ 
 
 
 
