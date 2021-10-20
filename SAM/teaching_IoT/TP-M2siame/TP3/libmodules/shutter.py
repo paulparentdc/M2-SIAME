@@ -19,6 +19,7 @@ import threading
 import paho.mqtt.client as mqtt_client
 import os
 import sys
+import connect.py
 
 
 
@@ -46,8 +47,7 @@ class Shutter(object):
     SHUTTER_ACTION_IDLE     = 3
     SHUTTER_ACTION_UNKNOWN  = 4
 
-    SHUTTER_TYPE_WIRED = 0
-    SHUTTER_TYPE_WIRELESS = 1
+
 
     MQTT_TYPE_TOPIC = "shutter"
 
@@ -57,30 +57,31 @@ class Shutter(object):
 
     # attributes
     _status = SHUTTER_POS_UNKNOWN
-    shutterType = SHUTTER_TYPE_WIRED
     courseTime  = 30;       # (seconds) max. time for shutter to get fully open / close
 
-    _backend    = None      # current backends
-    _upOutput   = None
-    _downOutput = None
-    _stopOutput = None
-
+    _clientMQTT = None
     _curCmd     = None
     _condition  = None      # threading condition
     _thread     = None      # thread to handle shutter's course
 
-    def __init__(self, unitID, mqtt_conf, shutterType="wired", courseTime=30, io_backend=None, upOutput=None, downOutput=None, stopOutput=None, shutdown_event=None, *args, **kwargs):
+    def __init__(self, unitID, courseTime, mqtt_server, mqtt_topic_command, mqtt_topic_publish, *args, **kwargs):
         ''' Initialize object '''
-        _______________
-        _______________
-        _______________
-        _______________
-        _______________
-        _______________
-        _______________
-        _______________
-        _______________
+        self._clientMQTT = connect.CommModule(mqtt_server, mqtt_topic_command, mqtt_topic_publish, unitID, self)
+        self._clientMQTT.start()
 
+    def handle_message(payload):
+        order = payload['order']
+
+        if(order == 'up'):
+            print("Le volet monte")
+        elif(order == 'down'):
+            print("Le volet descend")
+        elif(order == 'stop'):
+            print("Le volet se stop")
+        elif(order == 'status'):
+            print("Le status du volet est %")
+        
+        else:
 
 
 

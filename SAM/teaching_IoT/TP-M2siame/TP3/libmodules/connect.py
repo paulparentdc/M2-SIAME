@@ -25,13 +25,6 @@ from threading import Thread, Event
 import paho.mqtt.client as mqtt_client
 from random import randint
 
-
-# --- project related imports
-import settings
-from logger import log, getLogLevel
-
-
-
 # #############################################################################
 #
 # Class
@@ -41,55 +34,44 @@ class CommModule(Thread):
     # class attributes ( __class__.<attr_name> )
 
     # objects attributes
-    _connection     = None  # mqtt client
+    _mqtt_client    = None  # mqtt client
     _connected      = False
-    _mqtt_user      = None
-    _mqtt_passwd    = None
     _mqtt_topics    = None  # list of topics to subscribe to
+    _mqtt_server    = None  # server to join
     _unitID         = None
-    _addons         = None  # additional parameters
+    _shutter        = None
 
 
     #
     # object initialization
-    def __init__(self, mqtt_user, mqtt_passwd, mqtt_topics, *args, **kwargs ):
+    def __init__(self, mqtt_server, mqtt_topic_command, mqtt_topic_publish, unitID, shutter):
         super().__init__()
 
         log.debug("initializing comm module")
-        self._mqtt_user     = mqtt_user
-        self._mqtt_passwd   = mqtt_passwd
         self._mqtt_topics   = mqtt_topics
-        self._addons        = kwargs
-
-        # check for _shutdown event
-        self._shutdownEvent = self._addons.get('_shutdownEvent')
-        if( self._shutdownEvent is None ):
-            log.warning("unspecified global shutdown ... thus locally specified ...")
-            self._shutdownEvent = Event()
-
-        # check for unitID
-        if( "unitID" in self._addons and self._addons.get('unitID') is not None ):
-            self._unitID = self._addons.get('unitID')
+        self.mqtt_server    = mqtt_server
+        self._unitID        = unitID
+        self._shutter       = shutter
+    
 
         # setup MQTT connection
-        self._connection = mqtt_client.Client()
-        self._connection.on_connect = self._on_connect
-        self._connection.on_disconnect = self._on_disconnect
-        self._connection.on_publish = self._on_publish
-        self._connection.on_message = self._on_message
-        self._connection.on_subscribe = self._on_subscribe
-        self._connection.on_unsubscribe = self._on_unsubscribe
-        self._connection.on_log = self._on_log
+        self._mqtt_client = mqtt_client.Client()
+        self._mqtt_client.on_connect = self._on_connect
+        self._mqtt_client.on_disconnect = self._on_disconnect
+        self._mqtt_client.on_publish = self._on_publish
+        self._mqtt_client.on_message = self._on_message
+        self._mqtt_client.on_subscribe = self._on_subscribe
+        self._mqtt_client.on_log = self._on_log
 
-        self._connection.reconnect_delay_set( min_delay=settings.MQTT_RECONNECT_DELAY )
-        self._connection.username_pw_set( self._mqtt_user, self._mqtt_passwd )
+        
 
         self._connected = False
         log.debug("initialization done")
 
 
+
     #
-    # called by Threading.start()
+    # override / called by Threading.start()
     def run( self ):
         # load module
         log.info("module loading")
@@ -97,13 +79,13 @@ class CommModule(Thread):
 
         # start connection
         log.info("start MQTT connection to '%s:%d' ..." % (self._addons['mqtt_server'],self._addons['mqtt_port']))
-        self._connection.connect( host=self._addons['mqtt_server'], port=self._addons['mqtt_port'], keepalive=settings.MQTT_KEEP_ALIVE )
+        self._mqtt_client.connect( host=self._addons['mqtt_server'], port=self._addons['mqtt_port'], keepalive=settings.MQTT_KEEP_ALIVE )
 
         # launch
         try:
             while not self._shutdownEvent.is_set():
 
-                if self._connection.loop(timeout=2.0) != mqtt_client.MQTT_ERR_SUCCESS:
+                if self._mqtt_client.loop(timeout=2.0) != mqtt_client.MQTT_ERR_SUCCESS:
                     log.debug("loop failed, sleeping a bit before retrying")
                     time.sleep(2)
 
@@ -120,62 +102,20 @@ class CommModule(Thread):
         self.quit()
 
         # disconnect ...
-        self._connection.disconnect()
+        self._mqtt_client.disconnect()
 
         # end of thread
         log.info("Thread end ...")
 
 
-    ''' are we connected ? '''
-    def is_connected( self ):
-        return self._connected
-
-
     ''' prepares and sends a payload in a MQTT message '''
     def send_message(self, topic, payload):
-        if not self.is_connected():
-            log.warn("tried to publish a message while not connected ...")
-            return
 
         if 'unitID' not in payload:
             payload['unitID'] = self._unitID
 
-        if( payload['unitID'] is None ):
-            log.warn("tried to publish a message while not having a unitID ... aborting")
-            return
+        self._mqtt_client.publish(topic, json.dumps(payload))
 
-        res, mid = self._connection.publish(topic, json.dumps(payload))
-
-        if res != mqtt_client.MQTT_ERR_SUCCESS:
-            log.error("on message published to topic " + topic)
-
-
-    ''' handles pre-validated MQTT messages, to be implemented by subclasses '''
-    def handle_message(self, topic, payload):
-        pass
-
-
-    ''' load method, to initialize modules before running, to be implemented by subclasses '''
-    def load(self):
-        pass
-
-
-    ''' quit method, to shutdown modules before exiting, to be implemented by subclasses '''
-    def quit(self):
-        pass
-
-
-    # -------------------------------------------------------------------------
-    # Low-level functions
-    # - _on_connect()
-    # - _on_disconnect()
-    # - _on_publish()
-    # - _on_subscribe()
-    # - _on_unsubscribe()
-    # - _on_message()
-    # - _on_log()
-    # - _status()
-    #
 
 
     ''' paho callback for connection '''
@@ -192,7 +132,7 @@ class CommModule(Thread):
         try:
             for topic in self._mqtt_topics:
                 log.debug("subscribing to " + str(topic))
-                self._connection.subscribe( topic )   # QoS=0 default
+                self._mqtt_client.subscribe( topic )   # QoS=0 default
 
         except Exception as ex:
             log.warn("exception while subscribing to topic '%s' :" % str(topic) + str(ex))
@@ -216,7 +156,7 @@ class CommModule(Thread):
             time.sleep(_time2sleep)
             log.info("... trying to reconnect ...")
             try:
-                rc = self._connection.reconnect()
+                rc = self._mqtt_client.reconnect()
             except Exception as ex:
                 log.info("caught exception while mqtt reconnect: " + str(ex) )
                 rc = -1
@@ -245,31 +185,12 @@ class CommModule(Thread):
             log.debug("msg received on topic '%s' features destID='%s' != self._unitID='%s'" % (str(msg.topic),payload['dest'],self.unitID) )
             return
 
-        self.handle_message( msg.topic, payload )
-
+            
+        shutter.handle_message(payload)   
 
     ''' paho callback for topic subscriptions '''
     def _on_subscribe(self, client, userdata, mid, granted_qos):
         log.debug("Subscribed: " + str(mid) + " " + str(granted_qos))
         self._connected = True
 
-
-    ''' paho callback for topic unsubscriptions '''
-    def _on_unsubscribe(self, client, userdata, mid):
-        pass
-
-
-    # [nov.19] Francois
-    def _on_log(self, client, userdata, level, buf):
-        ''' print exception that may occur in callbacks '''
-        # only printing ERR and WARN
-        if( level == mqtt_client.MQTT_LOG_ERR or
-            level == mqtt_client.MQTT_LOG_WARNING ):
-            print("[on_log][%s] %s" % (str(level),str(buf)))
-
-
-    ''' Low -level module'status reporting, to be implemented by subclasses '''
-    def _status(self):
-        ''' Raw status used both by module's reporting and higher-level device reporting '''
-        return None
 
