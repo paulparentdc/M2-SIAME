@@ -58,8 +58,19 @@ ENTITY RegisterBank IS
 END ENTITY RegisterBank;
 
 architecture arch_RegisterBank of RegisterBank is 
+
+signal banc : bus_mux_array(31 downto 0);
+
 begin
-	process
+	data_o_0 <= (others=>'0') when s_reg_0 = "00000" else banc(to_integer(unsigned(s_reg_0)));
+	data_o_1 <= (others=>'0') when s_reg_1 = "00000" else banc(to_integer(unsigned(s_reg_1)));
 
-
-end arch_Reg;
+	process(clk)
+	begin
+		if(rising_edge(CLK)) then
+			if(wr_reg = '1' and (to_integer(unsigned(dest_reg)) /= 0)) then
+				banc(to_integer(unsigned(dest_reg))) <= data_i;	
+			end if;
+		end if;
+	end process;
+end arch_RegisterBank;
