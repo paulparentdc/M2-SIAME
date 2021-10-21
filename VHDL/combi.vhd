@@ -16,6 +16,15 @@ entity mux4_1 is
     );
 end entity;
 
+architecture arch_mux4_1 of mux4_1 is
+begin 
+  reg_out <= reg0 when c = "00" else
+            reg1 when c = "01" else
+            reg2 when c = "10" else
+            reg3;
+
+end arch_mux4_1;
+
 ----------------------------------------------------
 
 --Simple adder for 32 bit words
@@ -55,7 +64,7 @@ end entity;
 LIBRARY IEEE;
 USE IEEE.STD_LOGIC_1164.ALL;
 USE IEEE.NUMERIC_STD.ALL;
-use work.bus_mux_pkg.ALL;
+--USE work.bus_mux_pkg.ALL;
 
 entity BarrelShifter IS
   port (

@@ -1,7 +1,18 @@
 v 4
-file . "sequential.vhd" "6eb906d5d2a48b1baebdf7f7b08029bebad1c969" "20211021123841.578":
-  package bus_mux_pkg at 1( 0) + 0 on 16;
-  entity reg at 13( 263) + 0 on 17;
-  architecture arch_reg of reg at 25( 496) + 0 on 18;
-  entity registerbank at 41( 742) + 0 on 19;
-  architecture arch_registerbank of registerbank at 60( 1223) + 0 on 20;
+file . "test_combi.vhd" "47bf69c9e96843aa4dbf0188b961842e358024e6" "20211021132827.542":
+  entity test_mux4_1 at 1( 0) + 0 on 86;
+  architecture arch_test_mux4_1 of test_mux4_1 at 15( 244) + 0 on 87;
+file . "combi.vhd" "38c638d30dcbd4541782e3483ba41a6ed58b44c3" "20211021132827.330":
+  entity mux4_1 at 6( 62) + 0 on 79;
+  architecture arch_mux4_1 of mux4_1 at 19( 365) + 0 on 80;
+  entity add at 32( 643) + 0 on 81;
+  entity addcarry at 47( 946) + 0 on 82;
+  entity barrelshifter at 64( 1265) + 0 on 83;
+  entity alu at 82( 1618) + 0 on 84;
+  entity extension at 108( 2188) + 0 on 85;
+file . "sequential.vhd" "6eb906d5d2a48b1baebdf7f7b08029bebad1c969" "20211021132416.760":
+  package bus_mux_pkg at 1( 0) + 0 on 11;
+  entity reg at 13( 263) + 0 on 12;
+  architecture arch_reg of reg at 25( 496) + 0 on 13;
+  entity registerbank at 41( 742) + 0 on 14;
+  architecture arch_registerbank of registerbank at 60( 1223) + 0 on 15;

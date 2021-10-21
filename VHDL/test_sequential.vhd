@@ -96,21 +96,20 @@ end process P_CLK;
 
 -- mapping des composants du registre
 regBank0:entity	work.RegisterBank
-	port map(s_reg_0, data_o_0, s_reg_1, data_o_1,dest_reg, data_i, data_i, wr_reg, clk);
+	port map(s_reg_0, data_o_0, s_reg_1, data_o_1, dest_reg, data_i, wr_reg, clk);
 
 -- debut sequence de test
 REGBANK_TEST : process
 begin
-	wait for clkpulse;
-	S<=(0=>'1',3=>'1',others=>'0');
-	WR<='1';
-	wait for clkpulse;
-	S<=(0=>'1',others=>'0');
-	WR<='0';
-	wait for clkpulse;
-	S<=(4=>'1',others=>'0');
-	WR<='1';
-	wait for clkpulse;
+		wait for clkpulse;
+	wr_reg <= '0';
+	data_i <= (0=>'1', others=>'0');
+	dest_reg <= "00001";
+		wait for clkpulse;
+	wr_reg <= '1';
+		wait for clkpulse;
+	s_reg_0 <= "00001";
+		wait for clkpulse;
 
 	-- LATEST COMMAND (NE PAS ENLEVER !!!)
 	wait until (rising_edge(clk)); wait for clkpulse/2;
