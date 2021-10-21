@@ -19,8 +19,11 @@ import threading
 import paho.mqtt.client as mqtt_client
 import os
 import sys
-import connect.py
-import logging
+import connect
+import logging    
+import signal
+
+_shutDownEvent = None
 
 
 # #############################################################################
@@ -28,7 +31,10 @@ import logging
 # Functions
 #
 
-
+def signal_handler(sig, frame):
+    global __shutDown
+    print('You pressed Ctrl+C!')
+    _shutDownEvent.set()
 
 # #############################################################################
 #
@@ -59,44 +65,49 @@ class Shutter(object):
     _status = SHUTTER_POS_UNKNOWN
     courseTime  = 30;       # (seconds) max. time for shutter to get fully open / close
 
+    _unitID     = None
     _clientMQTT = None
     _curCmd     = None
     _condition  = None      # threading condition
     _thread     = None      # thread to handle shutter's course
 
-    def __init__(self, unitID, courseTime, mqtt_server, mqtt_topic_command, mqtt_topic_publish, *args, **kwargs):
+    def __init__(self, unitID, courseTime, mqtt_server, mqtt_topic_command, mqtt_topic_publish, shutDownEvent, *args, **kwargs):
         ''' Initialize object '''
-        self._clientMQTT = connect.CommModule(mqtt_server, mqtt_topic_command, mqtt_topic_publish, unitID, self)
+        self._unitID = unitID
+        self._status = Shutter.SHUTTER_POS_OPEN
+        self._clientMQTT = connect.CommModule(mqtt_server, mqtt_topic_command, mqtt_topic_publish, unitID, self, shutDownEvent)
         self._clientMQTT.start()
 
     def handle_message(self, payload):
         order = payload['order']
 
         if(order == 'up'):
-            print("Le volet monte")
+            log.info("Volet "+str(self._unitID)+" : UP")
 
         elif(order == 'down'):
-            print("Le volet descend")
+            log.info("Volet "+str(self._unitID)+" : DOWN")
 
         elif(order == 'stop'):
-            print("Le volet se stop")
+            log.info("Volet "+str(self._unitID)+" : STOP")
 
         elif(order == 'status'):
-            print("Envoi du status ...")
-            payload = {}
-            
-            if self._status == Shutter.SHUTTER_POS_CLOSED :
-                payload["status"] = "CLOSED"
-            elif self._status == Shutter.SHUTTER_POS_OPEN :
-                payload["status"] = "OPEN"
-            elif self._status == Shutter.SHUTTER_POS_UNKNOWN :
-                payload["status"] = "UNKNOWN"
-
-            self.clientMQTT.send_message(payload)
+            self.send_status()
         
         else:
-            print ("Commande non connue")
+            log.info("Commande non connue")
 
+    def send_status(self):
+        log.info("Envoi du status ...")
+        payload = {}
+        
+        if self._status == Shutter.SHUTTER_POS_CLOSED :
+            payload["status"] = "CLOSED"
+        elif self._status == Shutter.SHUTTER_POS_UNKNOWN :
+            payload["status"] = "UNKNOWN"
+        else :
+            payload["status"] = "OPEN"
+        self._clientMQTT.send_message(payload)
+        
 
 
 # #############################################################################
@@ -105,15 +116,17 @@ class Shutter(object):
 #
 
 def main():
-
-    #TODO: implement simple tests of your module
+    global _shutDownEvent
+    _shutDownEvent = threading.Event()
+    signal.signal(signal.SIGINT, signal_handler)
+    
+    Shutter(1, 30, "192.168.0.214", "014/shutter/command", "014/shutter/", _shutDownEvent)
  
 
 
 
 # Execution or import
 if __name__ == "__main__":
-
     # Logging setup
     logging.basicConfig(format="[%(asctime)s][%(module)s:%(funcName)s:%(lineno)d][%(levelname)s] %(message)s", stream=sys.stdout)
     log = logging.getLogger()
