@@ -1,35 +1,4 @@
 
-Skip to content
-Pull requests
-Issues
-Marketplace
-Explore
-@paulparentdc
-fthiebolt /
-teaching-IoT
-Public
-
-0
-1
-
-    0
-
-Code
-Issues
-Pull requests
-Actions
-Projects
-Wiki
-Security
-
-    Insights
-
-teaching-IoT/TP-M2siame/TP3/libmodules/shutter.py /
-francois update
-Latest commit 69276f2 on 23 Mar 2020
-History
-0 contributors
-executable file 122 lines (88 sloc) 2.55 KB
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 #
@@ -152,19 +121,3 @@ if __name__ == "__main__":
 
 # The END - Jim Morrison 1943 - 1971
 #sys.exit(0)
-
-    © 2021 GitHub, Inc.
-    Terms
-    Privacy
-    Security
-    Status
-    Docs
-
-    Contact GitHub
-    Pricing
-    API
-    Training
-    Blog
-    About
-
-Loading complete

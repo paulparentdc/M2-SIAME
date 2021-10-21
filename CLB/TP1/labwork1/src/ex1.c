@@ -15,7 +15,7 @@
 // GPIOA
 #define USER_BUT	0
 
-#define EMPTY_ITERATION 10000000000
+#define EMPTY_ITERATION 30000000
 
 //Set gpio mode to given mode
 void set_gpioMode(int gpio, uint8_t mode){
@@ -52,7 +52,7 @@ int main() {
 	printf("Endless loop!\n");
 
 	while(1) {
-		for(i=0; i<EMPTY_ITERATION; i++);
+		for(i=0; i<EMPTY_ITERATION; i++) __asm("nop");
 		switch(state){
 			case GREEN : 				
 				turn_off(GREEN_LED);

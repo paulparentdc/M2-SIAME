@@ -8,7 +8,7 @@
 //TIM4
 #define PSC 1000
 #define WAIT_DELAY (APB1_CLK/PSC)
-#define DELAY_50 (WAIT_DELAY/20)
+#define DELAY_20 (WAIT_DELAY/100)
 #define DELAY_250 (WAIT_DELAY/4)
 #define DELAY_500 (WAIT_DELAY/2)
 #define DELAY_1000 (WAIT_DELAY)
@@ -48,7 +48,7 @@ void init_TIM4(){
 	TIM4_PSC = PSC;
 	TIM4_ARR = DELAY_1000;
 
-	//Dont touh
+	//Dont touch
 	TIM4_EGR = TIM_UG;
 	TIM4_SR = 0;
 	TIM4_CR1 = TIM_ARPE;
@@ -65,7 +65,7 @@ int main() {
 	// GPIO init
 	set_gpiodMode(GREEN_LED, 0b01);
 	set_gpiodType_pushpull(GREEN_LED);
-	turnd_off(GREEN_LED);
+	turnd_on(GREEN_LED);
 
 	GPIOA_MODER = SET_BITS(GPIOA_MODER, USER_BUT*2, 2, 0b00);
 	
@@ -77,7 +77,10 @@ int main() {
 	int led_state = 0;
 	int but_state = 0;
 	int last_but = 0;
+	TIM4_CR1 = TIM4_CR1 | TIM_CEN;
 	while(1) {
+		
+		//Blinking part
 		if( (TIM4_SR & TIM_UIF) != 0 ){
 			if(led_state){
 				led_state = 0;
@@ -87,30 +90,36 @@ int main() {
 				led_state = 1;
 				turnd_on(GREEN_LED);
 			}
+			TIM4_SR = 0;
 		}
 
 		if((GPIOA_IDR & (1<<USER_BUT)) != 0){
+			
 			but_state = 1;
 			last_but = TIM4_CNT;
 		}
 		else if(but_state == 1){
 			int now = TIM4_CNT;
 			if(now <= last_but){
-				now += DELAY_50;
+				now += DELAY_20;
 			}
-			if(now-last_but >= DELAY_50){
+			if(now-last_but >= DELAY_20){
+				printf("  button pressed :\n");
 				but_state = 0;
 				switch(state){
 					case F250:
 						state = F500;
+						printf("    delay = 500ms\n");
 						TIM4_ARR = DELAY_500;
 						break;
 					case F500:
 						state = F1000;
+						printf("    delay = 1000ms\n");
 						TIM4_ARR = DELAY_1000;
 						break;
 					case F1000:
 						state = F250;
+						printf("    delay = 250ms\n");
 						TIM4_ARR = DELAY_250;
 						break;
 				}
@@ -118,6 +127,7 @@ int main() {
 			}
 			
 		}
+		//printf("---LOOP END---\n");
 
 	}
 
