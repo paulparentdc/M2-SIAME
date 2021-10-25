@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE Diagram SYSTEM "rtdsDiagram.dtd">
+
+<SdlFSMDiagram language="sdl" type="prcs" is_extract="FALSE" is_temporary="FALSE">
+<SdlFSMPartition name="" needs_cleanup="FALSE">
+<NonStateTransition top_left_coordinates="174 74">
+<SdlFSMSymbol identifier="SYM16" type="sdlStart" outline_color="-" background_color="-" center_coordinates="205 89" dimensions="60 30" attached_symbol_id=""/>
+<Transition>
+<SdlFSMSymbol identifier="SYM17" type="sdlState" text="boucle" outline_color="-" background_color="-" center_coordinates="205 136" dimensions="62 40" attached_symbol_id=""/>
+</Transition>
+</NonStateTransition>
+<StateTransitionBlock top_left_coordinates="554 228">
+<SdlFSMSymbol identifier="SYM18" type="sdlState" text="boucle" outline_color="-" background_color="-" center_coordinates="728 248" dimensions="62 40" attached_symbol_id=""/>
+<NormalStateTransition>
+<SdlFSMSymbol identifier="SYM19" type="sdlInputSig" text="retirer_piece_usinee_du_convoyeur" outline_color="-" background_color="-" center_coordinates="728 300" dimensions="250 40" attached_symbol_id=""/>
+<Transition>
+<SdlFSMSymbol identifier="SYM20" type="sdlInitTimer" text="SET(now+30, T)" outline_color="-" background_color="-" center_coordinates="728 352" dimensions="130 40" attached_symbol_id=""/>
+<SdlFSMSymbol identifier="SYM22" type="sdlTask" text="retirer_piece_usinee_du_convoyeur" outline_color="-" background_color="-" center_coordinates="728 404" dimensions="250 40" attached_symbol_id=""/>
+<SdlFSMSymbol identifier="SYM21" type="sdlResetTimer" text="RESET(T)" outline_color="-" background_color="-" center_coordinates="728 456" dimensions="88 40" attached_symbol_id=""/>
+<SdlFSMSymbol identifier="SYM23" type="sdlSendSig" text="fin_retrait_piece_usinee_du_convoyeur TO SENDER" outline_color="-" background_color="-" center_coordinates="728 508" dimensions="348 40" attached_symbol_id=""/>
+<SdlFSMSymbol identifier="SYM24" type="sdlState" text="boucle" outline_color="-" background_color="-" center_coordinates="728 560" dimensions="62 40" attached_symbol_id=""/>
+</Transition>
+</NormalStateTransition>
+</StateTransitionBlock>
+<PageSpecification pageWidth="21.0" pageHeight="29.7" topMargin="1.0" bottomMargin="1.0" leftMargin="1.0" rightMargin="1.0" pageFooter="TRUE" scaleFactor="1.0"/>
+</SdlFSMPartition>
+</SdlFSMDiagram>

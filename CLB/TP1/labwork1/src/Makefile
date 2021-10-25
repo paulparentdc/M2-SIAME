@@ -8,7 +8,8 @@ PROGRAMS = \
 	ex2.elf \
 	ex3.elf \
 	ex4.elf \
-	ex5.elf
+	ex5.elf \
+	ex6.elf
 
 OBJECTS = $(SOURCES:.c=.o)
 
@@ -54,4 +55,7 @@ ex4.elf: startup.o ex4.o tinyprintf.o
 	$(CC) $(CFLAGS) $^ -o $@ $(LDFLAGS)
 
 ex5.elf: startup.o ex5.o tinyprintf.o
+	$(CC) $(CFLAGS) $^ -o $@ $(LDFLAGS)
+
+ex6.elf: startup.o ex6.o tinyprintf.o
 	$(CC) $(CFLAGS) $^ -o $@ $(LDFLAGS)

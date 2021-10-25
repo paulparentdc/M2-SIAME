@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE DictionaryObjects SYSTEM "rtdsDictionaryObjects.dtd">
+
+<DictionaryObjects version="9620" language="none" diagramType="blk">
+<Signal id="SIG1" name="fin_depot_piece_brute_sur_convoyeur">
+</Signal>
+<Signal id="SIG2" name="defaillance">
+</Signal>
+<Signal id="SIG3" name="deposer_piece_usinee_sur_convoyeur">
+</Signal>
+<Item id="ITEM1" type="block" name="Robot_alimentation" scope="current" formalParameterOrder="-" isFormalParam="FALSE" isSyntype="FALSE">
+<UsingSymbols>
+<SymbolReference symbolId="SYMB1"/>
+</UsingSymbols>
+<SignalWindow id="SIGWDW2" insideDiagram="TRUE">
+<ConnectorReference linkId="LINK5" isFrom="TRUE"/>
+<SentSignals>
+<SignalReference id="SIG3"/>
+</SentSignals>
+<ReceivedSignals>
+<SignalReference id="SIG1"/>
+<SignalReference id="SIG2"/>
+</ReceivedSignals>
+</SignalWindow>
+<Channel name="ct_alim" fromSignalWindow="SIGWDW2" toSignalWindow="SIGWDW1"/>
+</Item>
+<Item id="ITEM2" type="process" name="Th_Robot_alimentation" parentId="ITEM1" scope="none" minInstances="1" formalParameterOrder="-" isFormalParam="FALSE" isSyntype="FALSE">
+<DefiningSymbols>
+<SymbolReference symbolId="SYMB2"/>
+</DefiningSymbols>
+<UsingSymbols>
+<SymbolReference symbolId="SYMB2"/>
+</UsingSymbols>
+<SignalWindow id="SIGWDW1" insideDiagram="FALSE">
+<ConnectorReference linkId="LINK5" isFrom="FALSE"/>
+<SentSignals>
+<SignalReference id="SIG1"/>
+<SignalReference id="SIG2"/>
+</SentSignals>
+<ReceivedSignals>
+<SignalReference id="SIG3"/>
+</ReceivedSignals>
+</SignalWindow>
+</Item>
+</DictionaryObjects>

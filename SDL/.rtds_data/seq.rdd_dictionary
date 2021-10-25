@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE DictionaryObjects SYSTEM "rtdsDictionaryObjects.dtd">
+
+<DictionaryObjects version="9620" language="none" diagramType="msc">
+<Item id="ITEM1" type="package" name="" scope="current" formalParameterOrder="-" isFormalParam="FALSE" isSyntype="FALSE">
+</Item>
+<Item id="ITEM2" type="process" name="Operateur" scope="global" defined="FALSE" anchorItemId="ITEM1" searchPolicy="1" formalParameterOrder="-" isFormalParam="FALSE" isSyntype="FALSE">
+<AlternateType type="system"/>
+<AlternateType type="block"/>
+<UsingSymbols>
+<SymbolReference symbolId="_LIFELINE_2"/>
+</UsingSymbols>
+</Item>
+<Item id="ITEM3" type="block_class" name="Superviseur" scope="global" defined="FALSE" anchorItemId="ITEM1" searchPolicy="1" formalParameterOrder="-" isFormalParam="FALSE" isSyntype="FALSE">
+<AlternateType type="process_class"/>
+<AlternateType type="passive_class"/>
+<UsingSymbols>
+<SymbolReference symbolId="_LIFELINE_3"/>
+</UsingSymbols>
+</Item>
+<Item id="ITEM4" type="block_class" name="Robot alimentation" scope="global" defined="FALSE" anchorItemId="ITEM1" searchPolicy="1" formalParameterOrder="-" isFormalParam="FALSE" isSyntype="FALSE">
+<AlternateType type="process_class"/>
+<AlternateType type="passive_class"/>
+<UsingSymbols>
+<SymbolReference symbolId="_LIFELINE_4"/>
+</UsingSymbols>
+</Item>
+<Item id="ITEM5" type="block_class" name="Machine1" scope="global" defined="FALSE" anchorItemId="ITEM1" searchPolicy="1" formalParameterOrder="-" isFormalParam="FALSE" isSyntype="FALSE">
+<AlternateType type="process_class"/>
+<AlternateType type="passive_class"/>
+<UsingSymbols>
+<SymbolReference symbolId="_LIFELINE_5"/>
+</UsingSymbols>
+</Item>
+<Item id="ITEM6" type="block_class" name="Machine2" scope="global" defined="FALSE" anchorItemId="ITEM1" searchPolicy="1" formalParameterOrder="-" isFormalParam="FALSE" isSyntype="FALSE">
+<AlternateType type="process_class"/>
+<AlternateType type="passive_class"/>
+<UsingSymbols>
+<SymbolReference symbolId="_LIFELINE_6"/>
+</UsingSymbols>
+</Item>
+<Item id="ITEM7" type="block_class" name="Machine3" scope="global" defined="FALSE" anchorItemId="ITEM1" searchPolicy="1" formalParameterOrder="-" isFormalParam="FALSE" isSyntype="FALSE">
+<AlternateType type="process_class"/>
+<AlternateType type="passive_class"/>
+<UsingSymbols>
+<SymbolReference symbolId="_LIFELINE_7"/>
+</UsingSymbols>
+</Item>
+<Item id="ITEM8" type="block_class" name="Robot retrait" scope="global" defined="FALSE" anchorItemId="ITEM1" searchPolicy="1" formalParameterOrder="-" isFormalParam="FALSE" isSyntype="FALSE">
+<AlternateType type="process_class"/>
+<AlternateType type="passive_class"/>
+<UsingSymbols>
+<SymbolReference symbolId="_LIFELINE_8"/>
+</UsingSymbols>
+</Item>
+</DictionaryObjects>

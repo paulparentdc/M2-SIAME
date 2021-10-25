@@ -42,6 +42,9 @@ ex4:
 ex5:
 	cd src; $(MAKE) ex5.elf
 
+ex6:
+	cd src; $(MAKE) ex6.elf
+
 debug_ex1: ex1
 	cd src; $(GDB) $(GDB_FLAGS) ex1.elf
 
@@ -56,6 +59,10 @@ debug_ex4: ex4
 
 debug_ex5: ex5
 	cd src; $(GDB) $(GDB_FLAGS) ex5.elf
+
+debug_ex6: ex5
+	cd src; $(GDB) $(GDB_FLAGS) ex6.elf
+
 
 
 # build distribution

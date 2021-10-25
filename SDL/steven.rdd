@@ -4,18 +4,96 @@
 
 <Diagram language="sdl" type="sys" defaultColorsNeedFixing="FALSE" name="systeme" showMsgData="full" linksCrossingAllowed="FALSE" cellWidthMm="4">
 
-<DiagramPartition name="Part. 0" nbPagesH="1" nbPagesV="1">
+<DiagramPartition name="Part. 0" nbPagesH="2" nbPagesV="1">
 <PageSpecification pageWidth="21.0" pageHeight="29.7" topMargin="0.0" bottomMargin="0.0" leftMargin="0.0" rightMargin="0.0" pageFooter="FALSE" scaleFactor="1.0"/>
 
-<Symbol symbolId="SYMB1" type="sdlSysDgmFrm" xCenter="297" yCenter="420" fixedDimensions="TRUE" width="551" height="775" color="-" fillColor="-">
+<Symbol symbolId="SYMB1" type="sdlSysDgmFrm" xCenter="595" yCenter="420" fixedDimensions="TRUE" width="1146" height="775" color="-" fillColor="-">
 <Description></Description>
 <Text></Text>
 
-<Symbol symbolId="SYMB3" type="sdlBlk" xCenter="143" yCenter="121" fixedDimensions="FALSE" width="110" height="44" color="#000000" fillColor="#C4EFED">
+<Symbol symbolId="SYMB3" type="sdlBlk" xCenter="473" yCenter="275" fixedDimensions="FALSE" width="110" height="44" color="#000000" fillColor="#C4EFED">
 <Description></Description>
 <Text>superviseur</Text>
 </Symbol>
+
+<Symbol symbolId="SYMB4" type="sdlBlk" xCenter="1067" yCenter="121" fixedDimensions="FALSE" width="88" height="44" color="#000000" fillColor="#C4EFED">
+<Description></Description>
+<Text>Machine_1
+</Text>
 </Symbol>
+
+<Symbol symbolId="SYMB7" type="sdlBlk" xCenter="187" yCenter="110" fixedDimensions="FALSE" width="154" height="44" color="#000000" fillColor="#C4EFED">
+<Description></Description>
+<Text>Robot_alimentation
+</Text>
+</Symbol>
+
+<Symbol symbolId="SYMB8" type="sdlBlk" xCenter="473" yCenter="594" fixedDimensions="FALSE" width="132" height="44" color="#000000" fillColor="#C4EFED">
+<Description></Description>
+<Text>Robot_retrait
+</Text>
+</Symbol>
+</Symbol>
+
+<Link linkId="LINK8" type="chnl" textSegmentNum="0" color="#000000" reverseRead="FALSE" oriented="TRUE">
+<Text>c_mach
+</Text>
+<Connector attachedSymbolId="SYMB3" type="chnl" isOutside="TRUE" side="y" position="0.0" endType="midarrow">
+<Text id="1">[fin_depot_piece_brute_sur_table,
+fin_usinage,
+fin_depot_piece_usinee_sur_convoyeur]
+</Text>
+<Text id="2"></Text>
+</Connector>
+<Connector attachedSymbolId="SYMB4" type="chnl" isOutside="TRUE" side="y" position="0.0" endType="midarrow">
+<Text id="1">[deposer_piece_brute_sur_table,
+deposer_piece_usinee_sur_convoyeur]
+</Text>
+<Text id="2"></Text>
+</Connector>
+<LinkSegment orientation="h" length="308"/>
+<LinkSegment orientation="v" length="-154"/>
+<LinkSegment orientation="h" length="286"/>
+
+</Link>
+
+<Link linkId="LINK11" type="chnl" textSegmentNum="0" color="#000000" reverseRead="FALSE" oriented="TRUE">
+<Text>c_ret
+</Text>
+<Connector attachedSymbolId="SYMB3" type="chnl" isOutside="TRUE" side="x" position="0.0" endType="midarrow">
+<Text id="1">[fin_retrait_piece_usinee_du_convoyeur,
+defaillance]
+</Text>
+<Text id="2"></Text>
+</Connector>
+<Connector attachedSymbolId="SYMB8" type="chnl" isOutside="TRUE" side="x" position="0.0" endType="midarrow">
+<Text id="1">[retirer_piece_usinee_du_convoyeur]
+</Text>
+<Text id="2"></Text>
+</Connector>
+<LinkSegment orientation="v" length="319"/>
+
+</Link>
+
+<Link linkId="LINK9" type="chnl" textSegmentNum="0" color="#000000" reverseRead="FALSE" oriented="TRUE">
+<Text>c_alim
+</Text>
+<Connector attachedSymbolId="SYMB7" type="chnl" isOutside="TRUE" side="x" position="0.0" endType="midarrow">
+<Text id="1">[deposer_piece_brute_sur_convoyeur]
+</Text>
+<Text id="2"></Text>
+</Connector>
+<Connector attachedSymbolId="SYMB3" type="chnl" isOutside="TRUE" side="x" position="0.0" endType="midarrow">
+<Text id="1">[fin_depot_piece_brute_sur_convoyeur,
+defaillance]
+</Text>
+<Text id="2"></Text>
+</Connector>
+<LinkSegment orientation="v" length="77"/>
+<LinkSegment orientation="h" length="286"/>
+<LinkSegment orientation="v" length="88"/>
+
+</Link>
 </DiagramPartition>
 
 </Diagram>

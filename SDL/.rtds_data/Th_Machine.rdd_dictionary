@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE DictionaryObjects SYSTEM "rtdsDictionaryObjects.dtd">
+
+<DictionaryObjects version="9620" language="sdl" diagramType="prcs">
+<Signal id="SIG1" name="deposer_piece_brute_sur_table">
+<UsingSymbols>
+<SymbolReference symbolId="SYM4" usingKind="input"/>
+</UsingSymbols>
+</Signal>
+<Signal id="SIG2" name="fin_depot_piece_brute_sur_table">
+<UsingSymbols>
+<SymbolReference symbolId="SYM6" usingKind="output"/>
+</UsingSymbols>
+</Signal>
+<Signal id="SIG3" name="fin_usinage">
+<UsingSymbols>
+<SymbolReference symbolId="SYM8" usingKind="output"/>
+</UsingSymbols>
+</Signal>
+<Item id="ITEM1" type="process" name="Th_Machine" scope="current" formalParameterOrder="-" isFormalParam="FALSE" isSyntype="FALSE">
+<Body>
+<SentSignals>
+<SignalReference id="SIG2"/>
+<SignalReference id="SIG3"/>
+</SentSignals>
+<ReceivedSignals>
+<SignalReference id="SIG1"/>
+</ReceivedSignals>
+</Body>
+</Item>
+<Item id="ITEM2" type="variable" name="retirer_piece_du_convoyeur" scope="global" defined="FALSE" anchorItemId="ITEM1" searchPolicy="-1" formalParameterOrder="-" isFormalParam="FALSE" isSyntype="FALSE">
+<UsingSymbols>
+<SymbolReference symbolId="SYM5"/>
+</UsingSymbols>
+</Item>
+<Item id="ITEM3" type="variable" name="usinage" scope="global" defined="FALSE" anchorItemId="ITEM1" searchPolicy="-1" formalParameterOrder="-" isFormalParam="FALSE" isSyntype="FALSE">
+<UsingSymbols>
+<SymbolReference symbolId="SYM7"/>
+</UsingSymbols>
+</Item>
+<Item id="ITEM4" type="variable" name="deposer_piece" scope="global" defined="FALSE" anchorItemId="ITEM1" searchPolicy="-1" formalParameterOrder="-" isFormalParam="FALSE" isSyntype="FALSE">
+<UsingSymbols>
+<SymbolReference symbolId="SYM11"/>
+</UsingSymbols>
+</Item>
+<Item id="ITEM5" type="state" name="boucle" parentId="ITEM1" scope="none" formalParameterOrder="-" isFormalParam="FALSE" isSyntype="FALSE">
+<DefiningSymbols>
+<SymbolReference symbolId="SYM3"/>
+</DefiningSymbols>
+<UsingSymbols>
+<SymbolReference symbolId="SYM2"/>
+</UsingSymbols>
+</Item>
+<Item id="ITEM6" type="state" name="attente_ordre_depot" parentId="ITEM1" scope="none" formalParameterOrder="-" isFormalParam="FALSE" isSyntype="FALSE">
+<UsingSymbols>
+<SymbolReference symbolId="SYM9"/>
+</UsingSymbols>
+</Item>
+</DictionaryObjects>
