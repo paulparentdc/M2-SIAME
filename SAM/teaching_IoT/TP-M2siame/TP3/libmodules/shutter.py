@@ -26,6 +26,7 @@ import signal
 _shutDownEvent = None
 
 
+
 # #############################################################################
 #
 # Functions
@@ -63,7 +64,7 @@ class Shutter(object):
 
     # attributes
     _status = SHUTTER_POS_UNKNOWN
-    courseTime  = 30;       # (seconds) max. time for shutter to get fully open / close
+    _courseTime  = 10;       # (seconds) max. time for shutter to get fully open / close
 
     _unitID     = None
     _clientMQTT = None
@@ -74,29 +75,62 @@ class Shutter(object):
     def __init__(self, unitID, courseTime, mqtt_server, mqtt_topic_command, mqtt_topic_publish, shutDownEvent, *args, **kwargs):
         ''' Initialize object '''
         self._unitID = unitID
+        self._courseTime = courseTime
         self._status = Shutter.SHUTTER_POS_OPEN
+        self._curCmd = Shutter.SHUTTER_ACTION_STOP
         self._clientMQTT = connect.CommModule(mqtt_server, mqtt_topic_command, mqtt_topic_publish, unitID, self, shutDownEvent)
         self._clientMQTT.start()
+
+    def thread_action(self, action):
+        if(action == 'down'):
+            print("Thread "+str(self._unitID)+" : state : down")
+            self._curCmd = Shutter.SHUTTER_ACTION_STOP
+            self._status = Shutter.SHUTTER_POS_CLOSED
+        elif(action == 'up'):
+            print("Thread "+str(self._unitID)+" : state : up")
+            self._curCmd = Shutter.SHUTTER_ACTION_STOP
+            self._status = Shutter.SHUTTER_POS_OPEN
+        else:
+            print("Thread creation error!")
+        
+        self.send_status()
+
 
     def handle_message(self, payload):
         order = payload['order']
 
-        if(order == 'up'):
-            log.info("Volet "+str(self._unitID)+" : UP")
+        if(self._curCmd == Shutter.SHUTTER_ACTION_OPEN):
+            if(order == 'down' or order == 'stop'):
+                self._thread.cancel()
+                self._curCmd = Shutter.SHUTTER_ACTION_STOP 
 
-        elif(order == 'down'):
-            log.info("Volet "+str(self._unitID)+" : DOWN")
+        elif(self._curCmd == Shutter.SHUTTER_ACTION_CLOSE):
+            if(order == 'up' or order == 'stop'):
+                self._thread.cancel()
+                self._curCmd = Shutter.SHUTTER_ACTION_STOP
+            
+        elif(self._curCmd == Shutter.SHUTTER_ACTION_STOP):
+            if(order == 'down'):
+                self._curCmd = Shutter.SHUTTER_ACTION_CLOSE
+                self._status = Shutter.SHUTTER_POS_UNKNOWN
+                self._thread = threading.Timer(self._courseTime, self.thread_action, ['down'])
+                self._thread.start()
 
-        elif(order == 'stop'):
-            log.info("Volet "+str(self._unitID)+" : STOP")
+            elif(order == 'up'):
+                self._curCmd = Shutter.SHUTTER_ACTION_OPEN
+                self._status = Shutter.SHUTTER_POS_UNKNOWN 
+                self._thread = threading.Timer(self._courseTime, self.thread_action, ['up'])
+                self._thread.start()
+            else:
+                print("Ordre ignore")
 
-        elif(order == 'status'):
-            self.send_status()
-        
-        else:
-            log.info("Commande non connue")
+
+        self.send_status()
+    
+
 
     def send_status(self):
+        print("Envoie")
         log.info("Envoi du status ...")
         payload = {}
         
@@ -120,7 +154,9 @@ def main():
     _shutDownEvent = threading.Event()
     signal.signal(signal.SIGINT, signal_handler)
     
-    Shutter(1, 30, "192.168.0.214", "014/shutter/command", "014/shutter/", _shutDownEvent)
+    Shutter("front", 30, "192.168.0.214", "014/shutter/command", "014/shutter/", _shutDownEvent)
+    Shutter("center", 30, "192.168.0.214", "014/shutter/command", "014/shutter/", _shutDownEvent)
+    Shutter("back", 30, "192.168.0.214", "014/shutter/command", "014/shutter/", _shutDownEvent)
  
 
 

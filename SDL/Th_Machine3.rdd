@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE Diagram SYSTEM "rtdsDiagram.dtd">
+
+<SdlFSMDiagram language="sdl" type="prcs" is_extract="FALSE" is_temporary="FALSE">
+<SdlFSMPartition name="" needs_cleanup="FALSE">
+<NonStateTransition top_left_coordinates="182 85">
+<SdlFSMSymbol identifier="SYM1" type="sdlStart" outline_color="-" background_color="-" center_coordinates="213 100" dimensions="60 30" attached_symbol_id=""/>
+<Transition>
+<SdlFSMSymbol identifier="SYM2" type="sdlState" text="boucle" outline_color="-" background_color="-" center_coordinates="213 147" dimensions="62 40" attached_symbol_id=""/>
+</Transition>
+</NonStateTransition>
+<StateTransitionBlock top_left_coordinates="411 93">
+<SdlFSMSymbol identifier="SYM3" type="sdlState" text="boucle" outline_color="-" background_color="-" center_coordinates="582 113" dimensions="62 40" attached_symbol_id=""/>
+<NormalStateTransition>
+<SdlFSMSymbol identifier="SYM4" type="sdlInputSig" text="deposer_piece_brute_sur_table" outline_color="-" background_color="-" center_coordinates="582 165" dimensions="222 40" attached_symbol_id=""/>
+<Transition>
+<SdlFSMSymbol identifier="SYM5" type="sdlTask" text="retirer_piece_du_convoyeur()" outline_color="-" background_color="-" center_coordinates="582 217" dimensions="216 40" attached_symbol_id=""/>
+<SdlFSMSymbol identifier="SYM6" type="sdlSendSig" text="fin_depot_piece_brute_sur_table TO SENDER" outline_color="-" background_color="-" center_coordinates="582 269" dimensions="306 40" attached_symbol_id=""/>
+<SdlFSMSymbol identifier="SYM7" type="sdlTask" text="usinage()" outline_color="-" background_color="-" center_coordinates="582 321" dimensions="82 40" attached_symbol_id=""/>
+<SdlFSMSymbol identifier="SYM8" type="sdlSendSig" text="fin_usinage TO SENDER" outline_color="-" background_color="-" center_coordinates="582 373" dimensions="166 40" attached_symbol_id=""/>
+<SdlFSMSymbol identifier="SYM9" type="sdlState" text="attente_ordre_depot" outline_color="-" background_color="-" center_coordinates="582 425" dimensions="152 40" attached_symbol_id=""/>
+</Transition>
+</NormalStateTransition>
+</StateTransitionBlock>
+<StateTransitionBlock>
+<SdlFSMSymbolReference identifier="SYM9"/>
+<NormalStateTransition>
+<SdlFSMSymbol identifier="SYM10" type="sdlInputSig" text="deposer_piece_usinee_sur_convoyeur" outline_color="-" background_color="-" center_coordinates="582 477" dimensions="258 40" attached_symbol_id=""/>
+<Transition>
+<SdlFSMSymbol identifier="SYM11" type="sdlTask" text="deposer_piece()" outline_color="-" background_color="-" center_coordinates="582 529" dimensions="124 40" attached_symbol_id=""/>
+<SdlFSMSymbol identifier="SYM12" type="sdlSendSig" text="fin_depot_piece_usinee_sur_convoyeur TO SENDER" outline_color="-" background_color="-" center_coordinates="582 581" dimensions="342 40" attached_symbol_id=""/>
+<SdlFSMSymbol identifier="SYM13" type="sdlState" text="boucle" outline_color="-" background_color="-" center_coordinates="582 633" dimensions="62 40" attached_symbol_id=""/>
+</Transition>
+</NormalStateTransition>
+</StateTransitionBlock>
+<PageSpecification pageWidth="21.0" pageHeight="29.7" topMargin="1.0" bottomMargin="1.0" leftMargin="1.0" rightMargin="1.0" pageFooter="TRUE" scaleFactor="1.0"/>
+</SdlFSMPartition>
+</SdlFSMDiagram>

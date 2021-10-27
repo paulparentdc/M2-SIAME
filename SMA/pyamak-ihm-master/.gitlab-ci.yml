@@ -1,0 +1,53 @@
+image: python:3.6
+
+before_script:
+  - python --version
+  - pip install -r requirements.txt
+
+stages:
+  - Info
+  - Code Analysis
+  - Test
+
+info:
+  stage: Info
+  script:
+    - pwd
+    - whoami
+    - which python
+    - which pip
+
+pylint:
+  stage: Code Analysis
+  allow_failure: true
+  script:
+    - pip install pylint
+    - pylint -d C0301,R0903,R0902,R0913,E0611,E0401 ./*.py ./**/*.py
+
+flake8:
+  stage: Code Analysis
+  allow_failure: true
+  script:
+    - pip install flake8
+    - flake8 --verbose --max-line-length=120 --max-complexity 8 *.py
+
+isort:
+  stage: Code Analysis
+  allow_failure: true
+  script:
+    - pip install isort
+    - isort .
+
+pytest:
+  stage: Test
+  script:
+    - pip install pytest pytest-cov coverage-badge
+    - pytest --cov=. --junitxml=report.xml
+    - coverage report -m
+    - coverage-badge
+    - coverage xml
+  artifacts:
+    when: always
+    reports:
+      junit: report.xml
+      cobertura: coverage.xml

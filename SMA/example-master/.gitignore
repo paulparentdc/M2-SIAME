@@ -1,0 +1,16 @@
+desktop.ini
+.git
+.vscode
+.idea
+venv
+*.bat
+*.sh
+outputs/
+__pycache__/
+*.pyc
+.coverage
+report.xml
+.mutmut-cache
+html/
+build/
+pyAmakCore.egg-info/

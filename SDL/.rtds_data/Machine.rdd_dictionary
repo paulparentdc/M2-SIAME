@@ -18,7 +18,7 @@
 <SymbolReference symbolId="SYMB1"/>
 </UsingSymbols>
 <SignalWindow id="SIGWDW2" insideDiagram="TRUE">
-<ConnectorReference linkId="LINK4" isFrom="TRUE"/>
+<ConnectorReference linkId="LINK5" isFrom="TRUE"/>
 <SentSignals>
 <SignalReference id="SIG4"/>
 <SignalReference id="SIG5"/>
@@ -31,7 +31,7 @@
 </SignalWindow>
 <Channel name="ct_mach" fromSignalWindow="SIGWDW2" toSignalWindow="SIGWDW1"/>
 </Item>
-<Item id="ITEM2" type="process" name="Th_Machine" parentId="ITEM1" scope="none" minInstances="1" formalParameterOrder="-" isFormalParam="FALSE" isSyntype="FALSE">
+<Item id="ITEM2" type="process" name="Th_Machine1" parentId="ITEM1" scope="none" minInstances="1" formalParameterOrder="-" isFormalParam="FALSE" isSyntype="FALSE">
 <DefiningSymbols>
 <SymbolReference symbolId="SYMB4"/>
 </DefiningSymbols>
@@ -39,7 +39,7 @@
 <SymbolReference symbolId="SYMB4"/>
 </UsingSymbols>
 <SignalWindow id="SIGWDW1" insideDiagram="FALSE">
-<ConnectorReference linkId="LINK4" isFrom="FALSE"/>
+<ConnectorReference linkId="LINK5" isFrom="FALSE"/>
 <SentSignals>
 <SignalReference id="SIG1"/>
 <SignalReference id="SIG2"/>

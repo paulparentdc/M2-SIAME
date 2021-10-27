@@ -1,6 +1,8 @@
 """
 test that amas of Agent work as intended
 """
+import sys
+sys.path.extend(['/nfs/home/camsi8/Documents/M2-SIAME/SMA/pyamak-core'])
 from unittest import TestCase, main
 
 from pyAmakCore.classes.agent import Agent

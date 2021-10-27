@@ -18,7 +18,7 @@
 <SymbolReference symbolId="SYM8" usingKind="output"/>
 </UsingSymbols>
 </Signal>
-<Item id="ITEM1" type="process" name="Th_Machine" scope="current" formalParameterOrder="-" isFormalParam="FALSE" isSyntype="FALSE">
+<Item id="ITEM1" type="process" name="Th_Machine3" scope="current" formalParameterOrder="-" isFormalParam="FALSE" isSyntype="FALSE">
 <Body>
 <SentSignals>
 <SignalReference id="SIG2"/>
@@ -34,14 +34,14 @@
 <SymbolReference symbolId="SYM5"/>
 </UsingSymbols>
 </Item>
-<Item id="ITEM3" type="variable" name="usinage" scope="global" defined="FALSE" anchorItemId="ITEM1" searchPolicy="-1" formalParameterOrder="-" isFormalParam="FALSE" isSyntype="FALSE">
-<UsingSymbols>
-<SymbolReference symbolId="SYM7"/>
-</UsingSymbols>
-</Item>
-<Item id="ITEM4" type="variable" name="deposer_piece" scope="global" defined="FALSE" anchorItemId="ITEM1" searchPolicy="-1" formalParameterOrder="-" isFormalParam="FALSE" isSyntype="FALSE">
+<Item id="ITEM3" type="variable" name="deposer_piece" scope="global" defined="FALSE" anchorItemId="ITEM1" searchPolicy="-1" formalParameterOrder="-" isFormalParam="FALSE" isSyntype="FALSE">
 <UsingSymbols>
 <SymbolReference symbolId="SYM11"/>
+</UsingSymbols>
+</Item>
+<Item id="ITEM4" type="variable" name="usinage" scope="global" defined="FALSE" anchorItemId="ITEM1" searchPolicy="-1" formalParameterOrder="-" isFormalParam="FALSE" isSyntype="FALSE">
+<UsingSymbols>
+<SymbolReference symbolId="SYM7"/>
 </UsingSymbols>
 </Item>
 <Item id="ITEM5" type="state" name="boucle" parentId="ITEM1" scope="none" formalParameterOrder="-" isFormalParam="FALSE" isSyntype="FALSE">

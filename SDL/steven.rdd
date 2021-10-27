@@ -11,6 +11,11 @@
 <Description></Description>
 <Text></Text>
 
+<Symbol symbolId="SYMB10" type="sdlBlk" xCenter="1034" yCenter="572" fixedDimensions="FALSE" width="88" height="44" color="#000000" fillColor="#C4EFED">
+<Description></Description>
+<Text>Machine_3</Text>
+</Symbol>
+
 <Symbol symbolId="SYMB3" type="sdlBlk" xCenter="473" yCenter="275" fixedDimensions="FALSE" width="110" height="44" color="#000000" fillColor="#C4EFED">
 <Description></Description>
 <Text>superviseur</Text>
@@ -18,25 +23,49 @@
 
 <Symbol symbolId="SYMB4" type="sdlBlk" xCenter="1067" yCenter="121" fixedDimensions="FALSE" width="88" height="44" color="#000000" fillColor="#C4EFED">
 <Description></Description>
-<Text>Machine_1
-</Text>
+<Text>Machine_1</Text>
 </Symbol>
 
 <Symbol symbolId="SYMB7" type="sdlBlk" xCenter="187" yCenter="110" fixedDimensions="FALSE" width="154" height="44" color="#000000" fillColor="#C4EFED">
 <Description></Description>
-<Text>Robot_alimentation
-</Text>
+<Text>Robot_alimentation</Text>
 </Symbol>
 
 <Symbol symbolId="SYMB8" type="sdlBlk" xCenter="473" yCenter="594" fixedDimensions="FALSE" width="132" height="44" color="#000000" fillColor="#C4EFED">
 <Description></Description>
-<Text>Robot_retrait
-</Text>
+<Text>Robot_retrait</Text>
+</Symbol>
+
+<Symbol symbolId="SYMB9" type="sdlBlk" xCenter="1056" yCenter="341" fixedDimensions="FALSE" width="88" height="44" color="#000000" fillColor="#C4EFED">
+<Description></Description>
+<Text>Machine_2</Text>
 </Symbol>
 </Symbol>
 
+<Link linkId="LINK15" type="chnl" textSegmentNum="0" color="#000000" reverseRead="FALSE" oriented="TRUE">
+<Text>c_mach3
+</Text>
+<Connector attachedSymbolId="SYMB3" type="chnl" isOutside="TRUE" side="x" position="0.4" endType="midarrow">
+<Text id="1">[fin_depot_piece_brute_sur_table,
+fin_usinage,
+fin_depot_piece_usinee_sur_convoyeur]
+</Text>
+<Text id="2"></Text>
+</Connector>
+<Connector attachedSymbolId="SYMB10" type="chnl" isOutside="TRUE" side="x" position="0.0" endType="midarrow">
+<Text id="1">[deposer_piece_brute_sur_table,
+deposer_piece_usinee_sur_convoyeur]
+</Text>
+<Text id="2"></Text>
+</Connector>
+<LinkSegment orientation="v" length="253"/>
+<LinkSegment orientation="h" length="539"/>
+<LinkSegment orientation="v" length="44"/>
+
+</Link>
+
 <Link linkId="LINK8" type="chnl" textSegmentNum="0" color="#000000" reverseRead="FALSE" oriented="TRUE">
-<Text>c_mach
+<Text>c_mach1
 </Text>
 <Connector attachedSymbolId="SYMB3" type="chnl" isOutside="TRUE" side="y" position="0.0" endType="midarrow">
 <Text id="1">[fin_depot_piece_brute_sur_table,
@@ -58,8 +87,7 @@ deposer_piece_usinee_sur_convoyeur]
 </Link>
 
 <Link linkId="LINK11" type="chnl" textSegmentNum="0" color="#000000" reverseRead="FALSE" oriented="TRUE">
-<Text>c_ret
-</Text>
+<Text>c_ret</Text>
 <Connector attachedSymbolId="SYMB3" type="chnl" isOutside="TRUE" side="x" position="0.0" endType="midarrow">
 <Text id="1">[fin_retrait_piece_usinee_du_convoyeur,
 defaillance]
@@ -75,9 +103,30 @@ defaillance]
 
 </Link>
 
-<Link linkId="LINK9" type="chnl" textSegmentNum="0" color="#000000" reverseRead="FALSE" oriented="TRUE">
-<Text>c_alim
+<Link linkId="LINK17" type="chnl" textSegmentNum="0" color="#000000" reverseRead="FALSE" oriented="TRUE">
+<Text>c_mach2
 </Text>
+<Connector attachedSymbolId="SYMB3" type="chnl" isOutside="TRUE" side="x" position="0.8" endType="midarrow">
+<Text id="1">[fin_depot_piece_brute_sur_table,
+fin_usinage,
+fin_depot_piece_usinee_sur_convoyeur]
+</Text>
+<Text id="2"></Text>
+</Connector>
+<Connector attachedSymbolId="SYMB9" type="chnl" isOutside="TRUE" side="x" position="0.0" endType="midarrow">
+<Text id="1">[deposer_piece_brute_sur_table,
+deposer_piece_usinee_sur_convoyeur]
+</Text>
+<Text id="2"></Text>
+</Connector>
+<LinkSegment orientation="v" length="99"/>
+<LinkSegment orientation="h" length="539"/>
+<LinkSegment orientation="v" length="-33"/>
+
+</Link>
+
+<Link linkId="LINK9" type="chnl" textSegmentNum="0" color="#000000" reverseRead="FALSE" oriented="TRUE">
+<Text>c_alim</Text>
 <Connector attachedSymbolId="SYMB7" type="chnl" isOutside="TRUE" side="x" position="0.0" endType="midarrow">
 <Text id="1">[deposer_piece_brute_sur_convoyeur]
 </Text>

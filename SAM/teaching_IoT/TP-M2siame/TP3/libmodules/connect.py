@@ -176,6 +176,7 @@ class CommModule(Thread):
         
         # is it a message for us ??
         if( self._unitID is not None and (payload['dest'] == "all" or payload['dest'] == str(self._unitID)) ):
+            log.info("On passe le message")
             self._shutter.handle_message(payload)   
 
         

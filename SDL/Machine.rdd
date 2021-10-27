@@ -13,14 +13,13 @@
 
 <Symbol symbolId="SYMB4" type="sdlPrcs" xCenter="1034" yCenter="385" fixedDimensions="FALSE" width="110" height="44" color="#000000" fillColor="#C4EFED">
 <Description></Description>
-<Text>Th_Machine
+<Text>Th_Machine1
 </Text>
 </Symbol>
 </Symbol>
 
-<Link linkId="LINK4" type="chnl" textSegmentNum="0" color="#000000" reverseRead="FALSE" oriented="TRUE">
-<Text>ct_mach
-</Text>
+<Link linkId="LINK5" type="chnl" textSegmentNum="0" color="#000000" reverseRead="FALSE" oriented="TRUE">
+<Text>ct_mach</Text>
 <Connector attachedSymbolId="SYMB1" type="chnlgate" isOutside="FALSE" side="w" position="-0.00516129032258" endType="midarrow">
 <Text id="1">[fin_depot_piece_brute_sur_table,
 fin_usinage,
