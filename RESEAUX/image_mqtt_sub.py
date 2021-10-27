@@ -2,7 +2,7 @@ import paho.mqtt.client as mqtt
 import logging as log
 
 
-MQTT_PATHS = {"pi19/image/light/#","pi19/image/dark/#"}
+
 MQTT_SERVER = "192.168.0.214"
 MQTT_PORT = 1883
 
@@ -10,15 +10,7 @@ def on_connect(client, userdata, flags, rc):
     print("Connexion established with result code " + str(rc))
     client.subscribe("pi19/image/light/#")
     client.subscribe("pi19/image/dark/#")
-
-    for path in MQTT_PATHS:
-        # subscribe to topics list
-
-            print("    subscribing to " + path)
-            client.subscribe(path)
-
-
-
+    client.subscribe("pi19/image/answer/#")
 
 def on_message(client, userdata, msg):
     print("Message received : ")
@@ -41,6 +33,19 @@ def on_message(client, userdata, msg):
         nom_image = msg.topic.replace("pi19/image/dark/","").replace("/","")
         f = open('img/dark/'+nom_image, 'wb')
         print("   Image received : dark")
+        try:
+            # loading payload and writing image
+            f.write(msg.payload)
+        except Exception as ex:
+            log.error("exception loading image payload '%s': " % str(msg.topic) + str(ex))
+            return
+        f.close()
+    elif(msg.topic.startswith("pi19/image/answer/")):
+        # getting the image's name
+        nom_image = msg.topic.replace("pi19/image/answer/","").replace("/","") 
+        f = open('img/answer/'+nom_image, 'wb')
+        print("   Image received : answer of the command")
+        print(nom_image)
         try:
             # loading payload and writing image
             f.write(msg.payload)
