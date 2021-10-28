@@ -4,8 +4,12 @@
 
 <SdlFSMDiagram language="sdl" type="prcs" is_extract="FALSE" is_temporary="FALSE">
 <SdlFSMPartition name="" needs_cleanup="FALSE">
-<NonStateTransition top_left_coordinates="171 34">
-<SdlFSMSymbol identifier="SYM1" type="sdlStart" outline_color="-" background_color="-" center_coordinates="201 49" dimensions="60 30" attached_symbol_id=""/>
+<SdlFSMSymbol identifier="SYM2" type="sdlText" text="DCL
+  machine1Libre INTEGER := 1,
+  machine2Libre INTEGER := 1,
+  machine3Libre INTEGER := 1;" outline_color="-" background_color="-" center_coordinates="197 0" dimensions="222 80" attached_symbol_id=""/>
+<NonStateTransition top_left_coordinates="576 0">
+<SdlFSMSymbol identifier="SYM1" type="sdlStart" outline_color="-" background_color="-" center_coordinates="606 15" dimensions="60 30" attached_symbol_id=""/>
 <Transition>
 </Transition>
 </NonStateTransition>

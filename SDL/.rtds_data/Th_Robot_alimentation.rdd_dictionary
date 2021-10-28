@@ -3,7 +3,7 @@
 <!DOCTYPE DictionaryObjects SYSTEM "rtdsDictionaryObjects.dtd">
 
 <DictionaryObjects version="9620" language="sdl" diagramType="prcs">
-<Signal id="SIG1" name="deposer_piece_brute_sur_convoyeur">
+<Signal id="SIG1" name="deposerBrutConv">
 <UsingSymbols>
 <SymbolReference symbolId="SYM4" usingKind="input"/>
 </UsingSymbols>
@@ -13,7 +13,7 @@
 <SymbolReference symbolId="SYM5" usingKind="output"/>
 </UsingSymbols>
 </Signal>
-<Signal id="SIG3" name="fin_depot_piece_brute_sur_convoyeur">
+<Signal id="SIG3" name="finDepotBrutConv">
 <UsingSymbols>
 <SymbolReference symbolId="SYM8" usingKind="output"/>
 </UsingSymbols>
@@ -35,11 +35,13 @@
 </UsingSymbols>
 </Item>
 <Item id="ITEM3" type="variable" name="deposer_piece_brute" scope="global" defined="FALSE" anchorItemId="ITEM1" searchPolicy="-1" formalParameterOrder="-" isFormalParam="FALSE" isSyntype="FALSE">
+</Item>
+<Item id="ITEM4" type="variable" name="deposerBrutConv" scope="global" defined="FALSE" anchorItemId="ITEM1" searchPolicy="-1" formalParameterOrder="-" isFormalParam="FALSE" isSyntype="FALSE">
 <UsingSymbols>
 <SymbolReference symbolId="SYM7"/>
 </UsingSymbols>
 </Item>
-<Item id="ITEM4" type="state" name="boucle" parentId="ITEM1" scope="none" formalParameterOrder="-" isFormalParam="FALSE" isSyntype="FALSE">
+<Item id="ITEM5" type="state" name="boucle" parentId="ITEM1" scope="none" formalParameterOrder="-" isFormalParam="FALSE" isSyntype="FALSE">
 <DefiningSymbols>
 <SymbolReference symbolId="SYM3"/>
 </DefiningSymbols>
@@ -48,7 +50,7 @@
 <SymbolReference symbolId="SYM9"/>
 </UsingSymbols>
 </Item>
-<Item id="ITEM5" type="timer" name="T" parentId="ITEM1" scope="none" formalParameterOrder="-" isFormalParam="FALSE" isSyntype="FALSE">
+<Item id="ITEM6" type="timer" name="T" parentId="ITEM1" scope="none" formalParameterOrder="-" isFormalParam="FALSE" isSyntype="FALSE">
 <DefiningSymbols>
 <SymbolReference symbolId="SYM5"/>
 </DefiningSymbols>

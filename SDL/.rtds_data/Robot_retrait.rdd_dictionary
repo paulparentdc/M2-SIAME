@@ -3,11 +3,11 @@
 <!DOCTYPE DictionaryObjects SYSTEM "rtdsDictionaryObjects.dtd">
 
 <DictionaryObjects version="9620" language="none" diagramType="blk">
-<Signal id="SIG1" name="fin_retrait_piece_usinee_du_convoyeur">
+<Signal id="SIG1" name="finRetraitUsineeConv">
 </Signal>
-<Signal id="SIG2" name="defaillance">
+<Signal id="SIG2" name="defaillanceRet">
 </Signal>
-<Signal id="SIG3" name="retirer_piece_usinee_du_convoyeur">
+<Signal id="SIG3" name="retirerUsineeConv">
 </Signal>
 <Item id="ITEM1" type="block" name="Robot_retrait" scope="current" formalParameterOrder="-" isFormalParam="FALSE" isSyntype="FALSE">
 <UsingSymbols>

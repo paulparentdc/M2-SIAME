@@ -20,13 +20,13 @@
 <Link linkId="LINK3" type="chnl" textSegmentNum="0" color="#000000" reverseRead="FALSE" oriented="TRUE">
 <Text>ct_ret</Text>
 <Connector attachedSymbolId="SYMB1" type="chnlgate" isOutside="FALSE" side="n" position="0.0" endType="midarrow">
-<Text id="1">[fin_retrait_piece_usinee_du_convoyeur,
-defaillance]
+<Text id="1">[finRetraitUsineeConv,
+defaillanceRet]
 </Text>
 <Text id="2">__</Text>
 </Connector>
 <Connector attachedSymbolId="SYMB2" type="chnl" isOutside="TRUE" side="x" position="0.0" endType="midarrow">
-<Text id="1">[retirer_piece_usinee_du_convoyeur]
+<Text id="1">[retirerUsineeConv]
 </Text>
 <Text id="2"></Text>
 </Connector>

@@ -82,7 +82,6 @@ class CommModule(Thread):
         # launch
         try:
             while not self._shutdownEvent.is_set():
-
                 if self._mqtt_client.loop(timeout=2.0) != mqtt_client.MQTT_ERR_SUCCESS:
                     log.debug("loop failed, sleeping a bit before retrying")
                     time.sleep(2)

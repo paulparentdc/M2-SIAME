@@ -3,15 +3,15 @@
 <!DOCTYPE DictionaryObjects SYSTEM "rtdsDictionaryObjects.dtd">
 
 <DictionaryObjects version="9620" language="none" diagramType="blk">
-<Signal id="SIG1" name="fin_depot_piece_brute_sur_table">
+<Signal id="SIG1" name="finDepotBrutTable1">
 </Signal>
-<Signal id="SIG2" name="fin_usinage">
+<Signal id="SIG2" name="finUsinage1">
 </Signal>
-<Signal id="SIG3" name="fin_depot_piece_usinee_sur_convoyeur">
+<Signal id="SIG3" name="finDepotUsineeConv1">
 </Signal>
-<Signal id="SIG4" name="deposer_piece_brute_sur_table">
+<Signal id="SIG4" name="deposerBrutTable1">
 </Signal>
-<Signal id="SIG5" name="deposer_piece_usinee_sur_convoyeur">
+<Signal id="SIG5" name="deposerUsineeConv1">
 </Signal>
 <Item id="ITEM1" type="block" name="Machine_1" scope="current" formalParameterOrder="-" isFormalParam="FALSE" isSyntype="FALSE">
 <UsingSymbols>
