@@ -10,6 +10,7 @@ USE IEEE.STD_LOGIC_1164.ALL;
 USE IEEE.NUMERIC_STD.ALL;
 
 entity test_mux4_1 is 
+
 end test_mux4_1;
 
 architecture arch_test_mux4_1 of test_mux4_1 is 
