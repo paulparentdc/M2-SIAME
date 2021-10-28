@@ -40,6 +40,12 @@ entity add is
     );
 end entity;
 
+architecture arch_add of add is 
+begin 
+
+
+end arch_add;
+
 ------------------------------------------------------
 
 -- Full 32b adder with carry bits out
