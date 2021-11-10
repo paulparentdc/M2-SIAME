@@ -1,0 +1,51 @@
+digraph _1 {
+	_1_0 [label="entry"];
+	_1_1 [margin=0,shape="box",label=<<table border='0' cellpadding='8px'><tr><td>BB 1 (1040:36)</td></tr><hr/><tr><td align='left'>bubble.c:9: {
+<br align='left'/>bubble.c:12: &nbsp;&nbsp;for(i&nbsp;=&nbsp;length&nbsp;-&nbsp;1;&nbsp;i&nbsp;&amp;gt;&nbsp;0;&nbsp;i--)
+<br align='left'/></td></tr><hr/><tr><td>ipet-total_count=1 (0.37%)<br/>ipet-total_time=12 (0.35%)<br/></td></tr></table>>,fillcolor="#eae7ff",style="filled",fontcolor="#000000"];
+	_1_2 [margin=0,shape="box",label=<<table border='0' cellpadding='8px'><tr><td>BB 2 (1304:12)</td></tr><hr/><tr><td align='left'>bubble.c:12: &nbsp;&nbsp;for(i&nbsp;=&nbsp;length&nbsp;-&nbsp;1;&nbsp;i&nbsp;&amp;gt;&nbsp;0;&nbsp;i--)
+<br align='left'/></td></tr><hr/><tr><td>ipet-total_count=8 (2.99%)<br/>ipet-total_time=41 (1.20%)<br/></td></tr></table>>,fillcolor="#d6cfff",style="filled",fontcolor="#000000"];
+	_1_3 [margin=0,shape="box",label=<<table border='0' cellpadding='8px'><tr><td>BB 3 (1076:20)</td></tr><hr/><tr><td align='left'>bubble.c:14: &nbsp;&nbsp;&nbsp;&nbsp;test=0;
+<br align='left'/>bubble.c:15: &nbsp;&nbsp;&nbsp;&nbsp;for(j&nbsp;=&nbsp;0;&nbsp;j&nbsp;&amp;lt;&nbsp;i;&nbsp;j++)
+<br align='left'/></td></tr><hr/><tr><td>ipet-total_count=8 (2.99%)<br/>ipet-total_time=72 (2.10%)<br/></td></tr></table>>,fillcolor="#d6cfff",style="filled",fontcolor="#000000"];
+	_1_4 [margin=0,shape="box",label=<<table border='0' cellpadding='8px'><tr><td>BB 4 (1264:16)</td></tr><hr/><tr><td align='left'>bubble.c:15: &nbsp;&nbsp;&nbsp;&nbsp;for(j&nbsp;=&nbsp;0;&nbsp;j&nbsp;&amp;lt;&nbsp;i;&nbsp;j++)
+<br align='left'/></td></tr><hr/><tr><td>ipet-total_count=64 (23.88%)<br/>ipet-total_time=408 (11.91%)<br/></td></tr></table>>,fillcolor="#7162dd",style="filled",fontcolor="#ffffff"];
+	_1_5 [margin=0,shape="box",label=<<table border='0' cellpadding='8px'><tr><td>BB 5 (1096:52)</td></tr><hr/><tr><td align='left'>bubble.c:17: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if(array[j]&nbsp;&amp;gt;&nbsp;array[j+1])&nbsp;/*&nbsp;compare&nbsp;neighboring&nbsp;elements&nbsp;*/
+<br align='left'/></td></tr><hr/><tr><td>ipet-total_count=56 (20.90%)<br/>ipet-total_time=952 (27.80%)<br/></td></tr></table>>,fillcolor="#7b6ce3",style="filled",fontcolor="#ffffff"];
+	_1_6 [margin=0,shape="box",label=<<table border='0' cellpadding='8px'><tr><td>BB 6 (1252:12)</td></tr><hr/><tr><td align='left'>bubble.c:15: &nbsp;&nbsp;&nbsp;&nbsp;for(j&nbsp;=&nbsp;0;&nbsp;j&nbsp;&amp;lt;&nbsp;i;&nbsp;j++)
+<br align='left'/></td></tr><hr/><tr><td>ipet-total_count=56 (20.90%)<br/>ipet-total_time=280 (8.18%)<br/></td></tr></table>>,fillcolor="#7b6ce3",style="filled",fontcolor="#ffffff"];
+	_1_7 [margin=0,shape="box",label=<<table border='0' cellpadding='8px'><tr><td>BB 7 (1148:104)</td></tr><hr/><tr><td align='left'>bubble.c:19: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;temp&nbsp;=&nbsp;array[j];&nbsp;&nbsp;&nbsp;&nbsp;/*&nbsp;swap&nbsp;array[j]&nbsp;and&nbsp;array[j+1]&nbsp;*/
+<br align='left'/>bubble.c:20: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;array[j]&nbsp;=&nbsp;array[j+1];
+<br align='left'/>bubble.c:21: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;array[j+1]&nbsp;=&nbsp;temp;
+<br align='left'/>bubble.c:22: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;test=1;
+<br align='left'/></td></tr><hr/><tr><td>ipet-total_count=56 (20.90%)<br/>ipet-total_time=1568 (45.78%)<br/></td></tr></table>>,fillcolor="#7b6ce3",style="filled",fontcolor="#ffffff"];
+	_1_8 [margin=0,shape="box",label=<<table border='0' cellpadding='8px'><tr><td>BB 8 (1280:12)</td></tr><hr/><tr><td align='left'>bubble.c:25: &nbsp;&nbsp;&nbsp;&nbsp;if(test==0)&nbsp;break;&nbsp;/*will&nbsp;exit&nbsp;if&nbsp;the&nbsp;list&nbsp;is&nbsp;sorted!*/
+<br align='left'/></td></tr><hr/><tr><td>ipet-total_count=8 (2.99%)<br/>ipet-total_time=40 (1.17%)<br/></td></tr></table>>,fillcolor="#d6cfff",style="filled",fontcolor="#000000"];
+	_1_9 [margin=0,shape="box",label=<<table border='0' cellpadding='8px'><tr><td>BB 9 (1320:4)</td></tr><hr/><tr><td align='left'>bubble.c:25: &nbsp;&nbsp;&nbsp;&nbsp;if(test==0)&nbsp;break;&nbsp;/*will&nbsp;exit&nbsp;if&nbsp;the&nbsp;list&nbsp;is&nbsp;sorted!*/
+<br align='left'/></td></tr><hr/><tr><td>ipet-total_count=1 (0.37%)<br/>ipet-total_time=2 (0.06%)<br/></td></tr></table>>,fillcolor="#eae7ff",style="filled",fontcolor="#000000"];
+	_1_10 [margin=0,shape="box",label=<<table border='0' cellpadding='8px'><tr><td>BB 10 (1292:12)</td></tr><hr/><tr><td align='left'>bubble.c:12: &nbsp;&nbsp;for(i&nbsp;=&nbsp;length&nbsp;-&nbsp;1;&nbsp;i&nbsp;&amp;gt;&nbsp;0;&nbsp;i--)
+<br align='left'/></td></tr><hr/><tr><td>ipet-total_count=7 (2.61%)<br/>ipet-total_time=21 (0.61%)<br/></td></tr></table>>,fillcolor="#d6cfff",style="filled",fontcolor="#000000"];
+	_1_11 [margin=0,shape="box",label=<<table border='0' cellpadding='8px'><tr><td>BB 11 (1316:4)</td></tr><hr/><tr><td align='left'>bubble.c:28: }/*end&nbsp;bubbleSort*/
+<br align='left'/></td></tr><hr/><tr><td>ipet-total_count=0 (0.00%)<br/>ipet-total_time=0 (0.00%)<br/></td></tr></table>>];
+	_1_12 [margin=0,shape="box",label=<<table border='0' cellpadding='8px'><tr><td>BB 12 (1324:16)</td></tr><hr/><tr><td align='left'>bubble.c:28: }/*end&nbsp;bubbleSort*/
+<br align='left'/></td></tr><hr/><tr><td>ipet-total_count=1 (0.37%)<br/>ipet-total_time=8 (0.23%)<br/></td></tr></table>>,fillcolor="#eae7ff",style="filled",fontcolor="#000000"];
+	_1_13 [label="exit"];
+	_1_0 -> _1_1;
+	_1_1 -> _1_2;
+	_1_2 -> _1_3;
+	_1_2 -> _1_11;
+	_1_3 -> _1_4;
+	_1_4 -> _1_5;
+	_1_4 -> _1_8;
+	_1_5 -> _1_6;
+	_1_5 -> _1_7;
+	_1_6 -> _1_4;
+	_1_7 -> _1_6;
+	_1_8 -> _1_9;
+	_1_8 -> _1_10;
+	_1_9 -> _1_12;
+	_1_10 -> _1_2;
+	_1_11 -> _1_12;
+	_1_12 -> _1_13;
+label=<CFG: bubbleSort [FUN(0000053c), CALL(00000554)]<br/>colorized by ipet-total_count<br/><BR/><I>Generated by otawa-stat.py (2021-11-10 11:50:21.331839).</I><BR/><I>OTAWA framework - copyright (c) 2019, University of Toulouse</I>>;
+}

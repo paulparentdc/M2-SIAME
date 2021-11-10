@@ -175,6 +175,7 @@ def main():
     Shutter("center", 20, "192.168.0.214", "014/shutter/command", "014/shutter/", _shutDownEvent, 12, 6)
     Shutter("back", 20, "192.168.0.214", "014/shutter/command", "014/shutter/", _shutDownEvent, 24, 27)
  
+ 
 
 
 

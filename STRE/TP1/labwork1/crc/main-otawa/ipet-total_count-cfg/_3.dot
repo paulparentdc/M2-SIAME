@@ -1,0 +1,79 @@
+digraph _3 {
+	_3_0 [label="entry"];
+	_3_1 [margin=0,shape="box",label=<<table border='0' cellpadding='8px'><tr><td>BB 1 (1220:60)</td></tr><hr/><tr><td align='left'>crc.c:84: {
+<br align='left'/>crc.c:88: &nbsp;&nbsp;unsigned&nbsp;short&nbsp;tmp1,&nbsp;tmp2,&nbsp;j,cword=crc;
+<br align='left'/>crc.c:91: &nbsp;&nbsp;if&nbsp;(!init)&nbsp;{
+<br align='left'/></td></tr><hr/><tr><td>ipet-total_count=1 (0.01%)<br/>ipet-total_time=21 (0.03%)<br/></td></tr></table>>,fillcolor="#eae7ff",style="filled",fontcolor="#000000"];
+	_3_2 [margin=0,shape="box",label=<<table border='0' cellpadding='8px'><tr><td>BB 2 (1476:12)</td></tr><hr/><tr><td align='left'>crc.c:98: &nbsp;&nbsp;if&nbsp;(jinit&nbsp;&amp;gt;=&nbsp;0)&nbsp;cword=((uchar)&nbsp;jinit)&nbsp;|&nbsp;(((uchar)&nbsp;jinit)&nbsp;&amp;lt;&amp;lt;&nbsp;8);
+<br align='left'/></td></tr><hr/><tr><td>ipet-total_count=1 (0.01%)<br/>ipet-total_time=5 (0.01%)<br/></td></tr></table>>,fillcolor="#eae7ff",style="filled",fontcolor="#000000"];
+	_3_3 [margin=0,shape="box",label=<<table border='0' cellpadding='8px'><tr><td>BB 3 (1544:12)</td></tr><hr/><tr><td align='left'>crc.c:99: &nbsp;&nbsp;else&nbsp;if&nbsp;(jrev&nbsp;&amp;lt;&nbsp;0)
+<br align='left'/></td></tr><hr/><tr><td>ipet-total_count=1 (0.01%)<br/>ipet-total_time=6 (0.01%)<br/></td></tr></table>>,fillcolor="#eae7ff",style="filled",fontcolor="#000000"];
+	_3_4 [margin=0,shape="box",label=<<table border='0' cellpadding='8px'><tr><td>BB 4 (1644:12)</td></tr><hr/><tr><td align='left'>crc.c:104: &nbsp;&nbsp;for&nbsp;(j=1;j&amp;lt;=len;j++)&nbsp;{
+<br align='left'/></td></tr><hr/><tr><td>ipet-total_count=1 (0.01%)<br/>ipet-total_time=4 (0.01%)<br/></td></tr></table>>,fillcolor="#eae7ff",style="filled",fontcolor="#000000"];
+	_3_5 [margin=0,shape="box",label=<<table border='0' cellpadding='8px'><tr><td>BB 5 (1848:16)</td></tr><hr/><tr><td align='left'>crc.c:104: &nbsp;&nbsp;for&nbsp;(j=1;j&amp;lt;=len;j++)&nbsp;{
+<br align='left'/></td></tr><hr/><tr><td>ipet-total_count=43 (0.43%)<br/>ipet-total_time=261 (0.33%)<br/></td></tr></table>>,fillcolor="#eae7ff",style="filled",fontcolor="#000000"];
+	_3_6 [margin=0,shape="box",label=<<table border='0' cellpadding='8px'><tr><td>BB 6 (1656:12)</td></tr><hr/><tr><td align='left'>crc.c:105: &nbsp;&nbsp;&nbsp;&nbsp;if&nbsp;(jrev&nbsp;&amp;lt;&nbsp;0)&nbsp;{
+<br align='left'/></td></tr><hr/><tr><td>ipet-total_count=42 (0.42%)<br/>ipet-total_time=252 (0.32%)<br/></td></tr></table>>,fillcolor="#eae7ff",style="filled",fontcolor="#000000"];
+	_3_7 [margin=0,shape="box",label=<<table border='0' cellpadding='8px'><tr><td>BB 7 (1728:44)</td></tr><hr/><tr><td align='left'>crc.c:109: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;tmp1&nbsp;=&nbsp;lin[j]^&nbsp;HIBYTE(cword);
+<br align='left'/></td></tr><hr/><tr><td>ipet-total_count=0 (0.00%)<br/>ipet-total_time=0 (0.00%)<br/></td></tr></table>>];
+	_3_8 [margin=0,shape="box",label=<<table border='0' cellpadding='8px'><tr><td>BB 8 (1668:60)</td></tr><hr/><tr><td align='left'>crc.c:106: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;tmp1&nbsp;=&nbsp;rchr[lin[j]]^&nbsp;HIBYTE(cword);
+<br align='left'/></td></tr><hr/><tr><td>ipet-total_count=42 (0.42%)<br/>ipet-total_time=840 (1.07%)<br/></td></tr></table>>,fillcolor="#eae7ff",style="filled",fontcolor="#000000"];
+	_3_9 [margin=0,shape="box",label=<<table border='0' cellpadding='8px'><tr><td>BB 9 (1772:76)</td></tr><hr/><tr><td align='left'>crc.c:111: &nbsp;&nbsp;&nbsp;&nbsp;cword&nbsp;=&nbsp;icrctb[tmp1]&nbsp;^&nbsp;LOBYTE(cword)&nbsp;&amp;lt;&amp;lt;&nbsp;8;
+<br align='left'/>crc.c:104: &nbsp;&nbsp;for&nbsp;(j=1;j&amp;lt;=len;j++)&nbsp;{
+<br align='left'/></td></tr><hr/><tr><td>ipet-total_count=42 (0.42%)<br/>ipet-total_time=966 (1.23%)<br/></td></tr></table>>,fillcolor="#eae7ff",style="filled",fontcolor="#000000"];
+	_3_10 [margin=0,shape="box",label=<<table border='0' cellpadding='8px'><tr><td>BB 10 (1864:12)</td></tr><hr/><tr><td align='left'>crc.c:113: &nbsp;&nbsp;if&nbsp;(jrev&nbsp;&amp;gt;=&nbsp;0)&nbsp;{
+<br align='left'/></td></tr><hr/><tr><td>ipet-total_count=1 (0.01%)<br/>ipet-total_time=5 (0.01%)<br/></td></tr></table>>,fillcolor="#eae7ff",style="filled",fontcolor="#000000"];
+	_3_11 [margin=0,shape="box",label=<<table border='0' cellpadding='8px'><tr><td>BB 11 (1888:88)</td></tr><hr/><tr><td align='left'>crc.c:117: &nbsp;&nbsp;&nbsp;&nbsp;tmp2&nbsp;=&nbsp;rchr[HIBYTE(cword)]&nbsp;|&nbsp;rchr[LOBYTE(cword)]&nbsp;&amp;lt;&amp;lt;&nbsp;8;
+<br align='left'/></td></tr><hr/><tr><td>ipet-total_count=1 (0.01%)<br/>ipet-total_time=28 (0.04%)<br/></td></tr></table>>,fillcolor="#eae7ff",style="filled",fontcolor="#000000"];
+	_3_12 [margin=0,shape="box",label=<<table border='0' cellpadding='8px'><tr><td>BB 12 (1876:12)</td></tr><hr/><tr><td align='left'>crc.c:114: &nbsp;&nbsp;&nbsp;&nbsp;tmp2&nbsp;=&nbsp;cword;
+<br align='left'/></td></tr><hr/><tr><td>ipet-total_count=0 (0.00%)<br/>ipet-total_time=0 (0.00%)<br/></td></tr></table>>];
+	_3_13 [margin=0,shape="box",label=<<table border='0' cellpadding='8px'><tr><td>BB 13 (1976:20)</td></tr><hr/><tr><td align='left'>crc.c:119: &nbsp;&nbsp;return&nbsp;(tmp2&nbsp;);
+<br align='left'/>crc.c:120: }
+<br align='left'/></td></tr><hr/><tr><td>ipet-total_count=1 (0.01%)<br/>ipet-total_time=9 (0.01%)<br/></td></tr></table>>,fillcolor="#eae7ff",style="filled",fontcolor="#000000"];
+	_3_14 [margin=0,shape="box",label=<<table border='0' cellpadding='8px'><tr><td>BB 14 (1556:88)</td></tr><hr/><tr><td align='left'>crc.c:100: &nbsp;&nbsp;&nbsp;&nbsp;cword=rchr[HIBYTE(cword)]&nbsp;|&nbsp;rchr[LOBYTE(cword)]&nbsp;&amp;lt;&amp;lt;&nbsp;8;
+<br align='left'/></td></tr><hr/><tr><td>ipet-total_count=1 (0.01%)<br/>ipet-total_time=25 (0.03%)<br/></td></tr></table>>,fillcolor="#eae7ff",style="filled",fontcolor="#000000"];
+	_3_15 [margin=0,shape="box",label=<<table border='0' cellpadding='8px'><tr><td>BB 15 (1488:56)</td></tr><hr/><tr><td align='left'>crc.c:98: &nbsp;&nbsp;if&nbsp;(jinit&nbsp;&amp;gt;=&nbsp;0)&nbsp;cword=((uchar)&nbsp;jinit)&nbsp;|&nbsp;(((uchar)&nbsp;jinit)&nbsp;&amp;lt;&amp;lt;&nbsp;8);
+<br align='left'/></td></tr><hr/><tr><td>ipet-total_count=0 (0.00%)<br/>ipet-total_time=0 (0.00%)<br/></td></tr></table>>];
+	_3_16 [margin=0,shape="box",label=<<table border='0' cellpadding='8px'><tr><td>BB 16 (1280:24)</td></tr><hr/><tr><td align='left'>crc.c:92: &nbsp;&nbsp;&nbsp;&nbsp;init=1;
+<br align='left'/>crc.c:93: &nbsp;&nbsp;&nbsp;&nbsp;for&nbsp;(j=0;j&amp;lt;=255;j++)&nbsp;{
+<br align='left'/></td></tr><hr/><tr><td>ipet-total_count=1 (0.01%)<br/>ipet-total_time=8 (0.01%)<br/></td></tr></table>>,fillcolor="#eae7ff",style="filled",fontcolor="#000000"];
+	_3_17 [margin=0,shape="box",label=<<table border='0' cellpadding='8px'><tr><td>BB 17 (1464:12)</td></tr><hr/><tr><td align='left'>crc.c:93: &nbsp;&nbsp;&nbsp;&nbsp;for&nbsp;(j=0;j&amp;lt;=255;j++)&nbsp;{
+<br align='left'/></td></tr><hr/><tr><td>ipet-total_count=1 (0.01%)<br/>ipet-total_time=7 (0.01%)<br/></td></tr></table>>,fillcolor="#eae7ff",style="filled",fontcolor="#000000"];
+	_3_18 [margin=0,shape="box",label=<<table border='0' cellpadding='8px'><tr><td>BB 18 (1304:32)</td></tr><hr/><tr><td align='left'>crc.c:94: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;icrctb[j]=icrc1(j&nbsp;&amp;lt;&amp;lt;&nbsp;8,(uchar)0);
+<br align='left'/></td></tr><hr/><tr><td>ipet-total_count=0 (0.00%)<br/>ipet-total_time=0 (0.00%)<br/></td></tr></table>>];
+	_3_19 [margin=0,shape="box",label=<<table border='0' cellpadding='8px'><tr><td>BB 19 (1336:128)</td></tr><hr/><tr><td align='left'>crc.c:94: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;icrctb[j]=icrc1(j&nbsp;&amp;lt;&amp;lt;&nbsp;8,(uchar)0);
+<br align='left'/>crc.c:95: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;rchr[j]=(uchar)(it[j&nbsp;&amp;&nbsp;0xF]&nbsp;&amp;lt;&amp;lt;&nbsp;4&nbsp;|&nbsp;it[j&nbsp;&amp;gt;&amp;gt;&nbsp;4]);
+<br align='left'/>crc.c:93: &nbsp;&nbsp;&nbsp;&nbsp;for&nbsp;(j=0;j&amp;lt;=255;j++)&nbsp;{
+<br align='left'/></td></tr><hr/><tr><td>ipet-total_count=0 (0.00%)<br/>ipet-total_time=0 (0.00%)<br/></td></tr></table>>];
+	_3_20 [URL="_4.dot",label="call icrc1",shape="box"];
+	_3_21 [label="exit"];
+	_3_0 -> _3_1;
+	_3_1 -> _3_2;
+	_3_1 -> _3_16;
+	_3_2 -> _3_3;
+	_3_2 -> _3_15;
+	_3_3 -> _3_4;
+	_3_3 -> _3_14;
+	_3_4 -> _3_5;
+	_3_5 -> _3_6;
+	_3_5 -> _3_10;
+	_3_6 -> _3_7;
+	_3_6 -> _3_8;
+	_3_7 -> _3_9;
+	_3_8 -> _3_9;
+	_3_9 -> _3_5;
+	_3_10 -> _3_11;
+	_3_10 -> _3_12;
+	_3_11 -> _3_13;
+	_3_12 -> _3_13;
+	_3_13 -> _3_21;
+	_3_14 -> _3_4;
+	_3_15 -> _3_4;
+	_3_16 -> _3_17;
+	_3_17 -> _3_18;
+	_3_17 -> _3_2;
+	_3_18 -> _3_20;
+	_3_19 -> _3_17;
+	_3_20 -> _3_19;
+label=<CFG: icrc [FUN(000007e0), CALL(00000874)]<br/>colorized by ipet-total_count<br/><BR/><I>Generated by otawa-stat.py (2021-11-10 11:07:27.838552).</I><BR/><I>OTAWA framework - copyright (c) 2019, University of Toulouse</I>>;
+}

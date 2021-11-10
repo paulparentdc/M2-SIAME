@@ -1,0 +1,154 @@
+<html><head><title>bubble.c colored for ipet-total_count</title>
+    <style>
+        td {
+            text-align: right;
+            padding-left: 8pt;
+            padding-right: 8pt;
+        }
+        td.source {
+            text-align: left;
+        }
+        table {
+            margin-top: 1em;
+        }
+    </style>
+
+
+    <script type="text/javascript">
+        var labels = ['ipet-total_count', 'ipet-total_time', ];
+        var backgrounds = ['#ffffff', '#eae7ff', '#d6cfff', '#c0b7ff', '#ab9eff', '#a194fa', '#9b8ef5', '#8c7ded', '#7b6ce3', '#7162dd'];
+        var foregrounds = ['#000000', '#000000', '#000000', '#000000', '#000000', '#ffffff', '#ffffff', '#ffffff', '#ffffff', '#ffffff'];
+
+        function colorize(backs, label) {
+            document.getElementById("label").textContent = label;
+            trs = document.getElementById("stats").getElementsByTagName("tr");
+            for(i = 0; i < trs.length; i++) {
+                trs[i].style.backgroundColor = backgrounds[backs[i]];
+                trs[i].style.color = foregrounds[backs[i]];
+            }
+        }
+
+        var s0 = [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            1,
+            0,
+            0,
+            2,
+            0,
+            1,
+            9,
+            0,
+            5,
+            0,
+            5,
+            5,
+            5,
+            5,
+            0,
+            0,
+            2,
+            0,
+            0,
+            1,
+            0,
+            1,
+            0,
+            1,
+            1,
+            1,
+            0,
+        ];
+        var s1 = [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            1,
+            0,
+            0,
+            1,
+            0,
+            1,
+            5,
+            0,
+            6,
+            0,
+            9,
+            9,
+            9,
+            9,
+            0,
+            0,
+            1,
+            0,
+            0,
+            1,
+            0,
+            1,
+            0,
+            1,
+            1,
+            1,
+            0,
+        ];
+
+    </script>
+            </head><body>
+    <h1>bubble.c</h1>
+
+    <p><a href="index.html">Top</a><br/>
+    <b>Task:</b> main-otawa<br/>
+    <b>Colored by:</b> <span id='label'>ipet-total_count</span>
+    <table id="stats">
+    <tr><th>num.</th><th>source</th><th><a href="javascript:colorize(s0, 'ipet-total_count')">ipet-total_count</a></th><th><a href="javascript:colorize(s1, 'ipet-total_time')">ipet-total_time</a></th></tr>
+    <tr><td>1</td><td class="source"></td><td></td><td></td></tr>
+    <tr><td>2</td><td class="source"><b>int</b> main(void);</td><td></td><td></td></tr>
+    <tr><td>3</td><td class="source">void _start(void) {</td><td></td><td></td></tr>
+    <tr><td>4</td><td class="source" style=" padding-left: 32pt;">main();</td><td></td><td></td></tr>
+    <tr><td>5</td><td class="source" style=" padding-left: 32pt;"><font color='red'><b>while</b></font>(1);</td><td></td><td></td></tr>
+    <tr><td>6</td><td class="source">}</td><td></td><td></td></tr>
+    <tr><td>7</td><td class="source"></td><td></td><td></td></tr>
+    <tr><td>8</td><td class="source">void bubbleSort(<b>int</b> *array, <b>int</b> length)</td><td></td><td></td></tr>
+    <tr><td>9</td><td class="source">{</td><td>1</td><td>12</td></tr>
+    <tr><td>10</td><td class="source" style=" padding-left: 16pt;"><b>int</b> i, j, temp;</td><td></td><td></td></tr>
+    <tr><td>11</td><td class="source" style=" padding-left: 16pt;"><b>int</b> test; <font color='green'><i>/*use this only if unsure whether the list is already sorted or not*/</i></font></td><td></td><td></td></tr>
+    <tr><td>12</td><td class="source" style=" padding-left: 16pt;"><font color='red'><b>for</b></font>(i = length - 1; i > 0; i--)</td><td>16</td><td>74</td></tr>
+    <tr><td>13</td><td class="source" style=" padding-left: 16pt;">{</td><td></td><td></td></tr>
+    <tr><td>14</td><td class="source" style=" padding-left: 32pt;">test=0;</td><td>8</td><td>72</td></tr>
+    <tr><td>15</td><td class="source" style=" padding-left: 32pt;"><font color='red'><b>for</b></font>(j = 0; j < i; j++)</td><td>128</td><td>760</td></tr>
+    <tr><td>16</td><td class="source" style=" padding-left: 32pt;">{</td><td></td><td></td></tr>
+    <tr><td>17</td><td class="source" style=" padding-left: 48pt;"><font color='red'><b>if</b></font>(array[j] > array[j+1]) <font color='green'><i>/* compare neighboring elements */</i></font></td><td>56</td><td>952</td></tr>
+    <tr><td>18</td><td class="source" style=" padding-left: 48pt;">{</td><td></td><td></td></tr>
+    <tr><td>19</td><td class="source" style=" padding-left: 64pt;">temp = array[j];    <font color='green'><i>/* swap array[j] and array[j+1] */</i></font></td><td>56</td><td>1568</td></tr>
+    <tr><td>20</td><td class="source" style=" padding-left: 64pt;">array[j] = array[j+1];</td><td>56</td><td>1568</td></tr>
+    <tr><td>21</td><td class="source" style=" padding-left: 64pt;">array[j+1] = temp;</td><td>56</td><td>1568</td></tr>
+    <tr><td>22</td><td class="source" style=" padding-left: 64pt;">test=1;</td><td>56</td><td>1568</td></tr>
+    <tr><td>23</td><td class="source" style=" padding-left: 48pt;">}</td><td></td><td></td></tr>
+    <tr><td>24</td><td class="source" style=" padding-left: 32pt;">} <font color='green'><i>/*end for j*/</i></font></td><td></td><td></td></tr>
+    <tr><td>25</td><td class="source" style=" padding-left: 32pt;"><font color='red'><b>if</b></font>(test==0) <font color='red'><b>break</b></font>; <font color='green'><i>/*will exit if the list is sorted!*/</i></font></td><td>9</td><td>42</td></tr>
+    <tr><td>26</td><td class="source" style=" padding-left: 16pt;">} <font color='green'><i>/*end for i*/</i></font></td><td></td><td></td></tr>
+    <tr><td>27</td><td class="source"></td><td></td><td></td></tr>
+    <tr><td>28</td><td class="source">}<font color='green'><i>/*end bubbleSort*/</i></font></td><td>1</td><td>8</td></tr>
+    <tr><td>29</td><td class="source"></td><td></td><td></td></tr>
+    <tr><td>30</td><td class="source"><b>int</b> main(void) {</td><td>1</td><td>12</td></tr>
+    <tr><td>31</td><td class="source" style=" padding-left: 32pt;"><b>int</b> t[8];</td><td></td><td></td></tr>
+    <tr><td>32</td><td class="source" style=" padding-left: 32pt;">bubbleSort(t, 8);</td><td>1</td><td>12</td></tr>
+    <tr><td>33</td><td class="source" style=" padding-left: 32pt;"><font color='red'><b>return</b></font> 0;</td><td>1</td><td>9</td></tr>
+    <tr><td>34</td><td class="source">}</td><td>1</td><td>9</td></tr>
+    </table>
+    <center><i>Generated by otawa-stat.py (2021-11-10 11:53:53.351373).<br/><a href="http://www.otawa.fr">OTAWA</a> framework - copyright (c) 2019, University of Toulouse.<i></center>
+    <script type='text/javascript'>colorize(s0, 'ipet-total_count');</Script>
+<body></html>

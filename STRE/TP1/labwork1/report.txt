@@ -1,0 +1,88 @@
+first name: Paul
+surname: Parent du Chatelet
+speciality: [X] SIAME [ ] CSA
+
+=== Section 2 ===
+Q3
+	loop bounds
+	crc.c:104: 42
+	crc.c:93: 255
+	crc.c:73: 8
+Q4
+	WCET: 16320
+Q6:
+	address of (A): BB17
+	execution count of (A): 256
+	address of (B): BB18
+	execution count of (B): 255
+	why: parce que la dernière fois que l'on passe sur la condition on ne prend pas le branchement
+Q7
+	why: parce que les appels se font avec des paramètres différents
+Q10
+	bound(s): 8 et 0
+Q11
+	WCET: 78804
+	explanation: oRange s'est rendu compte que la boucle était appelée 2 fois avec les mêmes paramètres donc il sait qu'elle ne sera pas réexécutée la seconde fois
+
+=== Section 3 ===
+Q3
+	loop bounds
+	bubble.c:12: 7
+	bubble.c:15: 7
+Q4
+	WCET: 3425
+Q6
+	execution count: 64
+Q7
+	total execution count: 128
+Q8
+	observation: le nombre d'exécutions totales de la ligne 15 est 2 fois supérieure au nombre d'exécutions de la boucle
+	explanation:
+Q10
+	WCET:
+
+=== Section 4 ===
+Q2
+	WCET:
+Q3:
+	loop bound:
+Q4:
+	WCET:
+Q5:
+	WCET:
+Q6:
+	total execution time:
+Q7:
+	16MHz: [ ] yes [ ] no
+	smallest frequency:
+
+=== Section 5 ===
+Q1:
+	period:
+Q2:
+	WCET doGyroChannel:
+	WCET doAROMXChannel:
+	WCET doAROMYChannel:
+	WCET doAROMZChannel:
+	observation:
+Q3:
+	approximated WCET:
+Q4:
+	approximated total WCET:
+	difference:
+Q5:
+	WCET:
+Q6:
+	new smallest frequency:
+
+=== Section 6 ===
+
+Q3
+	BB address calling the function pointer:
+	SWI instruction address:
+Q4:
+	called functions:
+	removed line: [ ] multicall [ ] noreturn
+Q6:
+	WCET:
+
