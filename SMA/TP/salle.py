@@ -1,3 +1,4 @@
+from TP.ampoule import Ampoule
 from pyAmakCore.classes.environment import Environment
 import numpy as np
 import scipy.stats
@@ -27,12 +28,19 @@ class Salle(Environment) :
 
         self._schemaSoleil = y.astype(int)
         super().__init__()
+
+    def on_cycle_begin(self):
+        self._heure = (self._heure + 0.5) % 24
+        self.maj_lumSalle()
+
+    def on_cycle_end(self):
+        self.maj_lumSalle()
     
     def affiche_salle(self):
         print(self._mapSalle)
 
     def calcul_soleil(self):
-        return self._schemaSoleil[self.]
+        return self._schemaSoleil[int(self._heure * 2)]
 
 
     def mesure_capteurs_Z1(self):
@@ -87,18 +95,25 @@ class Salle(Environment) :
             lumVolet =  lumSoleil * v.get_state() / 100
             positions = v.get_positions()
             for p in positions:
-                modeles.append(construire_modele(p[0], p[1], lumVolet))
+                modeles.append(self.construire_modele(p[0], p[1], lumVolet))
 
         #Generation des modeles des ampoules
         for a in self._ampoules:
             lumAmpoule = a.get_state()
             p = a.get_position()
-            modeles.append(construire_modele(p[0], p[1], lumAmpoule))
+            modeles.append(self.construire_modele(p[0], p[1], lumAmpoule))
 
-        self._lumSalle = fusionner_modeles(modeles)
+        self._lumSalle = self.fusionner_modeles(modeles)
+
+
+def main()
+    salle(0,[[0,0]],[[9,0]],volet(),Ampoule())
+
+if __name__ == "__main__" :
+    main
 
 
 
-    
+ 
     
     
