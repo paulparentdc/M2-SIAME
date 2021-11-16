@@ -464,7 +464,7 @@ int updateADC(void){
 
   // each case occurs every fourth time
   if(currentChannel == GYRO_CHANNEL)
-	doGyroChannel();
+	  doGyroChannel();
   else if(currentChannel == AROMX_CHANNEL)
   	doAROMXChannel();
   else if(currentChannel == AROMY_CHANNEL)

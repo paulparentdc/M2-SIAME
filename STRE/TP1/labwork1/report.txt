@@ -9,7 +9,7 @@ Q3
 	crc.c:93: 255
 	crc.c:73: 8
 Q4
-	WCET: 16320
+	WCET: 16320 cycles
 Q6:
 	address of (A): BB17
 	execution count of (A): 256
@@ -21,7 +21,7 @@ Q7
 Q10
 	bound(s): 8 et 0
 Q11
-	WCET: 78804
+	WCET: 78804 cycles
 	explanation: oRange s'est rendu compte que la boucle était appelée 2 fois avec les mêmes paramètres donc il sait qu'elle ne sera pas réexécutée la seconde fois
 
 === Section 3 ===
@@ -30,50 +30,50 @@ Q3
 	bubble.c:12: 7
 	bubble.c:15: 7
 Q4
-	WCET: 3425
+	WCET: 3425 cycles
 Q6
 	execution count: 64
 Q7
 	total execution count: 128
 Q8
 	observation: le nombre d'exécutions totales de la ligne 15 est 2 fois supérieure au nombre d'exécutions de la boucle
-	explanation:
+	explanation: la source compte toutes les itérations là ou le BB précis du cfg se concentre sur les débuts de boucle
 Q10
-	WCET:
+	WCET: 1857 cycles
 
 === Section 4 ===
 Q2
-	WCET:
+	WCET: 156 cycles
 Q3:
-	loop bound:
+	loop bound: 8
 Q4:
-	WCET:
+	WCET: 314 cycles
 Q5:
-	WCET:
+	WCET: 1917 cycles
 Q6:
-	total execution time:
+	total execution time: 9598 cycles
 Q7:
-	16MHz: [ ] yes [ ] no
-	smallest frequency:
+	16MHz: [X] yes [ ] no
+	smallest frequency: 9,598k cycles/ms =>  9.598 MHz
 
 === Section 5 ===
 Q1:
-	period:
+	period: 10ms
 Q2:
-	WCET doGyroChannel:
-	WCET doAROMXChannel:
-	WCET doAROMYChannel:
-	WCET doAROMZChannel:
-	observation:
-Q3:
-	approximated WCET:
+	WCET doGyroChannel:  1828 cycles
+	WCET doAROMXChannel:  177 cycles
+	WCET doAROMYChannel:  163 cycles
+	WCET doAROMZChannel:  162 cycles
+	observation: doGyroChannel fait appel à fixFilter, ce que ne font pas les autres0
+Q3: 
+	approximated WCET: 7312
 Q4:
-	approximated total WCET:
-	difference:
+	approximated total WCET: 9242 cycles
+	difference: 356 cycles
 Q5:
-	WCET:
+	WCET: 
 Q6:
-	new smallest frequency:
+	new smallest frequency: 9.242 MHz
 
 === Section 6 ===
 
