@@ -4,12 +4,13 @@ from pyAmakCore.classes.communicating_agent import CommunicatingAgent, Mail, Mai
 
 class Ampoule(CommunicatingAgent) :
     _lum = None
+    _listeMesure = None
 
-    def __init__(self, state, x, y, env, Mailbox, zone, maxLum, minLum):
+    def __init__(self, state, position, salle, zone, maxLum, minLum):
         super().__init__()
         self._state = state #luminosite (0-100)
-        self._position = [x, y]
-        self._salle = env
+        self._position = position
+        self._salle = salle
         self._zone = zone
         self._maxLum = maxLum
         self._minLum = minLum
@@ -17,8 +18,9 @@ class Ampoule(CommunicatingAgent) :
 
 
     def get_state(self):
-        return self._state
+        return self._state        
 
+    
     def get_position(self):
         return self._position
 
@@ -36,14 +38,10 @@ class Ampoule(CommunicatingAgent) :
                 
         self.lum = lumiMin
 
-    def on_decide(self):
-        if self._lum < self._minLum :
-            print ("Le volet doit agir avant moi")
+
+    def on_act(self):
+         if self._lum < self._minLum :
+            self._state += 1
         elif self._lum > self._maxLum :
-            print ("")
-
-
-    def on_act():
-        pass
-    
-   
+            self._state -= 1
+        

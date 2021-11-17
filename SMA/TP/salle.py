@@ -2,8 +2,9 @@ import sys
 sys.path.extend(['/nfs/home/camsi8/Documents/M2-SIAME/SMA/pyamak-core'])
 
 from pyAmakCore.classes.environment import Environment
-from pyAmakCore.classes.communicating_agent import CommunicatingAgent
+from pyAmakCore.classes.communicating_agent import CommunicatingAgent, Mail, Mailbox
 from pyAmakCore.classes.amas import Amas
+from pyAmakCore.classes.scheduler import Scheduler
 import numpy as np
 import scipy.stats
 
@@ -40,6 +41,8 @@ class Salle(Environment) :
 
     def on_cycle_end(self):
         self.maj_lumSalle()
+        self.affiche()
+        input("Press enter to continue ...")
     
 
     def affiche(self):
@@ -84,7 +87,6 @@ class Salle(Environment) :
         
         for l in range(lum, 2, -1*coefDiffusion):
             for i in range(0, 10):
-                print(i)
                 for j in range(0, 10):
                     if(map[i][j] == l): 
                         if(i+1<=9 and map[i+1][j]==0):
@@ -114,7 +116,6 @@ class Salle(Environment) :
     def maj_lumSalle(self):
         modeles = []
         lumSoleil = self.calcul_soleil()
-        print(lumSoleil)
         #Generation des modeles des volets
 
         for v in self._volets:
@@ -160,11 +161,14 @@ class Ampoule(CommunicatingAgent) :
     def get_position(self):
         return self._position
 
+    def get_conso(self):
+        return (self._state ** 1.5).astype(int)
 
     def on_perceive(self):
-        if self._zone == "1":
+        # récupère la valeur de capteur de sa zone
+        if self._zone == 1:
             listeMesure = self._salle.mesure_capteurs_Z1()
-        elif self._zone == "2":
+        else :
             listeMesure = self._salle.mesure_capteurs_Z2()
 
         lumiMin = 100
@@ -172,16 +176,18 @@ class Ampoule(CommunicatingAgent) :
             if v < lumiMin :
                 lumiMin = v
                 
-        self.lum = lumiMin
+        if listeMesure:
+            self._lum = 0
+        self._lum = lumiMin
 
-    def on_decide(self):
+ 
+    def on_act(self):
         if self._lum < self._minLum :
-            print ("Le volet doit agir avant moi")
+            self._state += 1
+            
         elif self._lum > self._maxLum :
-            print ("")
+            self._state -= 1
 
-    def on_act():
-        pass
 
 
 
@@ -212,9 +218,9 @@ class Volet(CommunicatingAgent) :
 
 
     def on_perceive(self):
-        if self._zone == "1":
+        if self._zone == 1:
             listeMesure = self._salle.mesure_capteurs_Z1()
-        elif self._zone == "2":
+        elif self._zone == 2:
             listeMesure = self._salle.mesure_capteurs_Z2()
 
         lumiMin = 100
@@ -222,7 +228,9 @@ class Volet(CommunicatingAgent) :
             if v < lumiMin :
                 lumiMin = v
 
-        self.lum = lumiMin
+        if listeMesure:
+            self._lum = 0
+        self._lum = lumiMin
 
     def on_act():
         pass
@@ -240,6 +248,23 @@ class AmaSalle(Amas) :
     def __init__(self, salle):
         super().__init__(salle)
 
+    def on_initial_agents_creation(self):
+        ampoule1 = Ampoule(self, 40, [2,2], self.get_environment(), 1, 50, 40)
+        ampoule2 = Ampoule(self, 100, [9,5], self.get_environment(), 2, 50, 40)
+        volet1 = Volet(self, 30, [[0,9],[1,9],[2,9],[3,9],[4,9]], self.get_environment(), 1, 50, 40)
+        volet2 = Volet(self, 30, [[5,9],[6,9],[7,9],[8,9],[9,9]], self.get_environment(), 2, 50, 40)
+        
+        self.add_agent(ampoule1)
+        self.add_agent(ampoule2)
+        self.add_agent(volet1)
+        self.add_agent(volet2)
+
+        self.get_environment().ajouterAmpoule(ampoule1)
+        self.get_environment().ajouterAmpoule(ampoule2)
+        self.get_environment().ajouterAmpoule(volet1)
+        self.get_environment().ajouterAmpoule(volet2)
+
+
 
 
 
@@ -248,19 +273,13 @@ def main():
     salle = Salle(12)
     amaSalle = AmaSalle(salle)
     
-
     salle.ajouterCapteur(1, [0,0])
     salle.ajouterCapteur(2, [9,0])
 
-    salle.ajouterVolet(Volet(amaSalle, 30, [[0,9],[1,9],[2,9],[3,9],[4,9]], salle, 1, 70, 50))
-    salle.ajouterVolet(Volet(amaSalle, 30, [[5,9],[6,9],[7,9],[8,9],[9,9]], salle, 2, 70, 50))
-    
-    salle.ajouterAmpoule(Ampoule(amaSalle, 14, [2,2], salle, 1, 70, 50))
-    salle.ajouterAmpoule(Ampoule(amaSalle, 32, [7,6], salle, 2, 70, 50))
+    scheduler = Scheduler(amaSalle)
 
-    salle.maj_lumSalle()
-    salle.affiche()
- 
+    scheduler.start()
+    scheduler.run()
 
     
 

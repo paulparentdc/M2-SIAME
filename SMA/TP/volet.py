@@ -1,15 +1,15 @@
-from pyAmakCore.classes.communicating_agent import CommunicatingAgent
+
 
 class Volet(CommunicatingAgent) :
     _state = None #ouverture du volet (0-100)
     _positions = None
     _lum = None
 
-    def __init__(self, state, positions, env, zone, maxLum, minLum):
+    def __init__(self, state, positions, salle, zone, maxLum, minLum):
         super().__init__()
         self._state = state
         self._position = positions
-        self._salle = env
+        self._salle = salle
         self._zone = zone
         self._maxLum = maxLum
         self._minLum = minLum
