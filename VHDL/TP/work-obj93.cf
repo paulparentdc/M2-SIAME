@@ -1,0 +1,19 @@
+v 4
+file . "test_combi.vhd" "8078db9d7c74a3b46f84ffc658ef480901b75db6" "20211118132423.468":
+  entity test_mux4_1 at 1( 0) + 0 on 23;
+  architecture arch_test_mux4_1 of test_mux4_1 at 15( 244) + 0 on 24;
+  entity test_barrelshifter at 54( 1169) + 0 on 25;
+  architecture arch_test_barrelshifter of test_barrelshifter at 61( 1294) + 0 on 26;
+file . "combi.vhd" "1bb010ddbf131bf3f82a1c48d877d89b8a6ad862" "20211118132423.466":
+  entity mux4_1 at 6( 62) + 0 on 11;
+  architecture arch_mux4_1 of mux4_1 at 19( 365) + 0 on 12;
+  entity add at 32( 643) + 0 on 13;
+  architecture arch_add of add at 43( 851) + 0 on 14;
+  entity add1b at 51( 1061) + 0 on 15;
+  architecture arch_add1b of add1b at 62( 1234) + 0 on 16;
+  entity addcarry at 68( 1374) + 0 on 17;
+  architecture arch_addcarry of addcarry at 80( 1624) + 0 on 18;
+  entity barrelshifter at 98( 1975) + 0 on 19;
+  architecture arch_barrelshifter of barrelshifter at 111( 2234) + 0 on 20;
+  entity alu at 126( 2767) + 0 on 21;
+  entity extension at 152( 3337) + 0 on 22;

@@ -50,5 +50,44 @@ begin
 end process REG_TEST;
 end arch_test_mux4_1;
 -------------------------------------------------
+
+LIBRARY IEEE;
+USE IEEE.STD_LOGIC_1164.ALL;
+USE IEEE.NUMERIC_STD.ALL;
+
+entity test_BarrelShifter is 
+end test_BarrelShifter;
+
+architecture arch_test_BarrelShifter of test_BarrelShifter is 
+
+signal A      : std_logic_vector(31 downto 0);
+signal ValDec : std_logic_vector(4 downto 0);
+signal SR, SL : std_logic_vector(31 downto 0);
+
+-- definition de constantes
+constant clkpulse : Time := 5 ns; -- 1/2 periode horloge
+
+begin
+
+-- mapping des composants du registre
+regmap:entity	work.BarrelShifter(arch_BarrelShifter)
+	port map(A, ValDec, SR, SL);
+
+-- debut sequence de test
+REG_TEST : process
+begin
+	wait for clkpulse;
+	A<=(16=>'1', others=>'0');
+    ValDec<="00100";
+	wait for clkpulse;
+	ValDec<="00001";
+	wait for clkpulse;
+
+	-- LATEST COMMAND (NE PAS ENLEVER !!!)
+	wait for clkpulse/2;
+	assert FALSE report "FIN DE SIMULATION" severity FAILURE;
+
+end process REG_TEST;
+end arch_test_BarrelShifter;
 -------------------------------------------------
 -------------------------------------------------
