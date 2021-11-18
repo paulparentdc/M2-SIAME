@@ -70,7 +70,7 @@ constant clkpulse : Time := 5 ns; -- 1/2 periode horloge
 begin
 
 -- mapping des composants du registre
-regmap:entity	work.BarrelShifter(arch_BarrelShifter)
+regmap:entity work.BarrelShifter
 	port map(A, ValDec, SR, SL);
 
 -- debut sequence de test

@@ -1,8 +1,8 @@
 Compilation:
     ghdl -a --ieee=synopsys -fexplicit <packages.vhd> <components.vhd> <testbench.vhd>
 Elaborate:
-    ghdl -e --ieee=synopsys -fexplicit testbench
+    ghdl -e --ieee=synopsys -fexplicit <testbench>
 Run simulation:
-    ghdl -r --ieee=synopsys -fexplicit testbench --wave=testbench.ghw 
+    ghdl -r --ieee=synopsys -fexplicit <testbench> --wave=testbench.ghw 
 View results:
     gtkwave testbench.ghw

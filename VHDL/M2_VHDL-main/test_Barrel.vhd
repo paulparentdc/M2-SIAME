@@ -34,6 +34,9 @@ begin
     E_ValDec <= "00011";
     wait for 5 ns;
 
+    E_ValDec <= "00000";
+    wait for 5 ns;
+
     E_ValDec <= "11111";
     wait for 5 ns;
 
@@ -41,4 +44,4 @@ begin
 
 end process P_Test;
 
-end arch_test_add;
+end arch_test_barrel;

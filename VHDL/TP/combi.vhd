@@ -114,8 +114,8 @@ architecture arch_BarrelShifter of BarrelShifter is
   signal f : std_logic_vector(95 downto 0);
 begin
   f <= b & A & e;
-  SR <= f( ( 95-32-to_integer(unsigned(ValDec)) ) downto ( 95-64-to_integer(unsigned(ValDec)) ) );
-  SL <= f( ( 95-32+to_integer(unsigned(ValDec)) ) downto ( 95-64+to_integer(unsigned(ValDec)) ) );
+  SR <= f( ( 95-32-to_integer(unsigned(ValDec)) ) downto ( 95-63-to_integer(unsigned(ValDec)) ) );
+  SL <= f( ( 95-32+to_integer(unsigned(ValDec)) ) downto ( 95-63+to_integer(unsigned(ValDec)) ) );
 end arch_BarrelShifter;
 
 
