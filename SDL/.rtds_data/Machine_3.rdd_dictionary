@@ -19,6 +19,9 @@
 </UsingSymbols>
 <SignalWindow id="SIGWDW2" insideDiagram="TRUE">
 <ConnectorReference linkId="LINK0" isFrom="TRUE"/>
+<Connections>
+<Connection name="c_mach3"/>
+</Connections>
 <SentSignals>
 <SignalReference id="SIG4"/>
 <SignalReference id="SIG5"/>

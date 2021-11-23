@@ -24,7 +24,8 @@
 finUsinage1,
 finDepotUsineeConv1]
 </Text>
-<Text id="2">__</Text>
+<Text id="2">c_mach1
+</Text>
 </Connector>
 <Connector attachedSymbolId="SYMB4" type="chnl" isOutside="TRUE" side="y" position="0.0" endType="midarrow">
 <Text id="1">[deposerBrutTable1,

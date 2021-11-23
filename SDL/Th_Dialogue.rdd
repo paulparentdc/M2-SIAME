@@ -8,11 +8,32 @@
   machine1Libre INTEGER := 1,
   machine2Libre INTEGER := 1,
   machine3Libre INTEGER := 1;" outline_color="-" background_color="-" center_coordinates="197 0" dimensions="222 80" attached_symbol_id=""/>
-<NonStateTransition top_left_coordinates="576 0">
-<SdlFSMSymbol identifier="SYM1" type="sdlStart" outline_color="-" background_color="-" center_coordinates="606 15" dimensions="60 30" attached_symbol_id=""/>
+<SdlFSMSymbol identifier="SYM19" type="sdlText" text="DCL
+  numMachine INTEGER,
+  numPiece     INTEGER;" outline_color="-" background_color="-" center_coordinates="568 172" dimensions="180 64" attached_symbol_id=""/>
+<NonStateTransition top_left_coordinates="663 0">
+<SdlFSMSymbol identifier="SYM1" type="sdlStart" outline_color="-" background_color="-" center_coordinates="694 15" dimensions="60 30" attached_symbol_id=""/>
 <Transition>
+<SdlFSMSymbol identifier="SYM3" type="sdlState" text="Boucle" outline_color="-" background_color="-" center_coordinates="694 62" dimensions="62 40" attached_symbol_id=""/>
 </Transition>
 </NonStateTransition>
+<StateTransitionBlock top_left_coordinates="899 185">
+<SdlFSMSymbol identifier="SYM6" type="sdlState" text="Boucle" outline_color="-" background_color="-" center_coordinates="1098 205" dimensions="62 40" attached_symbol_id=""/>
+<NormalStateTransition>
+<SdlFSMSymbol identifier="SYM7" type="sdlInputSig" text="demandeCreationPiece(numPiece,numMachine)" outline_color="-" background_color="-" center_coordinates="1098 257" dimensions="306 40" attached_symbol_id=""/>
+<Transition>
+<SdlFSMSymbol identifier="SYM17" type="sdlPrcsCreation" text="Th_Piece" outline_color="-" background_color="-" center_coordinates="1098 309" dimensions="76 40" attached_symbol_id=""/>
+<SdlFSMSymbol identifier="SYM12" type="sdlSendSig" text="lancementThreadPiece(numPiece,numMachine) to OFFSPRING" outline_color="-" background_color="-" center_coordinates="1098 361" dimensions="398 40" attached_symbol_id=""/>
+<SdlFSMSymbol identifier="SYM13" type="sdlState" text="Boucle" outline_color="-" background_color="-" center_coordinates="1098 413" dimensions="62 40" attached_symbol_id=""/>
+</Transition>
+</NormalStateTransition>
+<NormalStateTransition>
+<SdlFSMSymbol identifier="SYM8" type="sdlInputSig" text="finPiece(numPiece)" outline_color="-" background_color="-" center_coordinates="1380 257" dimensions="146 40" attached_symbol_id=""/>
+<Transition>
+<SdlFSMSymbol identifier="SYM15" type="sdlState" text="Boucle" outline_color="-" background_color="-" center_coordinates="1380 309" dimensions="62 40" attached_symbol_id=""/>
+</Transition>
+</NormalStateTransition>
+</StateTransitionBlock>
 <PageSpecification pageWidth="21.0" pageHeight="29.7" topMargin="1.0" bottomMargin="1.0" leftMargin="1.0" rightMargin="1.0" pageFooter="TRUE" scaleFactor="1.0"/>
 </SdlFSMPartition>
 </SdlFSMDiagram>

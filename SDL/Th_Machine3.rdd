@@ -15,22 +15,19 @@
 <NormalStateTransition>
 <SdlFSMSymbol identifier="SYM15" type="sdlInputSig" text="deposerBrutTable3" outline_color="-" background_color="-" center_coordinates="541 143" dimensions="138 40" attached_symbol_id=""/>
 <Transition>
-<SdlFSMSymbol identifier="SYM16" type="sdlTask" text="retirerPieceConv()" outline_color="-" background_color="-" center_coordinates="541 195" dimensions="146 40" attached_symbol_id=""/>
-<SdlFSMSymbol identifier="SYM17" type="sdlSendSig" text="finDepotBrutTable3 to superviseur" outline_color="-" background_color="-" center_coordinates="541 247" dimensions="250 40" attached_symbol_id=""/>
-<SdlFSMSymbol identifier="SYM18" type="sdlTask" text="usinagePiece()" outline_color="-" background_color="-" center_coordinates="541 299" dimensions="118 40" attached_symbol_id=""/>
-<SdlFSMSymbol identifier="SYM19" type="sdlSendSig" text="finUsinage3 to superviseur" outline_color="-" background_color="-" center_coordinates="541 351" dimensions="202 40" attached_symbol_id=""/>
-<SdlFSMSymbol identifier="SYM20" type="sdlState" text="attente_ordre_depot" outline_color="-" background_color="-" center_coordinates="541 403" dimensions="152 40" attached_symbol_id=""/>
+<SdlFSMSymbol identifier="SYM17" type="sdlSendSig" text="finDepotBrutTable3 to superviseur" outline_color="-" background_color="-" center_coordinates="541 195" dimensions="250 40" attached_symbol_id=""/>
+<SdlFSMSymbol identifier="SYM19" type="sdlSendSig" text="finUsinage3 to superviseur" outline_color="-" background_color="-" center_coordinates="541 247" dimensions="202 40" attached_symbol_id=""/>
+<SdlFSMSymbol identifier="SYM20" type="sdlState" text="attente_ordre_depot" outline_color="-" background_color="-" center_coordinates="541 299" dimensions="152 40" attached_symbol_id=""/>
 </Transition>
 </NormalStateTransition>
 </StateTransitionBlock>
 <StateTransitionBlock>
 <SdlFSMSymbolReference identifier="SYM20"/>
 <NormalStateTransition>
-<SdlFSMSymbol identifier="SYM21" type="sdlInputSig" text="deposerUsineeConv3" outline_color="-" background_color="-" center_coordinates="541 455" dimensions="146 40" attached_symbol_id=""/>
+<SdlFSMSymbol identifier="SYM21" type="sdlInputSig" text="deposerUsineeConv3" outline_color="-" background_color="-" center_coordinates="541 351" dimensions="146 40" attached_symbol_id=""/>
 <Transition>
-<SdlFSMSymbol identifier="SYM22" type="sdlTask" text="deposerPieceConv()" outline_color="-" background_color="-" center_coordinates="541 507" dimensions="146 40" attached_symbol_id=""/>
-<SdlFSMSymbol identifier="SYM23" type="sdlSendSig" text="finDepotUsineeConv3 to superviseur" outline_color="-" background_color="-" center_coordinates="541 559" dimensions="258 40" attached_symbol_id=""/>
-<SdlFSMSymbol identifier="SYM24" type="sdlState" text="boucle" outline_color="-" background_color="-" center_coordinates="541 611" dimensions="62 40" attached_symbol_id=""/>
+<SdlFSMSymbol identifier="SYM23" type="sdlSendSig" text="finDepotUsineeConv3 to superviseur" outline_color="-" background_color="-" center_coordinates="541 403" dimensions="258 40" attached_symbol_id=""/>
+<SdlFSMSymbol identifier="SYM24" type="sdlState" text="boucle" outline_color="-" background_color="-" center_coordinates="541 455" dimensions="62 40" attached_symbol_id=""/>
 </Transition>
 </NormalStateTransition>
 </StateTransitionBlock>

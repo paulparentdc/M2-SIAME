@@ -18,14 +18,26 @@
 <SymbolReference symbolId="SYM19" usingKind="output"/>
 </UsingSymbols>
 </Signal>
+<Signal id="SIG4" name="deposerUsineeConv2">
+<UsingSymbols>
+<SymbolReference symbolId="SYM26" usingKind="input"/>
+</UsingSymbols>
+</Signal>
+<Signal id="SIG5" name="finDepotUsineeConv2">
+<UsingSymbols>
+<SymbolReference symbolId="SYM28" usingKind="output"/>
+</UsingSymbols>
+</Signal>
 <Item id="ITEM1" type="process" name="Th_Machine2" scope="current" formalParameterOrder="-" isFormalParam="FALSE" isSyntype="FALSE">
 <Body>
 <SentSignals>
 <SignalReference id="SIG2"/>
 <SignalReference id="SIG3"/>
+<SignalReference id="SIG5"/>
 </SentSignals>
 <ReceivedSignals>
 <SignalReference id="SIG1"/>
+<SignalReference id="SIG4"/>
 </ReceivedSignals>
 </Body>
 </Item>
@@ -35,28 +47,30 @@
 </DefiningSymbols>
 <UsingSymbols>
 <SymbolReference symbolId="SYM2"/>
+<SymbolReference symbolId="SYM29"/>
 </UsingSymbols>
 </Item>
 <Item id="ITEM11" type="state" name="attente_ordre_depot" parentId="ITEM1" scope="none" formalParameterOrder="-" isFormalParam="FALSE" isSyntype="FALSE">
+<DefiningSymbols>
+<SymbolReference symbolId="SYM20"/>
+<SymbolReference symbolId="SYM25"/>
+</DefiningSymbols>
 <UsingSymbols>
 <SymbolReference symbolId="SYM20"/>
 </UsingSymbols>
 </Item>
-<Item id="ITEM2" type="variable" name="usinagePiece" scope="global" defined="FALSE" anchorItemId="ITEM1" searchPolicy="-1" formalParameterOrder="-" isFormalParam="FALSE" isSyntype="FALSE">
+<Item id="ITEM2" type="variable" name="retirerPieceConv" scope="global" defined="FALSE" anchorItemId="ITEM1" searchPolicy="-1" formalParameterOrder="-" isFormalParam="FALSE" isSyntype="FALSE">
 <UsingSymbols>
-<SymbolReference symbolId="SYM18"/>
+<SymbolReference symbolId="SYM16"/>
 </UsingSymbols>
 </Item>
 <Item id="ITEM3" type="variable" name="retirerPieceConvoyeur" scope="global" defined="FALSE" anchorItemId="ITEM1" searchPolicy="-1" formalParameterOrder="-" isFormalParam="FALSE" isSyntype="FALSE">
 </Item>
-<Item id="ITEM4" type="variable" name="retirer_piece_du_convoyeur" scope="global" defined="FALSE" anchorItemId="ITEM1" searchPolicy="-1" formalParameterOrder="-" isFormalParam="FALSE" isSyntype="FALSE">
-<UsingSymbols>
-<SymbolReference symbolId="SYM5"/>
-</UsingSymbols>
+<Item id="ITEM4" type="variable" name="deposerPiece" scope="global" defined="FALSE" anchorItemId="ITEM1" searchPolicy="-1" formalParameterOrder="-" isFormalParam="FALSE" isSyntype="FALSE">
 </Item>
-<Item id="ITEM5" type="variable" name="deposerPieceConv" scope="global" defined="FALSE" anchorItemId="ITEM1" searchPolicy="-1" formalParameterOrder="-" isFormalParam="FALSE" isSyntype="FALSE">
+<Item id="ITEM5" type="variable" name="usinagePiece" scope="global" defined="FALSE" anchorItemId="ITEM1" searchPolicy="-1" formalParameterOrder="-" isFormalParam="FALSE" isSyntype="FALSE">
 <UsingSymbols>
-<SymbolReference symbolId="SYM22"/>
+<SymbolReference symbolId="SYM18"/>
 </UsingSymbols>
 </Item>
 <Item id="ITEM6" type="variable" name="deposer_piece" scope="global" defined="FALSE" anchorItemId="ITEM1" searchPolicy="-1" formalParameterOrder="-" isFormalParam="FALSE" isSyntype="FALSE">
@@ -64,11 +78,15 @@
 <SymbolReference symbolId="SYM11"/>
 </UsingSymbols>
 </Item>
-<Item id="ITEM7" type="variable" name="deposerPiece" scope="global" defined="FALSE" anchorItemId="ITEM1" searchPolicy="-1" formalParameterOrder="-" isFormalParam="FALSE" isSyntype="FALSE">
-</Item>
-<Item id="ITEM8" type="variable" name="retirerPieceConv" scope="global" defined="FALSE" anchorItemId="ITEM1" searchPolicy="-1" formalParameterOrder="-" isFormalParam="FALSE" isSyntype="FALSE">
+<Item id="ITEM7" type="variable" name="deposerPieceConv" scope="global" defined="FALSE" anchorItemId="ITEM1" searchPolicy="-1" formalParameterOrder="-" isFormalParam="FALSE" isSyntype="FALSE">
 <UsingSymbols>
-<SymbolReference symbolId="SYM16"/>
+<SymbolReference symbolId="SYM22"/>
+<SymbolReference symbolId="SYM27"/>
+</UsingSymbols>
+</Item>
+<Item id="ITEM8" type="variable" name="retirer_piece_du_convoyeur" scope="global" defined="FALSE" anchorItemId="ITEM1" searchPolicy="-1" formalParameterOrder="-" isFormalParam="FALSE" isSyntype="FALSE">
+<UsingSymbols>
+<SymbolReference symbolId="SYM5"/>
 </UsingSymbols>
 </Item>
 <Item id="ITEM9" type="variable" name="usinage" scope="global" defined="FALSE" anchorItemId="ITEM1" searchPolicy="-1" formalParameterOrder="-" isFormalParam="FALSE" isSyntype="FALSE">

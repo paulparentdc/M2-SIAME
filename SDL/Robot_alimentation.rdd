@@ -19,13 +19,14 @@
 
 <Link linkId="LINK5" type="chnl" textSegmentNum="0" color="#000000" reverseRead="FALSE" oriented="TRUE">
 <Text>ct_alim</Text>
-<Connector attachedSymbolId="SYMB1" type="chnlgate" isOutside="FALSE" side="s" position="0.0" endType="midarrow">
+<Connector attachedSymbolId="SYMB1" type="chnlgate" isOutside="FALSE" side="s" position="0.119782214156" endType="midarrow">
 <Text id="1">[finDepotBrutConv,
 defaillanceAlim]
 </Text>
-<Text id="2">__</Text>
+<Text id="2">c_alim
+</Text>
 </Connector>
-<Connector attachedSymbolId="SYMB2" type="chnl" isOutside="TRUE" side="x" position="0.0" endType="midarrow">
+<Connector attachedSymbolId="SYMB2" type="chnl" isOutside="TRUE" side="x" position="0.375" endType="midarrow">
 <Text id="1">[deposerBrutConv]
 </Text>
 <Text id="2"></Text>

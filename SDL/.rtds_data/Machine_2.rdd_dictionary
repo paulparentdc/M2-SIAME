@@ -18,7 +18,10 @@
 <SymbolReference symbolId="SYMB1"/>
 </UsingSymbols>
 <SignalWindow id="SIGWDW2" insideDiagram="TRUE">
-<ConnectorReference linkId="LINK0" isFrom="TRUE"/>
+<ConnectorReference linkId="LINK5" isFrom="TRUE"/>
+<Connections>
+<Connection name="c_mach2"/>
+</Connections>
 <SentSignals>
 <SignalReference id="SIG4"/>
 <SignalReference id="SIG5"/>
@@ -39,7 +42,7 @@
 <SymbolReference symbolId="SYMB2"/>
 </UsingSymbols>
 <SignalWindow id="SIGWDW1" insideDiagram="FALSE">
-<ConnectorReference linkId="LINK0" isFrom="FALSE"/>
+<ConnectorReference linkId="LINK5" isFrom="FALSE"/>
 <SentSignals>
 <SignalReference id="SIG1"/>
 <SignalReference id="SIG2"/>
