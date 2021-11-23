@@ -42,13 +42,28 @@ end entity;
 
 architecture arch_add of add is 
 begin 
-
-
+  reg3 <= std_logic_vector(unsigned(reg1) + unsigned(reg2));
 end arch_add;
 
 ------------------------------------------------------
 
 -- Full 32b adder with carry bits out
+LIBRARY IEEE;
+USE IEEE.STD_LOGIC_1164.ALL;
+USE IEEE.NUMERIC_STD.ALL;
+
+entity add1b is
+  port(
+    A, B, cin : in std_logic;
+    s, cout   : out std_logic
+    );
+end add1b;
+
+architecture arch_add1b of add1b is 
+begin
+  s    <= (A xor B) xor cin;
+  cout <= (A and B) or (A and cin) or (B and cin);
+end arch_add1b;
 
 LIBRARY IEEE;
 USE IEEE.STD_LOGIC_1164.ALL;
@@ -62,6 +77,19 @@ entity addCarry is
     c30, c31: out std_logic);
 end entity;
 
+architecture arch_addCarry of addCarry is 
+  signal c : std_logic_vector(32 downto 0);
+begin
+  c(0) <= cin;
+  c30 <= c(31);
+  c31 <= c(32);
+
+  G : for i in 0 to 31 generate
+    inst : Entity work.add1b port map (A(i), B(i), c(i), s(i), c(i+1));
+  end generate;
+
+end arch_addCarry;
+
 
 -----------------------------------------------
 
@@ -70,7 +98,7 @@ end entity;
 LIBRARY IEEE;
 USE IEEE.STD_LOGIC_1164.ALL;
 USE IEEE.NUMERIC_STD.ALL;
---USE work.bus_mux_pkg.ALL;
+
 
 entity BarrelShifter IS
   port (
@@ -79,6 +107,16 @@ entity BarrelShifter IS
     SR, SL : out std_logic_vector(31 downto 0)
     );
 end entity;
+
+architecture arch_BarrelShifter of BarrelShifter is 
+  signal b : std_logic_vector(31 downto 0) := (others=>'0');
+  signal e : std_logic_vector(31 downto 0) := (others=>'0');
+  signal f : std_logic_vector(95 downto 0);
+begin
+  f <= b & A & e;
+  SR <= f( ( 95-32-to_integer(unsigned(ValDec)) ) downto ( 95-63-to_integer(unsigned(ValDec)) ) );
+  SL <= f( ( 95-32+to_integer(unsigned(ValDec)) ) downto ( 95-63+to_integer(unsigned(ValDec)) ) );
+end arch_BarrelShifter;
 
 
 ---------------------------------------------------
