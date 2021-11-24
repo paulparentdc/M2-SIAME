@@ -1,11 +1,17 @@
 
 class Communication():
-    _BAL = []
-    _contacts = []
+    
+
+
+  
+    def __init__(self):
+        self._contacts = []
+        self._BAL = []
 
 
     def ajouterContact(self,c):
         self._contacts.append(c)
+        print(self._contacts)
 
     def razBAL(self):
         while(self._BAL):
@@ -20,5 +26,8 @@ class Communication():
 
     def getBAL(self):
         return self._BAL
+
+    def getContacts(self):
+        return self._contacts
 
     

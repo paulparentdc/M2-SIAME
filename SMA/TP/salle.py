@@ -101,7 +101,8 @@ class Salle(Environment) :
 
 
     def construire_modele(self, x, y, lum):
-        coefDiffusion = 5
+        coefDiffusion = 1
+        
         map = np.zeros((10,10))
         map = map.astype(int)
         lum = int(lum)
@@ -169,7 +170,9 @@ class Ampoule(Agent, Communication) :
     _action = False
 
     def __init__(self, amas, state, position, salle, zone, maxLum, minLum):
-        super().__init__(amas)
+        Agent.__init__(self,amas)
+        Communication.__init__(self)
+        
         self._state = state #luminosite (0-100)
         self._position = position
         self._salle = salle
@@ -184,8 +187,24 @@ class Ampoule(Agent, Communication) :
     def get_position(self):
         return self._position
 
-    def get_conso(self):
-        return (self._state ** 1.5).astype(int)
+    def get_cout_plus(self):
+        if(self._state < 100):
+            coutState1 = int( self._state ** 1.5 )
+            coutState2 =  int( (self._state+2) ** 1.5 )
+            return coutState2 - coutState1
+        else: 
+            return 999999
+        
+
+    def get_cout_moins(self):
+        if(self._state > 0):
+            coutState1 = int( self._state ** 1.5 )
+            coutState2 =  int( (self._state-2) ** 1.5 )
+
+            return coutState2 - coutState1
+        else: 
+            return 999999
+        
 
     def getFlag(self):
         return self._flag
@@ -212,26 +231,43 @@ class Ampoule(Agent, Communication) :
             self._lum = 0
         self._lum = lumiMin
 
+
     def on_decide(self):
         self._flag = "pas cool bouboubou"
         self._action = False
-        if self._lum < self._minLum :
-            for m in self.getBAL():
-                print(m)
-                if(m == "volet peut pas agir"):
-                    self._action = True
-            self.razBAL()
 
-        elif self._lum > self._maxLum :
-            if(self._state > 0):
-                self._action = True
-            else:
-                self.sendMsg("ampoule peut pas agir")
+        coutPlusBas = 999999
+       
+        if (self._lum < self._minLum):
+            #Envoie de son cout pour augmenter la lum
+            self.sendMsg(self.get_cout_plus())
+            
+            if len(self.getBAL()) >= len(self.getContacts()):
+                for m in self.getBAL():
+                        if(m < coutPlusBas):
+                            coutPlusBas = m
+                self.razBAL()
+                if coutPlusBas > self.get_cout_plus() :
+                    self._action = True                
+            
+        elif(self._lum > self._maxLum):
+            #Envoie de son cout pour baisser la lum
+            self.sendMsg(self.get_cout_moins())
+            print("Cout baissage ampoule")
+            print(self.get_cout_moins())
+            print(self.getBAL())
+            if len(self.getBAL()) >= len(self.getContacts()):
+                for m in self.getBAL():
+                        if(m < coutPlusBas):
+                            coutPlusBas = m
+                self.razBAL()
+                if coutPlusBas > self.get_cout_moins() :
+                    self._action = True        
         else:
             self._flag = "ok"
             print("ampoule ok")
-        
  
+
     def on_act(self):
         print("action de ampoule :"+str(self._action))
         if self._action:
@@ -267,7 +303,8 @@ class Volet(Agent, Communication) :
     _action = False
    
     def __init__(self, amas, state, positions, salle, zone, maxLum, minLum):
-        super().__init__(amas)
+        Agent.__init__(self,amas)
+        Communication.__init__(self)
         self._state = state
         self._positions = positions
         self._salle = salle
@@ -284,6 +321,19 @@ class Volet(Agent, Communication) :
 
     def getFlag(self):
         return self._flag
+    
+    def get_cout_plus(self):
+        if(self._state < 100):
+            return 1
+        else: 
+            return 999999
+
+
+    def get_cout_moins(self):
+        if(self._state > 0):
+            return 1
+        else: 
+            return 999999
 
     def on_initialization(self):
         return
@@ -308,23 +358,37 @@ class Volet(Agent, Communication) :
 
 
     def on_decide(self):
-        self._flag = "pas cool"
+        self._flag = "pas cool bouboubou"
         self._action = False
-        if self._lum > self._maxLum :
-            for m in self.getBAL():
-                if(m == "ampoule peut pas agir"):
-                    self._action = True
-            self.razBAL()
+
+        coutPlusBas = 999999
+       
+        if (self._lum < self._minLum):
+            #Envoie de son cout pour augmenter la lum
+            print(self._contacts)
+            self.sendMsg(self.get_cout_plus())
+            if len(self.getBAL()) >= len(self.getContacts()):
+                for m in self.getBAL():
+                        if(m < coutPlusBas):
+                            coutPlusBas = m
+                self.razBAL()
+                if coutPlusBas > self.get_cout_plus() :
+                    self._action = True                
             
-        elif self._lum < self._minLum :
-            if(self._state < 100):
-                self._action = True
-            else:
-                self.sendMsg("volet peut pas agir")
-                print("volet demande de l'aide")
+        elif(self._lum > self._maxLum):
+            #Envoie de son cout pour baisser la lum
+            self.sendMsg(self.get_cout_moins())
+            if len(self.getBAL()) >= len(self.getContacts()):
+                for m in self.getBAL():
+                        if(m < coutPlusBas):
+                            coutPlusBas = m
+                self.razBAL()
+                if(self.get_cout_moins() < coutPlusBas):
+                    self._action = True
+
         else:
             self._flag = "ok"
-            print("volet ok")
+            print("ampoule ok")
 
 
     def on_act(self):
@@ -388,6 +452,7 @@ def main():
     
     salle.ajouterCapteur(1, [0,0])
     salle.ajouterCapteur(2, [9,0])
+    salle.ajouterCapteur(1, [0,9])
 
     scheduler = Scheduler(amaSalle)
 
