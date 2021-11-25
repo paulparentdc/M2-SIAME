@@ -11,7 +11,7 @@
 <Description></Description>
 <Text></Text>
 
-<Symbol symbolId="SYMB5" type="sdlPrcs" xCenter="264" yCenter="385" fixedDimensions="FALSE" width="110" height="44" color="#000000" fillColor="#C4EFED">
+<Symbol symbolId="SYMB5" type="sdlPrcs" xCenter="231" yCenter="275" fixedDimensions="FALSE" width="110" height="44" color="#000000" fillColor="#C4EFED">
 <Description></Description>
 <Text>Th_Dialogue</Text>
 </Symbol>
@@ -24,26 +24,30 @@
 <Symbol symbolId="SYMB7" type="sdlText" xCenter="198" yCenter="66" fixedDimensions="FALSE" width="352" height="66" color="#000000" fillColor="#FFFFFF">
 <Description></Description>
 <Text>SIGNAL lancementThreadPiece(INTEGER, INTEGER);
-SIGNAL finPiece(INTEGER);
-</Text>
+SIGNAL finPiece(INTEGER);</Text>
 </Symbol>
 </Symbol>
 
-<Link linkId="LINK54" type="chnl" textSegmentNum="0" color="#000000" reverseRead="FALSE" oriented="TRUE">
-<Text>ct_ret</Text>
-<Connector attachedSymbolId="SYMB1" type="chnlgate" isOutside="FALSE" side="s" position="0.0942408376963" endType="midarrow">
-<Text id="1">[retirerUsineeConv]
+<Link linkId="LINK49" type="chnl" textSegmentNum="0" color="#000000" reverseRead="FALSE" oriented="TRUE">
+<Text>ct_mach2
 </Text>
-<Text id="2">c_ret
+<Connector attachedSymbolId="SYMB1" type="chnlgate" isOutside="FALSE" side="e" position="0.789677419355" endType="midarrow">
+<Text id="1">[deposerBrutTable2, 
+deposerUsineeConv2]
+</Text>
+<Text id="2">c_mach2
 </Text>
 </Connector>
-<Connector attachedSymbolId="SYMB6" type="chnl" isOutside="TRUE" side="x" position="0.0" endType="midarrow">
-<Text id="1">[finRetraitUsineeConv,
-defaillanceRet]
+<Connector attachedSymbolId="SYMB6" type="chnl" isOutside="TRUE" side="y" position="0.0" endType="midarrow">
+<Text id="1">[finDepotBrutTable2,
+finUsinage2,
+finDepotUsineeConv2]
 </Text>
 <Text id="2"></Text>
 </Connector>
-<LinkSegment orientation="v" length="-389"/>
+<LinkSegment orientation="h" length="-200"/>
+<LinkSegment orientation="v" length="-308"/>
+<LinkSegment orientation="h" length="-319"/>
 
 </Link>
 
@@ -68,28 +72,6 @@ finDepotUsineeConv3]
 
 </Link>
 
-<Link linkId="LINK49" type="chnl" textSegmentNum="0" color="#000000" reverseRead="FALSE" oriented="TRUE">
-<Text>ct_mach3</Text>
-<Connector attachedSymbolId="SYMB1" type="chnlgate" isOutside="FALSE" side="e" position="0.789677419355" endType="midarrow">
-<Text id="1">[deposerBrutTable2, 
-deposerUsineeConv2]
-</Text>
-<Text id="2">c_mach2
-</Text>
-</Connector>
-<Connector attachedSymbolId="SYMB6" type="chnl" isOutside="TRUE" side="y" position="0.0" endType="midarrow">
-<Text id="1">[finDepotBrutTable2,
-finUsinage2,
-finDepotUsineeConv2]
-</Text>
-<Text id="2"></Text>
-</Connector>
-<LinkSegment orientation="h" length="-200"/>
-<LinkSegment orientation="v" length="-308"/>
-<LinkSegment orientation="h" length="-319"/>
-
-</Link>
-
 <Link linkId="LINK50" type="chnl" textSegmentNum="0" color="#000000" reverseRead="FALSE" oriented="TRUE">
 <Text>ct_alim</Text>
 <Connector attachedSymbolId="SYMB1" type="chnlgate" isOutside="FALSE" side="n" position="0.132635253054" endType="midarrow">
@@ -105,6 +87,24 @@ defaillanceAlim]
 <Text id="2"></Text>
 </Connector>
 <LinkSegment orientation="v" length="385"/>
+
+</Link>
+
+<Link linkId="LINK54" type="chnl" textSegmentNum="0" color="#000000" reverseRead="FALSE" oriented="TRUE">
+<Text>ct_ret</Text>
+<Connector attachedSymbolId="SYMB1" type="chnlgate" isOutside="FALSE" side="s" position="0.0942408376963" endType="midarrow">
+<Text id="1">[retirerUsineeConv]
+</Text>
+<Text id="2">c_ret
+</Text>
+</Connector>
+<Connector attachedSymbolId="SYMB6" type="chnl" isOutside="TRUE" side="x" position="0.0" endType="midarrow">
+<Text id="1">[finRetraitUsineeConv,
+defaillanceRet]
+</Text>
+<Text id="2"></Text>
+</Connector>
+<LinkSegment orientation="v" length="-389"/>
 
 </Link>
 
@@ -131,9 +131,8 @@ finDepotUsineeConv1]
 
 </Link>
 
-<Link linkId="LINK55" type="chnl" textSegmentNum="0" color="#000000" reverseRead="FALSE" oriented="TRUE">
-<Text>ct_creer
-</Text>
+<Link linkId="LINK59" type="chnl" textSegmentNum="0" color="#000000" reverseRead="FALSE" oriented="TRUE">
+<Text>ct_creer</Text>
 <Connector attachedSymbolId="SYMB5" type="chnl" isOutside="TRUE" side="y" position="0.0" endType="midarrow">
 <Text id="1">[demandeCreationPiece]
 </Text>
@@ -144,11 +143,13 @@ finDepotUsineeConv1]
 <Text id="2">c_creer
 </Text>
 </Connector>
-<LinkSegment orientation="h" length="-264"/>
+<LinkSegment orientation="h" length="-99"/>
+<LinkSegment orientation="v" length="110"/>
+<LinkSegment orientation="h" length="-132"/>
 
 </Link>
 
-<Link linkId="LINK56" type="chnl" textSegmentNum="0" color="#000000" reverseRead="FALSE" oriented="TRUE">
+<Link linkId="LINK60" type="chnl" textSegmentNum="0" color="#000000" reverseRead="FALSE" oriented="TRUE">
 <Text>ct_diag</Text>
 <Connector attachedSymbolId="SYMB5" type="chnl" isOutside="TRUE" side="y" position="0.0" endType="midarrow">
 <Text id="1">[finPiece]
@@ -160,7 +161,9 @@ finDepotUsineeConv1]
 </Text>
 <Text id="2"></Text>
 </Connector>
-<LinkSegment orientation="h" length="363"/>
+<LinkSegment orientation="h" length="209"/>
+<LinkSegment orientation="v" length="110"/>
+<LinkSegment orientation="h" length="187"/>
 
 </Link>
 </DiagramPartition>

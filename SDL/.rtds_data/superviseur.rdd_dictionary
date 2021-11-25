@@ -12,25 +12,25 @@
 <SymbolReference symbolId="SYMB7"/>
 </DefiningSymbols>
 </Signal>
-<Signal id="SIG10" name="finDepotBrutConv">
+<Signal id="SIG10" name="finUsinage3">
 </Signal>
-<Signal id="SIG11" name="defaillanceAlim">
+<Signal id="SIG11" name="finDepotUsineeConv3">
 </Signal>
-<Signal id="SIG12" name="deposerBrutTable1">
+<Signal id="SIG12" name="deposerBrutTable2">
 </Signal>
-<Signal id="SIG13" name="deposerUsineeConv1">
+<Signal id="SIG13" name="deposerUsineeConv2">
 </Signal>
-<Signal id="SIG14" name="finDepotBrutTable1">
+<Signal id="SIG14" name="finDepotBrutTable2">
 </Signal>
-<Signal id="SIG15" name="finUsinage1">
+<Signal id="SIG15" name="finUsinage2">
 </Signal>
-<Signal id="SIG16" name="finDepotUsineeConv1">
+<Signal id="SIG16" name="finDepotUsineeConv2">
 </Signal>
-<Signal id="SIG17" name="deposerBrutTable3">
+<Signal id="SIG17" name="deposerBrutConv">
 </Signal>
-<Signal id="SIG18" name="deposerUsineeConv3">
+<Signal id="SIG18" name="finDepotBrutConv">
 </Signal>
-<Signal id="SIG19" name="finDepotBrutTable3">
+<Signal id="SIG19" name="defaillanceAlim">
 </Signal>
 <Signal id="SIG2" name="finPiece">
 <SignalParameterType>INTEGER</SignalParameterType>
@@ -39,36 +39,36 @@
 <SymbolReference symbolId="SYMB7"/>
 </DefiningSymbols>
 </Signal>
-<Signal id="SIG20" name="finUsinage3">
+<Signal id="SIG20" name="deposerBrutTable1">
 </Signal>
-<Signal id="SIG21" name="finDepotUsineeConv3">
+<Signal id="SIG21" name="deposerUsineeConv1">
 </Signal>
-<Signal id="SIG22" name="retirerUsineeConv">
+<Signal id="SIG22" name="finDepotBrutTable1">
 </Signal>
-<Signal id="SIG23" name="finRetraitUsineeConv">
+<Signal id="SIG23" name="finUsinage1">
 </Signal>
-<Signal id="SIG24" name="defaillanceRet">
+<Signal id="SIG24" name="finDepotUsineeConv1">
 </Signal>
 <Signal id="SIG3" name="demandeCreationPiece">
 </Signal>
-<Signal id="SIG4" name="deposerBrutTable2">
+<Signal id="SIG4" name="retirerUsineeConv">
 </Signal>
-<Signal id="SIG5" name="deposerUsineeConv2">
+<Signal id="SIG5" name="finRetraitUsineeConv">
 </Signal>
-<Signal id="SIG6" name="finDepotBrutTable2">
+<Signal id="SIG6" name="defaillanceRet">
 </Signal>
-<Signal id="SIG7" name="finUsinage2">
+<Signal id="SIG7" name="deposerBrutTable3">
 </Signal>
-<Signal id="SIG8" name="finDepotUsineeConv2">
+<Signal id="SIG8" name="deposerUsineeConv3">
 </Signal>
-<Signal id="SIG9" name="deposerBrutConv">
+<Signal id="SIG9" name="finDepotBrutTable3">
 </Signal>
 <Item id="ITEM1" type="block" name="superviseur" scope="current" formalParameterOrder="-" isFormalParam="FALSE" isSyntype="FALSE">
 <UsingSymbols>
 <SymbolReference symbolId="SYMB1"/>
 </UsingSymbols>
 <SignalWindow id="SIGWDW14" insideDiagram="TRUE">
-<ConnectorReference linkId="LINK55" isFrom="FALSE"/>
+<ConnectorReference linkId="LINK59" isFrom="FALSE"/>
 <Connections>
 <Connection name="c_creer"/>
 </Connections>
@@ -77,50 +77,52 @@
 </SentSignals>
 </SignalWindow>
 <SignalWindow id="SIGWDW12" insideDiagram="TRUE">
-<ConnectorReference linkId="LINK53" isFrom="TRUE"/>
-<Connections>
-<Connection name="c_mach3"/>
-</Connections>
-<SentSignals>
-<SignalReference id="SIG19"/>
-<SignalReference id="SIG20"/>
-<SignalReference id="SIG21"/>
-</SentSignals>
-<ReceivedSignals>
-<SignalReference id="SIG17"/>
-<SignalReference id="SIG18"/>
-</ReceivedSignals>
-</SignalWindow>
-<SignalWindow id="SIGWDW13" insideDiagram="TRUE">
-<ConnectorReference linkId="LINK54" isFrom="TRUE"/>
-<Connections>
-<Connection name="c_ret"/>
-</Connections>
-<SentSignals>
-<SignalReference id="SIG23"/>
-<SignalReference id="SIG24"/>
-</SentSignals>
-<ReceivedSignals>
-<SignalReference id="SIG22"/>
-</ReceivedSignals>
-</SignalWindow>
-<SignalWindow id="SIGWDW10" insideDiagram="TRUE">
 <ConnectorReference linkId="LINK50" isFrom="TRUE"/>
 <Connections>
 <Connection name="c_alim"/>
 </Connections>
 <SentSignals>
+<SignalReference id="SIG18"/>
+<SignalReference id="SIG19"/>
+</SentSignals>
+<ReceivedSignals>
+<SignalReference id="SIG17"/>
+</ReceivedSignals>
+</SignalWindow>
+<SignalWindow id="SIGWDW13" insideDiagram="TRUE">
+<ConnectorReference linkId="LINK51" isFrom="TRUE"/>
+<Connections>
+<Connection name="c_mach1"/>
+</Connections>
+<SentSignals>
+<SignalReference id="SIG22"/>
+<SignalReference id="SIG23"/>
+<SignalReference id="SIG24"/>
+</SentSignals>
+<ReceivedSignals>
+<SignalReference id="SIG20"/>
+<SignalReference id="SIG21"/>
+</ReceivedSignals>
+</SignalWindow>
+<SignalWindow id="SIGWDW10" insideDiagram="TRUE">
+<ConnectorReference linkId="LINK53" isFrom="TRUE"/>
+<Connections>
+<Connection name="c_mach3"/>
+</Connections>
+<SentSignals>
+<SignalReference id="SIG9"/>
 <SignalReference id="SIG10"/>
 <SignalReference id="SIG11"/>
 </SentSignals>
 <ReceivedSignals>
-<SignalReference id="SIG9"/>
+<SignalReference id="SIG7"/>
+<SignalReference id="SIG8"/>
 </ReceivedSignals>
 </SignalWindow>
 <SignalWindow id="SIGWDW11" insideDiagram="TRUE">
-<ConnectorReference linkId="LINK51" isFrom="TRUE"/>
+<ConnectorReference linkId="LINK49" isFrom="TRUE"/>
 <Connections>
-<Connection name="c_mach1"/>
+<Connection name="c_mach2"/>
 </Connections>
 <SentSignals>
 <SignalReference id="SIG14"/>
@@ -133,27 +135,25 @@
 </ReceivedSignals>
 </SignalWindow>
 <SignalWindow id="SIGWDW9" insideDiagram="TRUE">
-<ConnectorReference linkId="LINK49" isFrom="TRUE"/>
+<ConnectorReference linkId="LINK54" isFrom="TRUE"/>
 <Connections>
-<Connection name="c_mach2"/>
+<Connection name="c_ret"/>
 </Connections>
 <SentSignals>
+<SignalReference id="SIG5"/>
 <SignalReference id="SIG6"/>
-<SignalReference id="SIG7"/>
-<SignalReference id="SIG8"/>
 </SentSignals>
 <ReceivedSignals>
 <SignalReference id="SIG4"/>
-<SignalReference id="SIG5"/>
 </ReceivedSignals>
 </SignalWindow>
 <Channel name="ct_creer" fromSignalWindow="SIGWDW1" toSignalWindow="SIGWDW14"/>
 <Channel name="ct_diag" fromSignalWindow="SIGWDW2" toSignalWindow="SIGWDW8"/>
-<Channel name="ct_mach3" fromSignalWindow="SIGWDW9" toSignalWindow="SIGWDW3"/>
-<Channel name="ct_alim" fromSignalWindow="SIGWDW10" toSignalWindow="SIGWDW4"/>
-<Channel name="ct_mach1" fromSignalWindow="SIGWDW11" toSignalWindow="SIGWDW5"/>
-<Channel name="ct_mach3" fromSignalWindow="SIGWDW12" toSignalWindow="SIGWDW6"/>
-<Channel name="ct_ret" fromSignalWindow="SIGWDW13" toSignalWindow="SIGWDW7"/>
+<Channel name="ct_ret" fromSignalWindow="SIGWDW9" toSignalWindow="SIGWDW3"/>
+<Channel name="ct_mach3" fromSignalWindow="SIGWDW10" toSignalWindow="SIGWDW4"/>
+<Channel name="ct_mach2" fromSignalWindow="SIGWDW11" toSignalWindow="SIGWDW5"/>
+<Channel name="ct_alim" fromSignalWindow="SIGWDW12" toSignalWindow="SIGWDW6"/>
+<Channel name="ct_mach1" fromSignalWindow="SIGWDW13" toSignalWindow="SIGWDW7"/>
 </Item>
 <Item id="ITEM2" type="type" name="INTEGER" scope="global" defined="FALSE" anchorItemId="ITEM1" searchPolicy="-1" formalParameterOrder="-" isFormalParam="FALSE" isSyntype="FALSE">
 <UsingSymbols>
@@ -168,13 +168,13 @@
 <SymbolReference symbolId="SYMB5"/>
 </UsingSymbols>
 <SignalWindow id="SIGWDW1" insideDiagram="FALSE">
-<ConnectorReference linkId="LINK55" isFrom="TRUE"/>
+<ConnectorReference linkId="LINK59" isFrom="TRUE"/>
 <ReceivedSignals>
 <SignalReference id="SIG3"/>
 </ReceivedSignals>
 </SignalWindow>
 <SignalWindow id="SIGWDW2" insideDiagram="FALSE">
-<ConnectorReference linkId="LINK56" isFrom="TRUE"/>
+<ConnectorReference linkId="LINK60" isFrom="TRUE"/>
 <SentSignals>
 <SignalReference id="SIG1"/>
 </SentSignals>
@@ -191,17 +191,19 @@
 <SymbolReference symbolId="SYMB6"/>
 </UsingSymbols>
 <SignalWindow id="SIGWDW4" insideDiagram="FALSE">
-<ConnectorReference linkId="LINK50" isFrom="FALSE"/>
+<ConnectorReference linkId="LINK53" isFrom="FALSE"/>
 <SentSignals>
-<SignalReference id="SIG9"/>
+<SignalReference id="SIG7"/>
+<SignalReference id="SIG8"/>
 </SentSignals>
 <ReceivedSignals>
+<SignalReference id="SIG9"/>
 <SignalReference id="SIG10"/>
 <SignalReference id="SIG11"/>
 </ReceivedSignals>
 </SignalWindow>
 <SignalWindow id="SIGWDW5" insideDiagram="FALSE">
-<ConnectorReference linkId="LINK51" isFrom="FALSE"/>
+<ConnectorReference linkId="LINK49" isFrom="FALSE"/>
 <SentSignals>
 <SignalReference id="SIG12"/>
 <SignalReference id="SIG13"/>
@@ -213,41 +215,39 @@
 </ReceivedSignals>
 </SignalWindow>
 <SignalWindow id="SIGWDW6" insideDiagram="FALSE">
-<ConnectorReference linkId="LINK53" isFrom="FALSE"/>
+<ConnectorReference linkId="LINK50" isFrom="FALSE"/>
 <SentSignals>
 <SignalReference id="SIG17"/>
-<SignalReference id="SIG18"/>
 </SentSignals>
 <ReceivedSignals>
+<SignalReference id="SIG18"/>
 <SignalReference id="SIG19"/>
-<SignalReference id="SIG20"/>
-<SignalReference id="SIG21"/>
 </ReceivedSignals>
 </SignalWindow>
 <SignalWindow id="SIGWDW7" insideDiagram="FALSE">
-<ConnectorReference linkId="LINK54" isFrom="FALSE"/>
+<ConnectorReference linkId="LINK51" isFrom="FALSE"/>
 <SentSignals>
-<SignalReference id="SIG22"/>
+<SignalReference id="SIG20"/>
+<SignalReference id="SIG21"/>
 </SentSignals>
 <ReceivedSignals>
+<SignalReference id="SIG22"/>
 <SignalReference id="SIG23"/>
 <SignalReference id="SIG24"/>
 </ReceivedSignals>
 </SignalWindow>
 <SignalWindow id="SIGWDW3" insideDiagram="FALSE">
-<ConnectorReference linkId="LINK49" isFrom="FALSE"/>
+<ConnectorReference linkId="LINK54" isFrom="FALSE"/>
 <SentSignals>
 <SignalReference id="SIG4"/>
-<SignalReference id="SIG5"/>
 </SentSignals>
 <ReceivedSignals>
+<SignalReference id="SIG5"/>
 <SignalReference id="SIG6"/>
-<SignalReference id="SIG7"/>
-<SignalReference id="SIG8"/>
 </ReceivedSignals>
 </SignalWindow>
 <SignalWindow id="SIGWDW8" insideDiagram="FALSE">
-<ConnectorReference linkId="LINK56" isFrom="FALSE"/>
+<ConnectorReference linkId="LINK60" isFrom="FALSE"/>
 <SentSignals>
 <SignalReference id="SIG2"/>
 </SentSignals>

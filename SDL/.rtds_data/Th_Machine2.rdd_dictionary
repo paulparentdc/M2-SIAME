@@ -41,7 +41,7 @@
 </ReceivedSignals>
 </Body>
 </Item>
-<Item id="ITEM10" type="state" name="boucle" parentId="ITEM1" scope="none" formalParameterOrder="-" isFormalParam="FALSE" isSyntype="FALSE">
+<Item id="ITEM10" type="state" name="Idle" parentId="ITEM1" scope="none" formalParameterOrder="-" isFormalParam="FALSE" isSyntype="FALSE">
 <DefiningSymbols>
 <SymbolReference symbolId="SYM14"/>
 </DefiningSymbols>
@@ -52,7 +52,6 @@
 </Item>
 <Item id="ITEM11" type="state" name="attente_ordre_depot" parentId="ITEM1" scope="none" formalParameterOrder="-" isFormalParam="FALSE" isSyntype="FALSE">
 <DefiningSymbols>
-<SymbolReference symbolId="SYM20"/>
 <SymbolReference symbolId="SYM25"/>
 </DefiningSymbols>
 <UsingSymbols>
@@ -73,20 +72,20 @@
 <SymbolReference symbolId="SYM18"/>
 </UsingSymbols>
 </Item>
-<Item id="ITEM6" type="variable" name="deposer_piece" scope="global" defined="FALSE" anchorItemId="ITEM1" searchPolicy="-1" formalParameterOrder="-" isFormalParam="FALSE" isSyntype="FALSE">
-<UsingSymbols>
-<SymbolReference symbolId="SYM11"/>
-</UsingSymbols>
-</Item>
-<Item id="ITEM7" type="variable" name="deposerPieceConv" scope="global" defined="FALSE" anchorItemId="ITEM1" searchPolicy="-1" formalParameterOrder="-" isFormalParam="FALSE" isSyntype="FALSE">
+<Item id="ITEM6" type="variable" name="deposerPieceConv" scope="global" defined="FALSE" anchorItemId="ITEM1" searchPolicy="-1" formalParameterOrder="-" isFormalParam="FALSE" isSyntype="FALSE">
 <UsingSymbols>
 <SymbolReference symbolId="SYM22"/>
 <SymbolReference symbolId="SYM27"/>
 </UsingSymbols>
 </Item>
-<Item id="ITEM8" type="variable" name="retirer_piece_du_convoyeur" scope="global" defined="FALSE" anchorItemId="ITEM1" searchPolicy="-1" formalParameterOrder="-" isFormalParam="FALSE" isSyntype="FALSE">
+<Item id="ITEM7" type="variable" name="retirer_piece_du_convoyeur" scope="global" defined="FALSE" anchorItemId="ITEM1" searchPolicy="-1" formalParameterOrder="-" isFormalParam="FALSE" isSyntype="FALSE">
 <UsingSymbols>
 <SymbolReference symbolId="SYM5"/>
+</UsingSymbols>
+</Item>
+<Item id="ITEM8" type="variable" name="deposer_piece" scope="global" defined="FALSE" anchorItemId="ITEM1" searchPolicy="-1" formalParameterOrder="-" isFormalParam="FALSE" isSyntype="FALSE">
+<UsingSymbols>
+<SymbolReference symbolId="SYM11"/>
 </UsingSymbols>
 </Item>
 <Item id="ITEM9" type="variable" name="usinage" scope="global" defined="FALSE" anchorItemId="ITEM1" searchPolicy="-1" formalParameterOrder="-" isFormalParam="FALSE" isSyntype="FALSE">

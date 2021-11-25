@@ -13,84 +13,111 @@
 <SdlFSMSymbol identifier="SYM3" type="sdlState" text="Idle" outline_color="-" background_color="-" center_coordinates="479 78" dimensions="60 40" attached_symbol_id=""/>
 </Transition>
 </NonStateTransition>
-<StateTransitionBlock top_left_coordinates="67 480">
-<SdlFSMSymbol identifier="SYM17" type="sdlState" text="processMachine1" outline_color="-" background_color="-" center_coordinates="182 500" dimensions="124 40" attached_symbol_id=""/>
+<StateTransitionBlock top_left_coordinates="63 558">
+<SdlFSMSymbol identifier="SYM17" type="sdlState" text="processMachine1" outline_color="-" background_color="-" center_coordinates="178 578" dimensions="124 40" attached_symbol_id=""/>
 <NormalStateTransition>
-<SdlFSMSymbol identifier="SYM18" type="sdlInputSig" text="finDepotBrutConv" outline_color="-" background_color="-" center_coordinates="182 552" dimensions="132 40" attached_symbol_id=""/>
+<SdlFSMSymbol identifier="SYM18" type="sdlInputSig" text="finDepotBrutConv" outline_color="-" background_color="-" center_coordinates="178 630" dimensions="132 40" attached_symbol_id=""/>
 <Transition>
-<SdlFSMSymbol identifier="SYM129" type="sdlCnctrIn" text="retry_Machine1" outline_color="-" background_color="-" center_coordinates="182 604" dimensions="168 40" attached_symbol_id=""/>
-<SdlFSMSymbol identifier="SYM81" type="sdlSendSig" text="deposerBrutTable1 to Machine_1" outline_color="-" background_color="-" center_coordinates="182 656" dimensions="230 40" attached_symbol_id=""/>
-<SdlFSMSymbol identifier="SYM126" type="sdlInitTimer" text="SET(5, att_Machine1)" outline_color="-" background_color="-" center_coordinates="182 708" dimensions="172 40" attached_symbol_id=""/>
-<SdlFSMSymbol identifier="SYM82" type="sdlState" text="processMachine1_2" outline_color="-" background_color="-" center_coordinates="182 760" dimensions="138 40" attached_symbol_id=""/>
+<SdlFSMSymbol identifier="SYM188" type="sdlResetTimer" text="RESET(att_conv)" outline_color="-" background_color="-" center_coordinates="178 682" dimensions="136 40" attached_symbol_id=""/>
+<SdlFSMSymbol identifier="SYM129" type="sdlCnctrIn" text="retry_Machine1" outline_color="-" background_color="-" center_coordinates="178 734" dimensions="168 40" attached_symbol_id=""/>
+<SdlFSMSymbol identifier="SYM81" type="sdlSendSig" text="deposerBrutTable1 via ct_mach1" outline_color="-" background_color="-" center_coordinates="178 786" dimensions="230 40" attached_symbol_id=""/>
+<SdlFSMSymbol identifier="SYM126" type="sdlInitTimer" text="SET(5, att_Machine1)" outline_color="-" background_color="-" center_coordinates="178 838" dimensions="172 40" attached_symbol_id=""/>
+<SdlFSMSymbol identifier="SYM82" type="sdlState" text="processMachine1_2" outline_color="-" background_color="-" center_coordinates="178 890" dimensions="138 40" attached_symbol_id=""/>
+</Transition>
+</NormalStateTransition>
+<NormalStateTransition>
+<SdlFSMSymbol identifier="SYM179" type="sdlInputSig" text="att_conv" outline_color="-" background_color="-" center_coordinates="348 630" dimensions="76 40" attached_symbol_id=""/>
+<Transition>
+<SdlFSMSymbol identifier="SYM180" type="sdlCnctrOut" text="retry_conv" outline_color="-" background_color="-" center_coordinates="348 682" dimensions="90 40" attached_symbol_id=""/>
 </Transition>
 </NormalStateTransition>
 </StateTransitionBlock>
-<StateTransitionBlock top_left_coordinates="424 487">
-<SdlFSMSymbol identifier="SYM31" type="sdlState" text="processMachine1_2" outline_color="-" background_color="-" center_coordinates="542 507" dimensions="138 40" attached_symbol_id=""/>
+<StateTransitionBlock top_left_coordinates="438 554">
+<SdlFSMSymbol identifier="SYM31" type="sdlState" text="processMachine1_2" outline_color="-" background_color="-" center_coordinates="556 574" dimensions="138 40" attached_symbol_id=""/>
 <NormalStateTransition>
-<SdlFSMSymbol identifier="SYM32" type="sdlInputSig" text="finDepotBrutTable1" outline_color="-" background_color="-" center_coordinates="542 559" dimensions="146 40" attached_symbol_id=""/>
+<SdlFSMSymbol identifier="SYM32" type="sdlInputSig" text="finDepotBrutTable1" outline_color="-" background_color="-" center_coordinates="556 626" dimensions="146 40" attached_symbol_id=""/>
 <Transition>
-<SdlFSMSymbol identifier="SYM130" type="sdlResetTimer" text="RESET(att_Machine1)" outline_color="-" background_color="-" center_coordinates="542 611" dimensions="164 40" attached_symbol_id=""/>
-<SdlFSMSymbol identifier="SYM83" type="sdlSendSig" text="deposerUsineeConv1 to Machine_1" outline_color="-" background_color="-" center_coordinates="542 663" dimensions="236 40" attached_symbol_id=""/>
-<SdlFSMSymbol identifier="SYM84" type="sdlState" text="processMachine1_3" outline_color="-" background_color="-" center_coordinates="542 715" dimensions="138 40" attached_symbol_id=""/>
+<SdlFSMSymbol identifier="SYM130" type="sdlResetTimer" text="RESET(att_Machine1)" outline_color="-" background_color="-" center_coordinates="556 678" dimensions="164 40" attached_symbol_id=""/>
+<SdlFSMSymbol identifier="SYM150" type="sdlCnctrIn" text="retry_Machine12" outline_color="-" background_color="-" center_coordinates="556 730" dimensions="174 40" attached_symbol_id=""/>
+<SdlFSMSymbol identifier="SYM83" type="sdlSendSig" text="deposerUsineeConv1 via ct_mach1" outline_color="-" background_color="-" center_coordinates="556 782" dimensions="236 40" attached_symbol_id=""/>
+<SdlFSMSymbol identifier="SYM146" type="sdlInitTimer" text="SET(5, att_Machine12)" outline_color="-" background_color="-" center_coordinates="556 834" dimensions="178 40" attached_symbol_id=""/>
+<SdlFSMSymbol identifier="SYM84" type="sdlState" text="processMachine1_3" outline_color="-" background_color="-" center_coordinates="556 886" dimensions="138 40" attached_symbol_id=""/>
 </Transition>
 </NormalStateTransition>
 <NormalStateTransition>
-<SdlFSMSymbol identifier="SYM127" type="sdlInputSig" text="att_Machine1" outline_color="-" background_color="-" center_coordinates="729 559" dimensions="104 40" attached_symbol_id=""/>
+<SdlFSMSymbol identifier="SYM127" type="sdlInputSig" text="att_Machine1" outline_color="-" background_color="-" center_coordinates="743 626" dimensions="104 40" attached_symbol_id=""/>
 <Transition>
-<SdlFSMSymbol identifier="SYM128" type="sdlCnctrOut" text="retry_Machine1" outline_color="-" background_color="-" center_coordinates="729 611" dimensions="118 40" attached_symbol_id=""/>
-</Transition>
-</NormalStateTransition>
-</StateTransitionBlock>
-<StateTransitionBlock top_left_coordinates="819 487">
-<SdlFSMSymbol identifier="SYM41" type="sdlState" text="processMachine1_3" outline_color="-" background_color="-" center_coordinates="948 507" dimensions="138 40" attached_symbol_id=""/>
-<NormalStateTransition>
-<SdlFSMSymbol identifier="SYM42" type="sdlInputSig" text="finDepotUsineeConv1" outline_color="-" background_color="-" center_coordinates="948 559" dimensions="152 40" attached_symbol_id=""/>
-<Transition>
-<SdlFSMSymbol identifier="SYM85" type="sdlSendSig" text="retirerUsineeConv to Robot_retrait" outline_color="-" background_color="-" center_coordinates="948 611" dimensions="258 40" attached_symbol_id=""/>
-<SdlFSMSymbol identifier="SYM86" type="sdlState" text="processMachine1_4" outline_color="-" background_color="-" center_coordinates="948 663" dimensions="138 40" attached_symbol_id=""/>
+<SdlFSMSymbol identifier="SYM128" type="sdlCnctrOut" text="retry_Machine1" outline_color="-" background_color="-" center_coordinates="743 678" dimensions="118 40" attached_symbol_id=""/>
 </Transition>
 </NormalStateTransition>
 </StateTransitionBlock>
-<StateTransitionBlock top_left_coordinates="1183 487">
-<SdlFSMSymbol identifier="SYM49" type="sdlState" text="processMachine1_4" outline_color="-" background_color="-" center_coordinates="1308 507" dimensions="138 40" attached_symbol_id=""/>
+<StateTransitionBlock top_left_coordinates="832 564">
+<SdlFSMSymbol identifier="SYM41" type="sdlState" text="processMachine1_3" outline_color="-" background_color="-" center_coordinates="940 584" dimensions="138 40" attached_symbol_id=""/>
 <NormalStateTransition>
-<SdlFSMSymbol identifier="SYM50" type="sdlInputSig" text="finRetraitUsineeConv" outline_color="-" background_color="-" center_coordinates="1308 559" dimensions="160 40" attached_symbol_id=""/>
+<SdlFSMSymbol identifier="SYM42" type="sdlInputSig" text="finDepotUsineeConv1" outline_color="-" background_color="-" center_coordinates="940 636" dimensions="152 40" attached_symbol_id=""/>
 <Transition>
-<SdlFSMSymbol identifier="SYM87" type="sdlSendSig" text="finPiece(numPiece) to Th_Dialogue" outline_color="-" background_color="-" center_coordinates="1308 611" dimensions="250 40" attached_symbol_id=""/>
-<SdlFSMSymbol identifier="SYM132" type="sdlStop" outline_color="-" background_color="-" center_coordinates="1308 653" dimensions="20 20" attached_symbol_id=""/>
+<SdlFSMSymbol identifier="SYM149" type="sdlResetTimer" text="RESET(att_Machine12)" outline_color="-" background_color="-" center_coordinates="940 688" dimensions="172 40" attached_symbol_id=""/>
+<SdlFSMSymbol identifier="SYM154" type="sdlCnctrIn" text="retry_Conv1" outline_color="-" background_color="-" center_coordinates="940 740" dimensions="146 40" attached_symbol_id=""/>
+<SdlFSMSymbol identifier="SYM85" type="sdlSendSig" text="retirerUsineeConv via ct_ret" outline_color="-" background_color="-" center_coordinates="940 792" dimensions="216 40" attached_symbol_id=""/>
+<SdlFSMSymbol identifier="SYM151" type="sdlInitTimer" text="SET(5, att_Conv1)" outline_color="-" background_color="-" center_coordinates="940 844" dimensions="150 40" attached_symbol_id=""/>
+<SdlFSMSymbol identifier="SYM86" type="sdlState" text="processMachine1_4" outline_color="-" background_color="-" center_coordinates="940 896" dimensions="138 40" attached_symbol_id=""/>
+</Transition>
+</NormalStateTransition>
+<NormalStateTransition>
+<SdlFSMSymbol identifier="SYM147" type="sdlInputSig" text="att_Machine12" outline_color="-" background_color="-" center_coordinates="1120 636" dimensions="110 40" attached_symbol_id=""/>
+<Transition>
+<SdlFSMSymbol identifier="SYM148" type="sdlCnctrOut" text="retry_Machine12" outline_color="-" background_color="-" center_coordinates="1120 688" dimensions="124 40" attached_symbol_id=""/>
 </Transition>
 </NormalStateTransition>
 </StateTransitionBlock>
-<StateTransitionBlock top_left_coordinates="771 4">
-<SdlFSMSymbol identifier="SYM59" type="sdlState" text="Idle" outline_color="-" background_color="-" center_coordinates="928 24" dimensions="60 40" attached_symbol_id=""/>
+<StateTransitionBlock top_left_coordinates="1213 564">
+<SdlFSMSymbol identifier="SYM49" type="sdlState" text="processMachine1_4" outline_color="-" background_color="-" center_coordinates="1328 584" dimensions="138 40" attached_symbol_id=""/>
 <NormalStateTransition>
-<SdlFSMSymbol identifier="SYM60" type="sdlInputSig" text="lancementThreadPiece(numPiece, numMachine)" outline_color="-" background_color="-" center_coordinates="928 76" dimensions="314 40" attached_symbol_id=""/>
+<SdlFSMSymbol identifier="SYM50" type="sdlInputSig" text="finRetraitUsineeConv" outline_color="-" background_color="-" center_coordinates="1328 636" dimensions="160 40" attached_symbol_id=""/>
 <Transition>
-<SdlFSMSymbol identifier="SYM79" type="sdlSendSig" text="deposerBrutConv via ct_alim" outline_color="-" background_color="-" center_coordinates="928 128" dimensions="208 40" attached_symbol_id=""/>
+<SdlFSMSymbol identifier="SYM155" type="sdlResetTimer" text="RESET(att_Conv1)" outline_color="-" background_color="-" center_coordinates="1328 688" dimensions="144 40" attached_symbol_id=""/>
+<SdlFSMSymbol identifier="SYM87" type="sdlSendSig" text="finPiece(numPiece) via ct_diag" outline_color="-" background_color="-" center_coordinates="1328 740" dimensions="230 40" attached_symbol_id=""/>
+<SdlFSMSymbol identifier="SYM132" type="sdlStop" outline_color="-" background_color="-" center_coordinates="1328 782" dimensions="20 20" attached_symbol_id=""/>
+</Transition>
+</NormalStateTransition>
+<NormalStateTransition>
+<SdlFSMSymbol identifier="SYM152" type="sdlInputSig" text="att_Conv1" outline_color="-" background_color="-" center_coordinates="1501 636" dimensions="82 40" attached_symbol_id=""/>
+<Transition>
+<SdlFSMSymbol identifier="SYM153" type="sdlCnctrOut" text="retry_Conv1" outline_color="-" background_color="-" center_coordinates="1501 688" dimensions="96 40" attached_symbol_id=""/>
+</Transition>
+</NormalStateTransition>
+</StateTransitionBlock>
+<StateTransitionBlock top_left_coordinates="590 15">
+<SdlFSMSymbol identifier="SYM59" type="sdlState" text="Idle" outline_color="-" background_color="-" center_coordinates="747 35" dimensions="60 40" attached_symbol_id=""/>
+<NormalStateTransition>
+<SdlFSMSymbol identifier="SYM60" type="sdlInputSig" text="lancementThreadPiece(numPiece, numMachine)" outline_color="-" background_color="-" center_coordinates="747 87" dimensions="314 40" attached_symbol_id=""/>
+<Transition>
+<SdlFSMSymbol identifier="SYM190" type="sdlCnctrIn" text="retry_conv" outline_color="-" background_color="-" center_coordinates="747 139" dimensions="140 40" attached_symbol_id=""/>
+<SdlFSMSymbol identifier="SYM79" type="sdlSendSig" text="deposerBrutConv via ct_alim" outline_color="-" background_color="-" center_coordinates="747 191" dimensions="208 40" attached_symbol_id=""/>
+<SdlFSMSymbol identifier="SYM189" type="sdlInitTimer" text="SET(5, att_conv)" outline_color="-" background_color="-" center_coordinates="747 243" dimensions="144 40" attached_symbol_id=""/>
 <DecisionBlock>
-<SdlFSMSymbol identifier="SYM67" type="sdlDecision" text="numMachine = 1" outline_color="-" background_color="-" center_coordinates="928 180" dimensions="118 40" attached_symbol_id=""/>
+<SdlFSMSymbol identifier="SYM67" type="sdlDecision" text="numMachine = 1" outline_color="-" background_color="-" center_coordinates="747 295" dimensions="118 40" attached_symbol_id=""/>
 <DecisionBranch>
-<SdlFSMSymbol identifier="SYM68" type="sdlAnswer" text="true" outline_color="-" background_color="-" center_coordinates="928 232" dimensions="60 40" attached_symbol_id=""/>
+<SdlFSMSymbol identifier="SYM68" type="sdlAnswer" text="true" outline_color="-" background_color="-" center_coordinates="747 347" dimensions="60 40" attached_symbol_id=""/>
 <Transition>
-<SdlFSMSymbol identifier="SYM73" type="sdlState" text="processMachine1" outline_color="-" background_color="-" center_coordinates="928 284" dimensions="124 40" attached_symbol_id=""/>
+<SdlFSMSymbol identifier="SYM73" type="sdlState" text="processMachine1" outline_color="-" background_color="-" center_coordinates="747 399" dimensions="124 40" attached_symbol_id=""/>
 </Transition>
 </DecisionBranch>
 <DecisionBranch>
-<SdlFSMSymbol identifier="SYM69" type="sdlAnswer" text="false" outline_color="-" background_color="-" center_coordinates="1062 232" dimensions="60 40" attached_symbol_id=""/>
+<SdlFSMSymbol identifier="SYM69" type="sdlAnswer" text="false" outline_color="-" background_color="-" center_coordinates="881 347" dimensions="60 40" attached_symbol_id=""/>
 <Transition>
 <DecisionBlock>
-<SdlFSMSymbol identifier="SYM70" type="sdlDecision" text="numMachine = 2" outline_color="-" background_color="-" center_coordinates="1062 284" dimensions="118 40" attached_symbol_id=""/>
+<SdlFSMSymbol identifier="SYM70" type="sdlDecision" text="numMachine = 2" outline_color="-" background_color="-" center_coordinates="881 399" dimensions="118 40" attached_symbol_id=""/>
 <DecisionBranch>
-<SdlFSMSymbol identifier="SYM71" type="sdlAnswer" text="true" outline_color="-" background_color="-" center_coordinates="1062 336" dimensions="60 40" attached_symbol_id=""/>
+<SdlFSMSymbol identifier="SYM71" type="sdlAnswer" text="true" outline_color="-" background_color="-" center_coordinates="881 451" dimensions="60 40" attached_symbol_id=""/>
 <Transition>
-<SdlFSMSymbol identifier="SYM74" type="sdlState" text="processMachine2" outline_color="-" background_color="-" center_coordinates="1062 388" dimensions="124 40" attached_symbol_id=""/>
+<SdlFSMSymbol identifier="SYM74" type="sdlState" text="processMachine2" outline_color="-" background_color="-" center_coordinates="881 503" dimensions="124 40" attached_symbol_id=""/>
 </Transition>
 </DecisionBranch>
 <DecisionBranch>
-<SdlFSMSymbol identifier="SYM72" type="sdlAnswer" text="false" outline_color="-" background_color="-" center_coordinates="1196 336" dimensions="60 40" attached_symbol_id=""/>
+<SdlFSMSymbol identifier="SYM72" type="sdlAnswer" text="false" outline_color="-" background_color="-" center_coordinates="1015 451" dimensions="60 40" attached_symbol_id=""/>
 <Transition>
-<SdlFSMSymbol identifier="SYM75" type="sdlState" text="processMachine3" outline_color="-" background_color="-" center_coordinates="1196 388" dimensions="124 40" attached_symbol_id=""/>
+<SdlFSMSymbol identifier="SYM75" type="sdlState" text="processMachine3" outline_color="-" background_color="-" center_coordinates="1015 503" dimensions="124 40" attached_symbol_id=""/>
 </Transition>
 </DecisionBranch>
 </DecisionBlock>
@@ -100,83 +127,151 @@
 </Transition>
 </NormalStateTransition>
 </StateTransitionBlock>
-<StateTransitionBlock top_left_coordinates="67 811">
-<SdlFSMSymbol identifier="SYM89" type="sdlState" text="processMachine2" outline_color="-" background_color="-" center_coordinates="182 831" dimensions="124 40" attached_symbol_id=""/>
+<StateTransitionBlock top_left_coordinates="60 1028">
+<SdlFSMSymbol identifier="SYM89" type="sdlState" text="processMachine2" outline_color="-" background_color="-" center_coordinates="175 1048" dimensions="124 40" attached_symbol_id=""/>
 <NormalStateTransition>
-<SdlFSMSymbol identifier="SYM90" type="sdlInputSig" text="finDepotBrutConv" outline_color="-" background_color="-" center_coordinates="182 883" dimensions="132 40" attached_symbol_id=""/>
+<SdlFSMSymbol identifier="SYM90" type="sdlInputSig" text="finDepotBrutConv" outline_color="-" background_color="-" center_coordinates="175 1100" dimensions="132 40" attached_symbol_id=""/>
 <Transition>
-<SdlFSMSymbol identifier="SYM91" type="sdlSendSig" text="deposerBrutTable2 to Machine_2" outline_color="-" background_color="-" center_coordinates="182 935" dimensions="230 40" attached_symbol_id=""/>
-<SdlFSMSymbol identifier="SYM92" type="sdlState" text="processMachine2_2" outline_color="-" background_color="-" center_coordinates="182 987" dimensions="138 40" attached_symbol_id=""/>
+<SdlFSMSymbol identifier="SYM185" type="sdlResetTimer" text="RESET(att_conv)" outline_color="-" background_color="-" center_coordinates="175 1152" dimensions="136 40" attached_symbol_id=""/>
+<SdlFSMSymbol identifier="SYM138" type="sdlCnctrIn" text="retry_Machine2" outline_color="-" background_color="-" center_coordinates="175 1204" dimensions="168 40" attached_symbol_id=""/>
+<SdlFSMSymbol identifier="SYM91" type="sdlSendSig" text="deposerBrutTable2 via ct_mach2" outline_color="-" background_color="-" center_coordinates="175 1256" dimensions="230 40" attached_symbol_id=""/>
+<SdlFSMSymbol identifier="SYM135" type="sdlInitTimer" text="SET(5, att_Machine2)" outline_color="-" background_color="-" center_coordinates="175 1308" dimensions="172 40" attached_symbol_id=""/>
+<SdlFSMSymbol identifier="SYM92" type="sdlState" text="processMachine2_2" outline_color="-" background_color="-" center_coordinates="175 1360" dimensions="138 40" attached_symbol_id=""/>
+</Transition>
+</NormalStateTransition>
+<NormalStateTransition>
+<SdlFSMSymbol identifier="SYM181" type="sdlInputSig" text="att_conv" outline_color="-" background_color="-" center_coordinates="345 1100" dimensions="76 40" attached_symbol_id=""/>
+<Transition>
+<SdlFSMSymbol identifier="SYM182" type="sdlCnctrOut" text="retry_conv" outline_color="-" background_color="-" center_coordinates="345 1152" dimensions="90 40" attached_symbol_id=""/>
 </Transition>
 </NormalStateTransition>
 </StateTransitionBlock>
-<StateTransitionBlock top_left_coordinates="424 766">
-<SdlFSMSymbol identifier="SYM93" type="sdlState" text="processMachine2_2" outline_color="-" background_color="-" center_coordinates="542 786" dimensions="138 40" attached_symbol_id=""/>
+<StateTransitionBlock top_left_coordinates="471 1032">
+<SdlFSMSymbol identifier="SYM93" type="sdlState" text="processMachine2_2" outline_color="-" background_color="-" center_coordinates="589 1052" dimensions="138 40" attached_symbol_id=""/>
 <NormalStateTransition>
-<SdlFSMSymbol identifier="SYM94" type="sdlInputSig" text="finDepotBrutTable2" outline_color="-" background_color="-" center_coordinates="542 838" dimensions="146 40" attached_symbol_id=""/>
+<SdlFSMSymbol identifier="SYM94" type="sdlInputSig" text="finDepotBrutTable2" outline_color="-" background_color="-" center_coordinates="589 1104" dimensions="146 40" attached_symbol_id=""/>
 <Transition>
-<SdlFSMSymbol identifier="SYM95" type="sdlSendSig" text="deposerUsineeConv2 to Machine_2" outline_color="-" background_color="-" center_coordinates="542 890" dimensions="236 40" attached_symbol_id=""/>
-<SdlFSMSymbol identifier="SYM96" type="sdlState" text="processMachine2_3" outline_color="-" background_color="-" center_coordinates="542 942" dimensions="138 40" attached_symbol_id=""/>
+<SdlFSMSymbol identifier="SYM139" type="sdlResetTimer" text="RESET(att_Machine2)" outline_color="-" background_color="-" center_coordinates="589 1156" dimensions="164 40" attached_symbol_id=""/>
+<SdlFSMSymbol identifier="SYM160" type="sdlCnctrIn" text="retry_Machine22" outline_color="-" background_color="-" center_coordinates="589 1208" dimensions="174 40" attached_symbol_id=""/>
+<SdlFSMSymbol identifier="SYM95" type="sdlSendSig" text="deposerUsineeConv2 via ct_mach2" outline_color="-" background_color="-" center_coordinates="589 1260" dimensions="236 40" attached_symbol_id=""/>
+<SdlFSMSymbol identifier="SYM156" type="sdlInitTimer" text="SET(5, att_Machine22)" outline_color="-" background_color="-" center_coordinates="589 1312" dimensions="178 40" attached_symbol_id=""/>
+<SdlFSMSymbol identifier="SYM96" type="sdlState" text="processMachine2_3" outline_color="-" background_color="-" center_coordinates="589 1364" dimensions="138 40" attached_symbol_id=""/>
+</Transition>
+</NormalStateTransition>
+<NormalStateTransition>
+<SdlFSMSymbol identifier="SYM136" type="sdlInputSig" text="att_Machine2" outline_color="-" background_color="-" center_coordinates="776 1104" dimensions="104 40" attached_symbol_id=""/>
+<Transition>
+<SdlFSMSymbol identifier="SYM137" type="sdlCnctrOut" text="retry_Machine2" outline_color="-" background_color="-" center_coordinates="776 1156" dimensions="118 40" attached_symbol_id=""/>
 </Transition>
 </NormalStateTransition>
 </StateTransitionBlock>
-<StateTransitionBlock top_left_coordinates="819 733">
-<SdlFSMSymbol identifier="SYM97" type="sdlState" text="processMachine2_3" outline_color="-" background_color="-" center_coordinates="948 753" dimensions="138 40" attached_symbol_id=""/>
+<StateTransitionBlock top_left_coordinates="941 1036">
+<SdlFSMSymbol identifier="SYM97" type="sdlState" text="processMachine2_3" outline_color="-" background_color="-" center_coordinates="1049 1056" dimensions="138 40" attached_symbol_id=""/>
 <NormalStateTransition>
-<SdlFSMSymbol identifier="SYM98" type="sdlInputSig" text="finDepotUsineeConv2" outline_color="-" background_color="-" center_coordinates="948 805" dimensions="152 40" attached_symbol_id=""/>
+<SdlFSMSymbol identifier="SYM98" type="sdlInputSig" text="finDepotUsineeConv2" outline_color="-" background_color="-" center_coordinates="1049 1108" dimensions="152 40" attached_symbol_id=""/>
 <Transition>
-<SdlFSMSymbol identifier="SYM99" type="sdlSendSig" text="retirerUsineeConv to Robot_retrait" outline_color="-" background_color="-" center_coordinates="948 857" dimensions="258 40" attached_symbol_id=""/>
-<SdlFSMSymbol identifier="SYM100" type="sdlState" text="processMachine2_4" outline_color="-" background_color="-" center_coordinates="948 909" dimensions="138 40" attached_symbol_id=""/>
+<SdlFSMSymbol identifier="SYM158" type="sdlResetTimer" text="RESET(att_Machine22)" outline_color="-" background_color="-" center_coordinates="1049 1160" dimensions="172 40" attached_symbol_id=""/>
+<SdlFSMSymbol identifier="SYM164" type="sdlCnctrIn" text="retry_Conv2" outline_color="-" background_color="-" center_coordinates="1049 1212" dimensions="146 40" attached_symbol_id=""/>
+<SdlFSMSymbol identifier="SYM99" type="sdlSendSig" text="retirerUsineeConv via ct_ret" outline_color="-" background_color="-" center_coordinates="1049 1264" dimensions="216 40" attached_symbol_id=""/>
+<SdlFSMSymbol identifier="SYM174" type="sdlInitTimer" text="SET(5, att_Conv2)" outline_color="-" background_color="-" center_coordinates="1049 1316" dimensions="150 40" attached_symbol_id=""/>
+<SdlFSMSymbol identifier="SYM100" type="sdlState" text="processMachine2_4" outline_color="-" background_color="-" center_coordinates="1049 1368" dimensions="138 40" attached_symbol_id=""/>
+</Transition>
+</NormalStateTransition>
+<NormalStateTransition>
+<SdlFSMSymbol identifier="SYM157" type="sdlInputSig" text="att_Machine22" outline_color="-" background_color="-" center_coordinates="1229 1108" dimensions="110 40" attached_symbol_id=""/>
+<Transition>
+<SdlFSMSymbol identifier="SYM159" type="sdlCnctrOut" text="retry_Machine22" outline_color="-" background_color="-" center_coordinates="1229 1160" dimensions="124 40" attached_symbol_id=""/>
 </Transition>
 </NormalStateTransition>
 </StateTransitionBlock>
-<StateTransitionBlock top_left_coordinates="1183 733">
-<SdlFSMSymbol identifier="SYM101" type="sdlState" text="processMachine2_4" outline_color="-" background_color="-" center_coordinates="1308 753" dimensions="138 40" attached_symbol_id=""/>
+<StateTransitionBlock top_left_coordinates="1370 1040">
+<SdlFSMSymbol identifier="SYM101" type="sdlState" text="processMachine2_4" outline_color="-" background_color="-" center_coordinates="1485 1060" dimensions="138 40" attached_symbol_id=""/>
 <NormalStateTransition>
-<SdlFSMSymbol identifier="SYM102" type="sdlInputSig" text="finRetraitUsineeConv" outline_color="-" background_color="-" center_coordinates="1308 805" dimensions="160 40" attached_symbol_id=""/>
+<SdlFSMSymbol identifier="SYM102" type="sdlInputSig" text="finRetraitUsineeConv" outline_color="-" background_color="-" center_coordinates="1485 1112" dimensions="160 40" attached_symbol_id=""/>
 <Transition>
-<SdlFSMSymbol identifier="SYM103" type="sdlSendSig" text="finPiece(numPiece) to Th_Dialogue" outline_color="-" background_color="-" center_coordinates="1308 857" dimensions="250 40" attached_symbol_id=""/>
-<SdlFSMSymbol identifier="SYM133" type="sdlStop" outline_color="-" background_color="-" center_coordinates="1308 899" dimensions="20 20" attached_symbol_id=""/>
+<SdlFSMSymbol identifier="SYM161" type="sdlResetTimer" text="RESET(att_Conv2)" outline_color="-" background_color="-" center_coordinates="1485 1164" dimensions="144 40" attached_symbol_id=""/>
+<SdlFSMSymbol identifier="SYM103" type="sdlSendSig" text="finPiece(numPiece) via ct_diag" outline_color="-" background_color="-" center_coordinates="1485 1216" dimensions="230 40" attached_symbol_id=""/>
+<SdlFSMSymbol identifier="SYM133" type="sdlStop" outline_color="-" background_color="-" center_coordinates="1485 1258" dimensions="20 20" attached_symbol_id=""/>
+</Transition>
+</NormalStateTransition>
+<NormalStateTransition>
+<SdlFSMSymbol identifier="SYM162" type="sdlInputSig" text="att_Conv2" outline_color="-" background_color="-" center_coordinates="1658 1112" dimensions="82 40" attached_symbol_id=""/>
+<Transition>
+<SdlFSMSymbol identifier="SYM163" type="sdlCnctrOut" text="retry_Conv2" outline_color="-" background_color="-" center_coordinates="1658 1164" dimensions="96 40" attached_symbol_id=""/>
 </Transition>
 </NormalStateTransition>
 </StateTransitionBlock>
-<StateTransitionBlock top_left_coordinates="1183 996">
-<SdlFSMSymbol identifier="SYM105" type="sdlState" text="processMachine3_4" outline_color="-" background_color="-" center_coordinates="1308 1016" dimensions="138 40" attached_symbol_id=""/>
+<StateTransitionBlock top_left_coordinates="1389 1485">
+<SdlFSMSymbol identifier="SYM105" type="sdlState" text="processMachine3_4" outline_color="-" background_color="-" center_coordinates="1504 1505" dimensions="138 40" attached_symbol_id=""/>
 <NormalStateTransition>
-<SdlFSMSymbol identifier="SYM106" type="sdlInputSig" text="finRetraitUsineeConv" outline_color="-" background_color="-" center_coordinates="1308 1068" dimensions="160 40" attached_symbol_id=""/>
+<SdlFSMSymbol identifier="SYM106" type="sdlInputSig" text="finRetraitUsineeConv" outline_color="-" background_color="-" center_coordinates="1504 1557" dimensions="160 40" attached_symbol_id=""/>
 <Transition>
-<SdlFSMSymbol identifier="SYM107" type="sdlSendSig" text="finPiece(numPiece) to Th_Dialogue" outline_color="-" background_color="-" center_coordinates="1308 1120" dimensions="250 40" attached_symbol_id=""/>
-<SdlFSMSymbol identifier="SYM134" type="sdlStop" outline_color="-" background_color="-" center_coordinates="1308 1162" dimensions="20 20" attached_symbol_id=""/>
+<SdlFSMSymbol identifier="SYM176" type="sdlResetTimer" text="RESET(att_Conv3)" outline_color="-" background_color="-" center_coordinates="1504 1609" dimensions="144 40" attached_symbol_id=""/>
+<SdlFSMSymbol identifier="SYM107" type="sdlSendSig" text="finPiece(numPiece) via ct_diag" outline_color="-" background_color="-" center_coordinates="1504 1661" dimensions="230 40" attached_symbol_id=""/>
+<SdlFSMSymbol identifier="SYM134" type="sdlStop" outline_color="-" background_color="-" center_coordinates="1504 1703" dimensions="20 20" attached_symbol_id=""/>
+</Transition>
+</NormalStateTransition>
+<NormalStateTransition>
+<SdlFSMSymbol identifier="SYM170" type="sdlInputSig" text="att_Conv3" outline_color="-" background_color="-" center_coordinates="1677 1557" dimensions="82 40" attached_symbol_id=""/>
+<Transition>
+<SdlFSMSymbol identifier="SYM172" type="sdlCnctrOut" text="retry_Conv3" outline_color="-" background_color="-" center_coordinates="1677 1609" dimensions="96 40" attached_symbol_id=""/>
 </Transition>
 </NormalStateTransition>
 </StateTransitionBlock>
-<StateTransitionBlock top_left_coordinates="799 996">
-<SdlFSMSymbol identifier="SYM109" type="sdlState" text="processMachine3_3" outline_color="-" background_color="-" center_coordinates="928 1016" dimensions="138 40" attached_symbol_id=""/>
+<StateTransitionBlock top_left_coordinates="941 1485">
+<SdlFSMSymbol identifier="SYM109" type="sdlState" text="processMachine3_3" outline_color="-" background_color="-" center_coordinates="1049 1505" dimensions="138 40" attached_symbol_id=""/>
 <NormalStateTransition>
-<SdlFSMSymbol identifier="SYM110" type="sdlInputSig" text="finDepotUsineeConv3" outline_color="-" background_color="-" center_coordinates="928 1068" dimensions="152 40" attached_symbol_id=""/>
+<SdlFSMSymbol identifier="SYM110" type="sdlInputSig" text="finDepotUsineeConv3" outline_color="-" background_color="-" center_coordinates="1049 1557" dimensions="152 40" attached_symbol_id=""/>
 <Transition>
-<SdlFSMSymbol identifier="SYM111" type="sdlSendSig" text="retirerUsineeConv to Robot_retrait" outline_color="-" background_color="-" center_coordinates="928 1120" dimensions="258 40" attached_symbol_id=""/>
-<SdlFSMSymbol identifier="SYM112" type="sdlState" text="processMachine3_4" outline_color="-" background_color="-" center_coordinates="928 1172" dimensions="138 40" attached_symbol_id=""/>
+<SdlFSMSymbol identifier="SYM168" type="sdlResetTimer" text="RESET(att_Machine32)" outline_color="-" background_color="-" center_coordinates="1049 1609" dimensions="172 40" attached_symbol_id=""/>
+<SdlFSMSymbol identifier="SYM173" type="sdlCnctrIn" text="retry_Conv3" outline_color="-" background_color="-" center_coordinates="1049 1661" dimensions="146 40" attached_symbol_id=""/>
+<SdlFSMSymbol identifier="SYM111" type="sdlSendSig" text="retirerUsineeConv via ct_ret" outline_color="-" background_color="-" center_coordinates="1049 1713" dimensions="216 40" attached_symbol_id=""/>
+<SdlFSMSymbol identifier="SYM169" type="sdlInitTimer" text="SET(5, att_Conv3)" outline_color="-" background_color="-" center_coordinates="1049 1765" dimensions="150 40" attached_symbol_id=""/>
+<SdlFSMSymbol identifier="SYM112" type="sdlState" text="processMachine3_4" outline_color="-" background_color="-" center_coordinates="1049 1817" dimensions="138 40" attached_symbol_id=""/>
+</Transition>
+</NormalStateTransition>
+<NormalStateTransition>
+<SdlFSMSymbol identifier="SYM166" type="sdlInputSig" text="att_Machine32" outline_color="-" background_color="-" center_coordinates="1229 1557" dimensions="110 40" attached_symbol_id=""/>
+<Transition>
+<SdlFSMSymbol identifier="SYM167" type="sdlCnctrOut" text="retry_Machine32" outline_color="-" background_color="-" center_coordinates="1229 1609" dimensions="124 40" attached_symbol_id=""/>
 </Transition>
 </NormalStateTransition>
 </StateTransitionBlock>
-<StateTransitionBlock top_left_coordinates="424 996">
-<SdlFSMSymbol identifier="SYM117" type="sdlState" text="processMachine3_2" outline_color="-" background_color="-" center_coordinates="542 1016" dimensions="138 40" attached_symbol_id=""/>
+<StateTransitionBlock top_left_coordinates="460 1485">
+<SdlFSMSymbol identifier="SYM117" type="sdlState" text="processMachine3_2" outline_color="-" background_color="-" center_coordinates="578 1505" dimensions="138 40" attached_symbol_id=""/>
 <NormalStateTransition>
-<SdlFSMSymbol identifier="SYM118" type="sdlInputSig" text="finDepotBrutTable3" outline_color="-" background_color="-" center_coordinates="542 1068" dimensions="146 40" attached_symbol_id=""/>
+<SdlFSMSymbol identifier="SYM118" type="sdlInputSig" text="finDepotBrutTable3" outline_color="-" background_color="-" center_coordinates="578 1557" dimensions="146 40" attached_symbol_id=""/>
 <Transition>
-<SdlFSMSymbol identifier="SYM119" type="sdlSendSig" text="deposerUsineeConv3 to Machine_3" outline_color="-" background_color="-" center_coordinates="542 1120" dimensions="236 40" attached_symbol_id=""/>
-<SdlFSMSymbol identifier="SYM120" type="sdlState" text="processMachine3_3" outline_color="-" background_color="-" center_coordinates="542 1172" dimensions="138 40" attached_symbol_id=""/>
+<SdlFSMSymbol identifier="SYM145" type="sdlResetTimer" text="RESET(att_Machine3)" outline_color="-" background_color="-" center_coordinates="578 1609" dimensions="164 40" attached_symbol_id=""/>
+<SdlFSMSymbol identifier="SYM175" type="sdlCnctrIn" text="retry_Machine32" outline_color="-" background_color="-" center_coordinates="578 1661" dimensions="174 40" attached_symbol_id=""/>
+<SdlFSMSymbol identifier="SYM119" type="sdlSendSig" text="deposerUsineeConv3 via ct_mach3" outline_color="-" background_color="-" center_coordinates="578 1713" dimensions="236 40" attached_symbol_id=""/>
+<SdlFSMSymbol identifier="SYM165" type="sdlInitTimer" text="SET(5, att_Machine32)" outline_color="-" background_color="-" center_coordinates="578 1765" dimensions="178 40" attached_symbol_id=""/>
+<SdlFSMSymbol identifier="SYM120" type="sdlState" text="processMachine3_3" outline_color="-" background_color="-" center_coordinates="578 1817" dimensions="138 40" attached_symbol_id=""/>
+</Transition>
+</NormalStateTransition>
+<NormalStateTransition>
+<SdlFSMSymbol identifier="SYM142" type="sdlInputSig" text="att_Machine3" outline_color="-" background_color="-" center_coordinates="765 1557" dimensions="104 40" attached_symbol_id=""/>
+<Transition>
+<SdlFSMSymbol identifier="SYM143" type="sdlCnctrOut" text="retry_Machine3" outline_color="-" background_color="-" center_coordinates="765 1609" dimensions="118 40" attached_symbol_id=""/>
 </Transition>
 </NormalStateTransition>
 </StateTransitionBlock>
-<StateTransitionBlock top_left_coordinates="71 1039">
-<SdlFSMSymbol identifier="SYM121" type="sdlState" text="processMachine3" outline_color="-" background_color="-" center_coordinates="186 1059" dimensions="124 40" attached_symbol_id=""/>
+<StateTransitionBlock top_left_coordinates="60 1485">
+<SdlFSMSymbol identifier="SYM121" type="sdlState" text="processMachine3" outline_color="-" background_color="-" center_coordinates="175 1505" dimensions="124 40" attached_symbol_id=""/>
 <NormalStateTransition>
-<SdlFSMSymbol identifier="SYM122" type="sdlInputSig" text="finDepotBrutConv" outline_color="-" background_color="-" center_coordinates="186 1111" dimensions="132 40" attached_symbol_id=""/>
+<SdlFSMSymbol identifier="SYM122" type="sdlInputSig" text="finDepotBrutConv" outline_color="-" background_color="-" center_coordinates="175 1557" dimensions="132 40" attached_symbol_id=""/>
 <Transition>
-<SdlFSMSymbol identifier="SYM123" type="sdlSendSig" text="deposerBrutTable3 to Machine_3" outline_color="-" background_color="-" center_coordinates="186 1163" dimensions="230 40" attached_symbol_id=""/>
-<SdlFSMSymbol identifier="SYM124" type="sdlState" text="processMachine3_2" outline_color="-" background_color="-" center_coordinates="186 1215" dimensions="138 40" attached_symbol_id=""/>
+<SdlFSMSymbol identifier="SYM187" type="sdlResetTimer" text="RESET(att_conv)" outline_color="-" background_color="-" center_coordinates="175 1609" dimensions="136 40" attached_symbol_id=""/>
+<SdlFSMSymbol identifier="SYM144" type="sdlCnctrIn" text="retry_Machine3" outline_color="-" background_color="-" center_coordinates="175 1661" dimensions="168 40" attached_symbol_id=""/>
+<SdlFSMSymbol identifier="SYM123" type="sdlSendSig" text="deposerBrutTable3 via ct_mach3" outline_color="-" background_color="-" center_coordinates="175 1713" dimensions="230 40" attached_symbol_id=""/>
+<SdlFSMSymbol identifier="SYM141" type="sdlInitTimer" text="SET(5, att_Machine3)" outline_color="-" background_color="-" center_coordinates="175 1765" dimensions="172 40" attached_symbol_id=""/>
+<SdlFSMSymbol identifier="SYM124" type="sdlState" text="processMachine3_2" outline_color="-" background_color="-" center_coordinates="175 1817" dimensions="138 40" attached_symbol_id=""/>
+</Transition>
+</NormalStateTransition>
+<NormalStateTransition>
+<SdlFSMSymbol identifier="SYM183" type="sdlInputSig" text="att_conv" outline_color="-" background_color="-" center_coordinates="345 1557" dimensions="76 40" attached_symbol_id=""/>
+<Transition>
+<SdlFSMSymbol identifier="SYM184" type="sdlCnctrOut" text="retry_conv" outline_color="-" background_color="-" center_coordinates="345 1609" dimensions="90 40" attached_symbol_id=""/>
 </Transition>
 </NormalStateTransition>
 </StateTransitionBlock>
