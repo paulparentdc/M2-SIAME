@@ -16,7 +16,6 @@ signal E_A, E_B, E_S: std_logic_vector(31 downto 0);
 signal E_cin, E_C31, E_c30 : std_logic;
 
 
-
 begin
 --------------------------
 -- definition de l'horloge

@@ -72,6 +72,19 @@ begin
     E_CLK <= '0';
     E_sel <= "0101"; -- xor
 
+
+    wait for 5 ns;
+
+    E_A <= (31 => '0', others => '1');
+    E_B <= (others => '1');
+    E_CLK <= '1';
+    E_sel <= "0101"; -- add
+
+    wait for 5 ns;
+
+    E_CLK <= '0';
+    E_sel <= "0011"; -- Positionner si inferieur
+
     wait for 5 ns;
 	wait;
 

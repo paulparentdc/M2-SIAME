@@ -1,4 +1,10 @@
+LIBRARY IEEE;
+USE IEEE.STD_LOGIC_1164.ALL;
+USE IEEE.NUMERIC_STD.ALL;
 
+PACKAGE bus_mux_pkg IS
+	TYPE bus_mux_array IS ARRAY(NATURAL RANGE<>) OF STD_LOGIC_VECTOR(31 DOWNTO 0);
+END PACKAGE bus_mux_pkg;
 ----------------------------------------------
 
 -- Mux 4->1
@@ -145,6 +151,54 @@ ENTITY ALU IS
 	);
 END ENTITY ALU;
 
+architecture arch_ALU of ALU is
+
+  type tab8x32 is array(7 downto 0) of std_logic_vector(31 downto 0);
+  signal tab : tab8x32; 
+
+  signal c30,c31,Ni,Vi,Ci,zero : std_logic;
+  signal SR,SL,S,temp,v0 : std_logic_vector(31 downto 0);
+
+begin
+
+  addC : Entity work.addCarry port map (A, B, sel(3), S, c30, c31);
+  barrelSh : Entity work.BarrelShifter port map (B, ValDec,SR,SL);
+  v0 <= (others => '0');
+  tab(0) <= A and B;
+  tab(1) <= A or B;
+  tab(2) <= S;
+  tab(3) <= (0 => (Enable_V and (Ni xor Vi)) or ((not Enable_V) and Ci), others => '0');
+  tab(4) <= A nor B;
+  tab(5) <= A xor B;
+  tab(6) <= SR;
+  tab(7) <= SL;
+
+  temp <= tab(to_integer(unsigned(sel(2 downto 0))));
+  Res <= temp;
+
+  zero <= '0' when temp = v0 else
+         '1';
+
+P_ALU : process(CLK)
+
+  begin
+    if (CLK'event and CLK ='0') then 
+      Ci <= sel(3) xor c31;
+      C <= sel(3) xor c31;
+
+      Vi <= Enable_V and (not Slt) and (c31 xor c30);
+      V <= Enable_V and (not Slt) and (c31 xor c30);
+
+      Ni <= S(31);
+      N <= S(31);
+
+      Z <= zero;
+      
+    end if;
+  end process P_ALU;
+
+end arch_ALU;
+
 ---------------------------------------------------
 
 -- Extension logic for immediate inputs
@@ -160,3 +214,13 @@ entity extension is
     ExtOut : out std_logic_vector(31 downto 0)
     );
 end entity;
+
+architecture arch_extension of extension is
+  signal v0,bit15 : std_logic_vector(15 downto 0);
+begin
+  v0 <= (others => '0');
+  bit15 <= (others => inst(15));
+  ExtOut <= v0 & inst(15 downto 0) when ExtOp = '0' else 
+            bit15 & inst(15 downto 0) when ExtOp = '1';
+
+end arch_extension;
