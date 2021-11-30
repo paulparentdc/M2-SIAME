@@ -26,7 +26,7 @@ class Salle(Environment) :
         mean = 14.0 
         std = 3.0
 
-        x = np.linspace(x_min, x_max,96)
+        x = np.linspace(x_min, x_max,2400)
 
         y = scipy.stats.norm.pdf(x,mean,std)
         y = y*750
@@ -44,34 +44,49 @@ class Salle(Environment) :
                 validation = "beurk"
 
         if validation == "validee":
-            self._heure = (self._heure + 0.25) % 24
+            #Calcul de la conso électrique sur le quart d'heure
+            conso = 0
+
+            for a in self._ampoules:
+                print(a.get_conso())
+                conso  += a.get_conso()
+
+            #Ecriture de la conso pour le quart d'heure dans un fichier
+            fichier = open("resultats.csv", "a")
+            fichier.write(str(self._heure)+",")
+            fichier.write(str(conso)+"\n")
+            fichier.close()
+
+            #Progression dans le temps
+            self._heure = round(self._heure + 0.01, 2) % 24 
+            self.affiche()
+            input("Press enter to continue ...")
+
+            
         self.maj_lumSalle()
 
     def on_cycle_end(self):
         self.maj_lumSalle()
-        self.affiche()
-        input("Press enter to continue ...")
+        
     
 
     def affiche(self):        
-        if(self._heure%1 == 0.25):
-            print(str(int(self._heure))+":15")        
-        elif(self._heure%1 == 0.50):
-            print(str(int(self._heure))+":30")        
-        elif(self._heure%1 == 0.75):
-            print(str(int(self._heure))+":45")
+        min = int(self._heure % 1 * 60.0)
+        if(min < 10):
+            print(str(int(self._heure))+":0"+str(min))   
         else:
-            print(str(int(self._heure))+":00")
+            print(str(int(self._heure))+":"+str(min))         
+        
 
         print("Ampoule 1 : "+str(self._ampoules[0].get_state()))
-        print("Volet 1 : "+str(self._volets[0].get_state()))
+        print("Volet 1   : "+str(self._volets[0].get_state()))
         print("Ampoule 2 : "+str(self._ampoules[1].get_state()))
-        print("Volet 2 : "+str(self._volets[1].get_state()))
+        print("Volet 2   : "+str(self._volets[1].get_state()))
         
         print(self._lumSalle)
 
     def calcul_soleil(self):
-        return self._schemaSoleil[int(self._heure * 4)]
+        return self._schemaSoleil[int(self._heure * 100)]
 
 
     def ajouterVolet(self, volet):
@@ -164,7 +179,7 @@ class Salle(Environment) :
 
 
 class Ampoule(Agent, Communication) :
-    _lum = None
+ 
     _listeMesure = None
     _flag = "pas cool"
     _action = False
@@ -187,6 +202,9 @@ class Ampoule(Agent, Communication) :
     def get_position(self):
         return self._position
 
+    def get_conso(self):
+        return int( self._state ** 1.5 )
+         
     def get_cout_plus(self):
         if(self._state < 100):
             coutState1 = int( self._state ** 1.5 )
@@ -222,23 +240,26 @@ class Ampoule(Agent, Communication) :
         else :
             listeMesure = self._salle.mesure_capteurs_Z2()
 
+        lumiMax = 0
         lumiMin = 100
+        
         for v in listeMesure:
+            if v > lumiMax :
+                lumiMax = v
             if v < lumiMin :
                 lumiMin = v
-                
-        if listeMesure:
-            self._lum = 0
-        self._lum = lumiMin
+
+        self._lumiMax = lumiMax       
+        self._lumiMin = lumiMin
 
 
     def on_decide(self):
-        self._flag = "pas cool bouboubou"
+        self._flag = "pas cool"
         self._action = False
 
         coutPlusBas = 999999
        
-        if (self._lum < self._minLum):
+        if (self._lumiMin < self._minLum):
             #Envoie de son cout pour augmenter la lum
             self.sendMsg(self.get_cout_plus())
             
@@ -250,13 +271,12 @@ class Ampoule(Agent, Communication) :
                 if coutPlusBas > self.get_cout_plus() :
                     self._action = True                
             
-        elif(self._lum > self._maxLum):
+        elif(self._lumiMin -1 > self._minLum):
+            
             #Envoie de son cout pour baisser la lum
             self.sendMsg(self.get_cout_moins())
-            print("Cout baissage ampoule")
-            print(self.get_cout_moins())
-            print(self.getBAL())
             if len(self.getBAL()) >= len(self.getContacts()):
+                
                 for m in self.getBAL():
                         if(m < coutPlusBas):
                             coutPlusBas = m
@@ -264,18 +284,19 @@ class Ampoule(Agent, Communication) :
                 if coutPlusBas > self.get_cout_moins() :
                     self._action = True        
         else:
+            if self._lumiMax >= self._maxLum or self._lumiMax+1 < self._maxLum:
+                self.sendMsg(9999)
             self._flag = "ok"
-            print("ampoule ok")
+            
  
 
     def on_act(self):
-        print("action de ampoule :"+str(self._action))
         if self._action:
 
-            if self._lum < self._minLum :
+            if self._lumiMin < self._minLum :
                 self._state += 2
                 
-            elif self._lum > self._maxLum :
+            elif self._lumiMin -1 > self._minLum :
                 self._state -= 2
             
             if self._state > 100:
@@ -298,7 +319,6 @@ class Ampoule(Agent, Communication) :
 class Volet(Agent, Communication) :
     _state = None #ouverture du volet (0-100)
     _positions = None
-    _lum = None
     _flag = "blablabla"
     _action = False
    
@@ -347,25 +367,33 @@ class Volet(Agent, Communication) :
         elif self._zone == 2:
             listeMesure = self._salle.mesure_capteurs_Z2()
 
+        lumiMax = 0
         lumiMin = 100
+
         for v in listeMesure:
+            if v > lumiMax :
+                lumiMax = v
             if v < lumiMin :
                 lumiMin = v
 
-        if listeMesure:
-            self._lum = 0
-        self._lum = lumiMin
+        self._lumiMax = lumiMax       
+        self._lumiMin = lumiMin
 
 
     def on_decide(self):
-        self._flag = "pas cool bouboubou"
+        self._flag = "pas cool"
         self._action = False
 
         coutPlusBas = 999999
-       
-        if (self._lum < self._minLum):
+        if self._salle.calcul_soleil() <= 2:
+            self._flag = "ok"
+            self._action = True
+            self.sendMsg(9999)
+        elif (self._lumiMax + 1 < self._maxLum):
+            if( self._state == 100):
+                self._flag = "ok"
+
             #Envoie de son cout pour augmenter la lum
-            print(self._contacts)
             self.sendMsg(self.get_cout_plus())
             if len(self.getBAL()) >= len(self.getContacts()):
                 for m in self.getBAL():
@@ -373,9 +401,10 @@ class Volet(Agent, Communication) :
                             coutPlusBas = m
                 self.razBAL()
                 if coutPlusBas > self.get_cout_plus() :
+                    
                     self._action = True                
             
-        elif(self._lum > self._maxLum):
+        elif(self._lumiMax > self._maxLum):
             #Envoie de son cout pour baisser la lum
             self.sendMsg(self.get_cout_moins())
             if len(self.getBAL()) >= len(self.getContacts()):
@@ -387,25 +416,27 @@ class Volet(Agent, Communication) :
                     self._action = True
 
         else:
+            if self._lumiMin < self._minLum:
+                self.sendMsg(9999)
             self._flag = "ok"
-            print("ampoule ok")
+
 
 
     def on_act(self):
         if self._action:
-            if self._lum < self._minLum :
-                self._state += 10
+            if self._salle.calcul_soleil() <= 2:
+                self._state = 0
+            elif self._lumiMax +1 < self._maxLum :
+                self._state += 1
                 
-            elif self._lum > self._maxLum :
-                self._state -= 10
+            elif self._lumiMax > self._maxLum :
+                self._state -= 1
 
             if self._state > 100:
                 self._state = 100
-                print("Can't do more")
                 
             if self._state < 0:
                 self._state = 0
-                print("KO volet")
 
 
     def on_cyle_end(self):
@@ -419,7 +450,7 @@ class AmaSalle(Amas) :
         super().__init__(salle)
 
     def on_initial_agents_creation(self):
-        ampoule1 = Ampoule(self, 0, [2,2], self.get_environment(), 1, 50, 40)
+        ampoule1 = Ampoule(self, 0, [2,4], self.get_environment(), 1, 50, 40)
         ampoule2 = Ampoule(self, 0, [9,5], self.get_environment(), 2, 50, 40)
         volet1 = Volet(self, 0, [[0,9],[1,9],[2,9],[3,9],[4,9]], self.get_environment(), 1, 50, 40)
         volet2 = Volet(self, 0, [[5,9],[6,9],[7,9],[8,9],[9,9]], self.get_environment(), 2, 50, 40)
@@ -447,12 +478,13 @@ class AmaSalle(Amas) :
 
 
 def main():
-    salle = Salle(12)
+    salle = Salle(0)
     amaSalle = AmaSalle(salle)
     
     salle.ajouterCapteur(1, [0,0])
     salle.ajouterCapteur(2, [9,0])
     salle.ajouterCapteur(1, [0,9])
+    salle.ajouterCapteur(2, [9,9])
 
     scheduler = Scheduler(amaSalle)
 
