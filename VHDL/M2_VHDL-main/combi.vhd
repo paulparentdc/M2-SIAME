@@ -1,3 +1,10 @@
+LIBRARY IEEE;
+USE IEEE.STD_LOGIC_1164.ALL;
+USE IEEE.NUMERIC_STD.ALL;
+
+PACKAGE bus_mux_pkg IS
+	TYPE bus_mux_array IS ARRAY(NATURAL RANGE<>) OF STD_LOGIC_VECTOR(31 DOWNTO 0);
+END PACKAGE bus_mux_pkg;
 
 ----------------------------------------------
 
@@ -119,17 +126,17 @@ end entity;
 
 architecture arch_BarrelShifter of BarrelShifter is
 
-signal tabSL : bus_mux_array(31 downto 0);
-signal tabSR : bus_mux_array(31 downto 0);
+signal tabSL : bus_mux_array(32 downto 0);
+signal tabSR : bus_mux_array(32 downto 0);
 
 begin
 
   tabSL(0) <= A;
   tabSR(0) <= A;
     
-  T : for i in 1 to 31 generate
-      tabSL(i) <= tabSL(i-1)(31 downto 1) & '0';
-      tabSR(i) <= '0' & tabSR(i-1)(30 downto 0);
+  T : for i in 1 to 32 generate
+      tabSL(i) <= tabSL(i-1)(30 downto 0) & '0';
+      tabSR(i) <= '0' & tabSR(i-1)(31 downto 1);
   end generate;
 
   SR <= tabSR(to_integer(unsigned(ValDec)));
@@ -170,14 +177,14 @@ architecture arch_ALU of ALU is
   type tab8x32 is array(7 downto 0) of std_logic_vector(31 downto 0);
   signal tab : tab8x32; 
 
-  signal c30,c31,N_int,V_int,C_int : std_logic;
-  signal SR,SL,S : std_logic_vector(31 downto 0);
+  signal c30,c31,N_int,V_int,C_int,zer : std_logic;
+  signal SR,SL,S,bufferRes,zero : std_logic_vector(31 downto 0);
 
 begin
 
   addC : Entity work.addCarry port map (A, B, sel(3), S, c30, c31);
   barrelSh : Entity work.BarrelShifter port map (B, ValDec,SR,SL);
-
+  zero <= (others => '0');
   tab(0) <= A and B;
   tab(1) <= A or B;
   tab(2) <= S;
@@ -187,21 +194,27 @@ begin
   tab(6) <= SR;
   tab(7) <= SL;
 
-  Res <= tab(to_integer(unsigned(sel(2 downto 0))));
+  bufferRes <= tab(to_integer(unsigned(sel(2 downto 0))));
+  Res <= bufferRes;
+
+  zer <= '0' when bufferRes = zero else
+         '1';
 
 P_ALU : process(CLK)
+
   begin
     if (CLK'event and CLK ='0') then 
       C_int <= sel(3) xor c31;
-      C <= C_int;
+      C <= sel(3) xor c31;
 
       V_int <= Enable_V and (not Slt) and (c31 xor c30);
-      V <= V_int;
+      V <= Enable_V and (not Slt) and (c31 xor c30);
 
       N_int <= S(31);
-      N <= N_int;
+      N <= S(31);
 
-      --Z <= Res(0) nor Res(31);
+      Z <= zer;
+      
     end if;
   end process P_ALU;
 
