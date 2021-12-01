@@ -10,7 +10,7 @@ import numpy as np
 import scipy.stats
 
 class Salle(Environment) :
-
+    _compteur = 0
     def __init__(self,heure):
         self._lumSalle = np.zeros((10,10)).astype
         self._heure      = heure #evolue de 0 a 24
@@ -24,9 +24,9 @@ class Salle(Environment) :
         x_max = 24.0
 
         mean = 14.0 
-        std = 3.0
+        std = 1.0
 
-        x = np.linspace(x_min, x_max,2400)
+        x = np.linspace(x_min, x_max,12000)
 
         y = scipy.stats.norm.pdf(x,mean,std)
         y = y*750
@@ -43,23 +43,26 @@ class Salle(Environment) :
             if a.getFlag() != "ok":
                 validation = "beurk"
 
-        if validation == "validee":
-            #Calcul de la conso électrique sur le quart d'heure
-            conso = 0
+        #if validation == "validee":
+        #Calcul de la conso électrique sur le quart d'heure
+        conso = 0
 
-            for a in self._ampoules:
-                print(a.get_conso())
-                conso  += a.get_conso()
+        for a in self._ampoules:
+            print(a.get_conso())
+            conso  += a.get_conso()
 
-            #Ecriture de la conso pour le quart d'heure dans un fichier
-            fichier = open("resultats.csv", "a")
-            fichier.write(str(self._heure)+",")
-            fichier.write(str(conso)+"\n")
-            fichier.close()
+        #Ecriture de la conso pour le quart d'heure dans un fichier
+        fichier = open("resultats2.csv", "a")
+        fichier.write(str(self._heure)+",")
+        fichier.write(str(conso)+"\n")
+        fichier.close()
 
-            #Progression dans le temps
-            self._heure = round(self._heure + 0.01, 2) % 24 
-            self.affiche()
+        #Progression dans le temps
+        self._heure = round(self._heure + 0.002, 3) % 24 
+        self.affiche()
+        self._compteur += 1
+        if(self._compteur >= 5000):
+
             input("Press enter to continue ...")
 
             
@@ -86,7 +89,7 @@ class Salle(Environment) :
         print(self._lumSalle)
 
     def calcul_soleil(self):
-        return self._schemaSoleil[int(self._heure * 100)]
+        return self._schemaSoleil[int(self._heure * 500)]
 
 
     def ajouterVolet(self, volet):
@@ -221,8 +224,7 @@ class Ampoule(Agent, Communication) :
 
             return coutState2 - coutState1
         else: 
-            return 999999
-        
+            return 9999992400
 
     def getFlag(self):
         return self._flag
@@ -478,7 +480,7 @@ class AmaSalle(Amas) :
 
 
 def main():
-    salle = Salle(0)
+    salle = Salle(8)
     amaSalle = AmaSalle(salle)
     
     salle.ajouterCapteur(1, [0,0])
