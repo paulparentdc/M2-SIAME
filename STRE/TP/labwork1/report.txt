@@ -71,18 +71,18 @@ Q4:
 	approximated total WCET: 9242 cycles
 	difference: 356 cycles
 Q5:
-	WCET: 
+	WCET: 4225
 Q6:
-	new smallest frequency: 9.242 MHz
+	new smallest frequency: 4,225 MHz
 
 === Section 6 ===
 
 Q3
-	BB address calling the function pointer:
-	SWI instruction address:
+	BB address calling the function pointer: BB8
+	SWI instruction address: BB2
 Q4:
-	called functions:
-	removed line: [ ] multicall [ ] noreturn
+	called functions: one, zero
+	removed line: [X] multicall [ ] noreturn
 Q6:
-	WCET:
+	WCET: 48 cycles
 

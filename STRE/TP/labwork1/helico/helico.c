@@ -535,6 +535,24 @@ void doPWM(void) {
       }
 }
 
+void boucle(void){
+  doGyroChannel();
+  action();
+  doPWM();
+  
+  doAROMXChannel();
+  action();
+  doPWM();
+  
+  doAROMYChannel();
+  action();
+  doPWM();
+
+  doAROMZChannel();
+  action();
+  doPWM();
+}
+
 int main(void){
 
 #ifdef DEBUG
@@ -554,18 +572,9 @@ int main(void){
     marks++;
     if (marks == milsec){
       marks = 0;
-            
-      for(currentChannel = GYRO_CHANNEL;
-      currentChannel <= AROMZ_CHANNEL;
-      currentChannel++) {
 
-        updateADC();
-
-        action();
-
-        doPWM();
-
-	  }
+      boucle();
+	
     }
   }
   return 0;

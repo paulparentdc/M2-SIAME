@@ -1450,43 +1450,61 @@ void doPWM(void _8)
 	}
 }
 
-int main(void _9)
+void boucle(void _9)
 {
+# 539 "helico.c"
+	doGyroChannel();
+# 540 "helico.c"
+	action();
+# 541 "helico.c"
+	doPWM();
+# 543 "helico.c"
+	doAROMXChannel();
 # 544 "helico.c"
-	calibrateGyro();
+	action();
 # 545 "helico.c"
-	calibrateArom();
-# 550 "helico.c"
-	sec = 0;
+	doPWM();
+# 547 "helico.c"
+	doAROMYChannel();
+# 548 "helico.c"
+	action();
+# 549 "helico.c"
+	doPWM();
+# 551 "helico.c"
+	doAROMZChannel();
 # 552 "helico.c"
-	while(1)
-# 552 "helico.c"
-	{
+	action();
 # 553 "helico.c"
-		ticks++;
-# 554 "helico.c"
-		marks++;
-# 555 "helico.c"
-		if(marks == 350)
-# 555 "helico.c"
-		{
-# 556 "helico.c"
-			marks = 0;
-# 558 "helico.c"
-			for(currentChannel = 0; currentChannel <= 3;
-				currentChannel++)
-# 560 "helico.c"
-			{
+	doPWM();
+}
+
+int main(void _10)
+{
 # 562 "helico.c"
-				updateADC();
-# 564 "helico.c"
-				action();
-# 566 "helico.c"
-				doPWM();
-			}
+	calibrateGyro();
+# 563 "helico.c"
+	calibrateArom();
+# 568 "helico.c"
+	sec = 0;
+# 570 "helico.c"
+	while(1)
+# 570 "helico.c"
+	{
+# 571 "helico.c"
+		ticks++;
+# 572 "helico.c"
+		marks++;
+# 573 "helico.c"
+		if(marks == 350)
+# 573 "helico.c"
+		{
+# 574 "helico.c"
+			marks = 0;
+# 576 "helico.c"
+			boucle();
 		}
 	}
-# 571 "helico.c"
+# 580 "helico.c"
 	return 0;
 }
 

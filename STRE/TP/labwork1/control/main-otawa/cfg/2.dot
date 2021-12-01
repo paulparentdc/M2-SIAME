@@ -1,0 +1,29 @@
+digraph main {
+	graph [bb="0,0,157,353",
+		label=<one function>,
+		lheight=0.21,
+		lp="78.5,11.5",
+		lwidth=0.96
+	];
+	node [label="\N"];
+	0	 [height=0.51389,
+		label=<entry>,
+		pos="78.5,334.5",
+		shape=Mrecord,
+		width=0.75];
+	1	 [height=2.5556,
+		label=<<TABLE BORDER="0"><TR><TD><B>BB 1</B> (00000430)</TD></TR><HR/><TR><TD ALIGN="LEFT"><FONT COLOR="darkgreen"><I>control.c:14</I></FONT><BR ALIGN="left"/><FONT COLOR="blue">one:</FONT><BR ALIGN="left"/>00000430  str fp, [sp, -#4]!<BR ALIGN="left"/>00000434  add fp, sp, #0<BR ALIGN="left"/><FONT COLOR="darkgreen"><I>control.c:15</I></FONT><BR ALIGN="left"/>00000438  mov r3, #1<BR ALIGN="left"/><FONT COLOR="darkgreen"><I>control.c:16</I></FONT><BR ALIGN="left"/>0000043c  mov r0, r3<BR ALIGN="left"/>00000440  add sp, fp, #0<BR ALIGN="left"/>00000444  ldr fp, [sp], #4<BR ALIGN="left"/>00000448  bx lr<BR ALIGN="left"/></TD></TR></TABLE>>,
+		margin=0,
+		pos="78.5,188",
+		shape=Mrecord,
+		width=2.1806];
+	0 -> 1	 [pos="e,78.5,279.64 78.5,316.24 78.5,308.88 78.5,299.77 78.5,289.82",
+		style=dashed];
+	2	 [height=0.51389,
+		label=<exit>,
+		pos="78.5,41.5",
+		shape=Mrecord,
+		width=0.75];
+	1 -> 2	 [pos="e,78.5,59.804 78.5,96.468 78.5,86.925 78.5,77.824 78.5,69.871",
+		style=dashed];
+}
