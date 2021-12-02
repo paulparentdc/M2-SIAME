@@ -47,7 +47,7 @@ void turnd_on(int gpio){
 
 //Turn off gpiod
 void turnd_off(int gpio){
-	GPIOD_BSRR = 1<<16+gpio;
+	GPIOD_BSRR = 1<<(16+gpio);
 }
 
 
@@ -87,19 +87,19 @@ void handle_B1(){
 
 
 void init_interrupt(){
-    DISABLE_IRQS ;// c o n f i g u r e  
-    EXTISETBITS (SYSCFG_CR1, 0, 4, 0);
+    DISABLE_IRQS ;// c onfigure EXTI
+	SYSCFG_EXTICR1 = SET_BITS(SYSCFG_EXTICR1, 0, 4, 0);
     // 0 = GPIOA0
     EXTI_RTSR |=  1<<0 ;
     EXTI_FTSR |=  1<<0 ;
     EXTI_IMR  |=  1<<0 ;
-    EXTI_IPR  |=  1<<0 ;
+    EXTI_PR  |=  1<<0 ;
 
-    NVIC_ICER( EXTI0IRQ>>5 ) |=   1<<( EXTI0_IRQ & 0X1f) ;
-    NVIC_IRQ( EXTI0IRQ )      =   (uint32_t) handle_B1;
-    NVIC_IPR( EXTI0IRQ )      =   0 ;
-    NVIC_ICPR( EXTI0IRQ>>5 ) |=  1<<( EXTI0_IRQ & 0X1f );
-    NVIC_ISER( EXTI0IRQ>>5 ) |=  1<<( EXTI0_IRQ & 0X1f );
+    NVIC_ICER( EXTI0_IRQ>>5 ) |=   1<<( EXTI0_IRQ & 0X1f) ;
+    NVIC_IRQ( EXTI0_IRQ )      =   (uint32_t) handle_B1;
+    NVIC_IPR( EXTI0_IRQ )      =   0 ;
+    NVIC_ICPR( EXTI0_IRQ>>5 ) |=  1<<( EXTI0_IRQ & 0X1f );
+    NVIC_ISER( EXTI0_IRQ>>5 ) |=  1<<( EXTI0_IRQ & 0X1f );
     ENABLE_IRQS ;
 }
 

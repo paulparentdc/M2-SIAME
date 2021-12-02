@@ -27,10 +27,10 @@ Q11
 === Section 3 ===
 Q3
 	loop bounds
-	bubble.c:12: 7
-	bubble.c:15: 7
+	bubble.c:12: 8
+	bubble.c:15: 8
 Q4
-	WCET: 3425 cycles
+	WCET: 4352 cycles
 Q6
 	execution count: 64
 Q7
