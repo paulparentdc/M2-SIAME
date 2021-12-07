@@ -1,15 +1,22 @@
 [
 	{"name": "t0",
 	 "idx": 0,
-	 "period": 10,
+	 "period": 3,
 	 "deadline": 50,
-	 "wcet": 10
+	 "wcet": 1
 	},
 	{"name": "t1",
 	 "idx": 1,
-	 "period": 10,
+	 "period": 5,
 	 "deadline": 50,
-	 "wcet": 10
+	 "wcet": 2
+	},
+	{"name": "t2",
+		"idx": 2,
+		"period": 10,
+		"deadline": 50,
+		"wcet": 2
 	}
     ]
+
 
