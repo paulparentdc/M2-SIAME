@@ -12,9 +12,30 @@ public:
 protected:
 
 	void processBB(WorkSpace *ws, CFG *cfg, Block *b) override {
+		int t = 0;
+
 		if(!b->isBasic())
 			return;
 		BasicBlock *bb = b->toBasic();
+
+		for(auto i: *bb){
+			if(i->isMul()){
+				t += 4;
+			}
+			else if(i->isLoad()){
+				t += 5;
+			}
+			else if(i->isStore()){
+				t += 2;
+			}
+			else if(i->isControl()){
+				t += 2;
+			}
+			else if(i->isConditionnal()){
+				t += 1;
+			}
+		}
+		ipet::TIME(b) = t;
 
 	}
 
@@ -43,6 +64,15 @@ protected:
 private:
 
 	Address join(Address a1, Address a2) {
+		if( a2.offset() == BOT.offset() || a1.offset() == a2.offset() ){
+			return a1;
+		}
+		else if( a1.offset() == BOT.offset() ){
+			return a2;
+		}
+		else{
+			return TOP;
+		}
 	}
 
 	Address update(Address s, Inst *i) {
