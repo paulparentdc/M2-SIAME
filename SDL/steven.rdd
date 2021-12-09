@@ -16,9 +16,14 @@
 <Text>Machine_3</Text>
 </Symbol>
 
-<Symbol symbolId="SYMB16" type="sdlText" xCenter="242" yCenter="121" fixedDimensions="FALSE" width="462" height="242" color="#000000" fillColor="#FFFFFF">
+<Symbol symbolId="SYMB16" type="sdlText" xCenter="242" yCenter="176" fixedDimensions="FALSE" width="462" height="330" color="#000000" fillColor="#FFFFFF">
 <Description></Description>
-<Text>SIGNAL deposerBrutConv;
+<Text>syntype random_problem = integer
+  default 5;
+  constants 0:100
+endsyntype;
+
+SIGNAL deposerBrutConv;
 SIGNAL finDepotBrutConv, defaillanceAlim;
 
 SIGNAL finRetraitUsineeConv, defaillanceRet;

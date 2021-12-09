@@ -8,12 +8,7 @@
 <SymbolReference symbolId="SYM19" usingKind="input"/>
 </UsingSymbols>
 </Signal>
-<Signal id="SIG2" name="T" isTimer="TRUE">
-<UsingSymbols>
-<SymbolReference symbolId="SYM20" usingKind="output"/>
-</UsingSymbols>
-</Signal>
-<Signal id="SIG3" name="finRetraitUsineeConv">
+<Signal id="SIG2" name="finRetraitUsineeConv">
 <UsingSymbols>
 <SymbolReference symbolId="SYM23" usingKind="output"/>
 </UsingSymbols>
@@ -22,7 +17,6 @@
 <Body>
 <SentSignals>
 <SignalReference id="SIG2"/>
-<SignalReference id="SIG3"/>
 </SentSignals>
 <ReceivedSignals>
 <SignalReference id="SIG1"/>
@@ -56,14 +50,6 @@
 <UsingSymbols>
 <SymbolReference symbolId="SYM17"/>
 <SymbolReference symbolId="SYM24"/>
-</UsingSymbols>
-</Item>
-<Item id="ITEM7" type="timer" name="T" parentId="ITEM1" scope="none" formalParameterOrder="-" isFormalParam="FALSE" isSyntype="FALSE">
-<DefiningSymbols>
-<SymbolReference symbolId="SYM20"/>
-</DefiningSymbols>
-<UsingSymbols>
-<SymbolReference symbolId="SYM21"/>
 </UsingSymbols>
 </Item>
 </DictionaryObjects>

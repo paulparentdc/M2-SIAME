@@ -4,6 +4,7 @@
 
 <SdlFSMDiagram language="sdl" type="prcs" is_extract="FALSE" is_temporary="FALSE">
 <SdlFSMPartition name="" needs_cleanup="FALSE">
+<SdlFSMSymbol identifier="SYM12" type="sdlText" text="DCL rand  INTEGER;" outline_color="-" background_color="-" center_coordinates="97 66" dimensions="146 40" attached_symbol_id=""/>
 <NonStateTransition top_left_coordinates="149 120">
 <SdlFSMSymbol identifier="SYM1" type="sdlStart" outline_color="-" background_color="-" center_coordinates="179 135" dimensions="60 30" attached_symbol_id=""/>
 <Transition>
@@ -11,12 +12,27 @@
 </Transition>
 </NonStateTransition>
 <StateTransitionBlock top_left_coordinates="328 115">
-<SdlFSMSymbol identifier="SYM3" type="sdlState" text="Idle" outline_color="-" background_color="-" center_coordinates="429 135" dimensions="60 40" attached_symbol_id=""/>
+<SdlFSMSymbol identifier="SYM3" type="sdlState" text="Idle" outline_color="-" background_color="-" center_coordinates="432 135" dimensions="60 40" attached_symbol_id=""/>
 <NormalStateTransition>
-<SdlFSMSymbol identifier="SYM4" type="sdlInputSig" text="deposerBrutConv" outline_color="-" background_color="-" center_coordinates="429 187" dimensions="124 40" attached_symbol_id=""/>
+<SdlFSMSymbol identifier="SYM4" type="sdlInputSig" text="deposerBrutConv" outline_color="-" background_color="-" center_coordinates="432 187" dimensions="124 40" attached_symbol_id=""/>
 <Transition>
-<SdlFSMSymbol identifier="SYM8" type="sdlSendSig" text="finDepotBrutConv to SENDER" outline_color="-" background_color="-" center_coordinates="429 239" dimensions="202 40" attached_symbol_id=""/>
-<SdlFSMSymbol identifier="SYM9" type="sdlState" text="Idle" outline_color="-" background_color="-" center_coordinates="429 291" dimensions="60 40" attached_symbol_id=""/>
+<SdlFSMSymbol identifier="SYM10" type="sdlTask" text="rand := ANY(random_problem)" outline_color="-" background_color="-" center_coordinates="432 239" dimensions="208 40" attached_symbol_id=""/>
+<DecisionBlock>
+<SdlFSMSymbol identifier="SYM13" type="sdlDecision" text="rand &gt;= 5" outline_color="-" background_color="-" center_coordinates="432 291" dimensions="82 40" attached_symbol_id=""/>
+<DecisionBranch>
+<SdlFSMSymbol identifier="SYM14" type="sdlAnswer" text="True" outline_color="-" background_color="-" center_coordinates="432 343" dimensions="60 40" attached_symbol_id=""/>
+<Transition>
+</Transition>
+</DecisionBranch>
+<DecisionBranch>
+<SdlFSMSymbol identifier="SYM15" type="sdlAnswer" text="False" outline_color="-" background_color="-" center_coordinates="502 343" dimensions="60 40" attached_symbol_id=""/>
+<Transition>
+<SdlFSMSymbol identifier="SYM16" type="sdlState" text="Idle" outline_color="-" background_color="-" center_coordinates="502 395" dimensions="60 40" attached_symbol_id=""/>
+</Transition>
+</DecisionBranch>
+</DecisionBlock>
+<SdlFSMSymbol identifier="SYM8" type="sdlSendSig" text="finDepotBrutConv to SENDER" outline_color="-" background_color="-" center_coordinates="432 459" dimensions="202 40" attached_symbol_id=""/>
+<SdlFSMSymbol identifier="SYM9" type="sdlState" text="Idle" outline_color="-" background_color="-" center_coordinates="432 511" dimensions="60 40" attached_symbol_id=""/>
 </Transition>
 </NormalStateTransition>
 </StateTransitionBlock>

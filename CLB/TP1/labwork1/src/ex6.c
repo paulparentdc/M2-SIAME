@@ -23,7 +23,7 @@
 
 // GPIODA
 #define USER_BUT	0
-
+volatile int test = 0;
 //Set gpiod mode to given mode
 void set_gpiodMode(int gpio, uint8_t mode){
 	GPIOD_MODER = SET_BITS(GPIOD_MODER, gpio*2, 2, mode);
@@ -45,41 +45,34 @@ void turnd_off(int gpio){
 }
 
 void handle_TIM4() {
-	TIM4_ARR = DELAY_500;
-	printf("handle_TIM4 called\n");
-
-	if( (GPIOD_ODR & (1<<GREEN_LED)) == 0 ){
-		GPIOD_BSRR = 1<<GREEN_LED;
+	if(test){
+		test = 1;
 	}
 	else{
-		GPIOD_BSRR = 1<<(16+GREEN_LED);
+		if( (GPIOD_ODR & (1<<GREEN_LED)) == 0 ){
+		GPIOD_BSRR = 1<<GREEN_LED;
+		}
+		else{
+			GPIOD_BSRR = 1<<(16+GREEN_LED);
+		}
+		test = 0;
 	}
+	printf("handle_TIM4 called\n");
 
-	TIM4_SR &= ~TIM_UIF;
+	
+
+	TIM4_SR = 0;
 }
 
 void init_TIM4(){
 
-	DISABLE_IRQS;
-	NVIC_ICER(TIM4_IRQ >> 5) |= 1 << (TIM4_IRQ & 0X1f);
-	NVIC_IRQ(TIM4_IRQ) = (uint32_t) handle_TIM4;
-	NVIC_IPR(TIM4_IRQ) = 0;
-
-	NVIC_ICPR(TIM4_IRQ >> 5) |= 1 << (TIM4_IRQ & 0X1f);
-	NVIC_ISER(TIM4_IRQ >> 5) |= 1 << (TIM4_IRQ & 0X1f);
-
 	TIM4_CR1 = 0;
-	TIM4_PSC = PSC;
-	TIM4_ARR = DELAY_500;
-
-	//Dont touch
+	TIM4_PSC = 1000;
+	TIM4_ARR = (APB1_CLK/TIM4_PSC)/2; 
 	TIM4_EGR = TIM_UG;
 	TIM4_SR = 0;
 	TIM4_CR1 = TIM_ARPE;
-
-	ENABLE_IRQS;
-
-	TIM4_CR1 = TIM4_CR1 | TIM_CEN;
+	TIM4_DIER = TIM_UIE;
 }
 
 
@@ -92,18 +85,33 @@ int main() {
 	RCC_APB1ENR |= RCC_TIM4EN;
 
 	// GPIO init
-	set_gpiodMode(GREEN_LED, 0b01);
-	set_gpiodType_pushpull(GREEN_LED);
-	turnd_on(GREEN_LED);
+	GPIOD_MODER  =  SET_BITS ( GPIOD_MODER ,   GREEN_LED*2 ,   2 ,   0b01 ) ;
+	GPIOD_OTYPER  =  GPIOD_OTYPER  & ~( 1<<GREEN_LED ) ;
+	GPIOD_PUPDR  =  SET_BITS ( GPIOD_PUPDR ,   GREEN_LED*2 ,   2 ,   0b01 ) ;
+
+	NVIC_ICER ( TIM4_IRQ>>5 )|=   1<<( TIM4_IRQ  &  0X1f ) ;
+	NVIC_IRQ ( TIM4_IRQ )   =   ( uint32_t )handle_TIM4 ;
 	
-	//TIM4 init
+	NVIC_IPR ( TIM4_IRQ )   =   0 ;
+
+	NVIC_ICPR ( TIM4_IRQ>>5 )|=   1<<( TIM4_IRQ  &  0X1f ) ;
+	NVIC_ISER ( TIM4_IRQ>>5 )|=   1<<( TIM4_IRQ  &  0X1f ) ;
+
 	init_TIM4();
+
+	ENABLE_IRQS;
+
+	// main loop
+	printf("Endless loop!\n");
+
+	TIM4_CR1 = TIM4_CR1 | TIM_CEN;
 
 	// main loop
 	printf("Endless loop!\n");
 	
 	while(1) {
-	}
+
+	}__asm("nop");
 
 }
 
