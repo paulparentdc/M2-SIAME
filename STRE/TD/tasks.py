@@ -18,11 +18,5 @@ class Task():
         return False
 
 
-def get_tasks_to_add(time, tasks):
-    tasksToAdd = []
-    for t in tasks:
-        if t.is_my_time(time):
-            tasksToAdd.append([t, t.wcet])
-    
-    return tasksToAdd
+
         
