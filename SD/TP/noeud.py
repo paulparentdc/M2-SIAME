@@ -52,7 +52,6 @@ def tryToJoin(contactIp, contactPort):
     affiche("trying to join")
     trialKey = random.randint(0, SYSTEM_SIZE-1)
     dataMsg = {"type":"join", "key":trialKey, "ip":myIp, "port":myPort}
-    affiche("sending "+str(dataMsg))
     send(contactIp, contactPort, dataMsg)
 
 
@@ -163,8 +162,8 @@ def reject(key):
 
 
 def messageHandler(msg):
-    print("yo")
     type = msg["type"]
+    affiche("["+type+"] reçu : "+str(msg))
     if type == "join":
         join(msg["key"], msg["ip"], msg["port"])
     elif type == "put":
@@ -182,8 +181,18 @@ def messageHandler(msg):
 
 def send(ip, port, data):
     s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-    affiche("sending to "+str(ip)+":"+str(port))
-    s.connect((ip, port))
+    affiche("sending ["+ data["type"]+"] to "+str(ip)+":"+str(port))
+    
+    try:
+        s.connect((ip, port))
+    except socket.error as e:
+        try:
+            s.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
+            s.connect((ip, port))
+        except socket.error as e:
+            s.close()
+            affiche("impossible to connect")
+            return
     s.send(bytes(json.dumps(data), "utf-8"))
     s.close()
 
@@ -217,13 +226,11 @@ def receive():
         print("Error while receiving")
         s.close()
         return
-    print(rec)
     try:
         msg = json.loads(rec)
     except Exception as e:
         print("Error while loading")
         return
-    print("yoyo")
     messageHandler(msg)
 
 
@@ -232,12 +239,14 @@ def receive():
 
 if len(sys.argv) <= 1:
     print("Not enough arguments, call format must be : noeud.py self_port [contact_ip] [contact_port]")
+    exit()
 elif len(sys.argv) == 2:
     firstNode(int(sys.argv[1]))
 elif  len(sys.argv) == 4:
     newNode(int(sys.argv[1]), sys.argv[2], int(sys.argv[3]))
 else:
     print("Wrong number of arguments, call format must be : noeud.pyself_port [contact_ip] [contact_port]")
+    exit()
 
 while(True):
     receive()
