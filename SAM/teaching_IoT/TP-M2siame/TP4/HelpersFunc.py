@@ -1,16 +1,25 @@
 
-import smbus2
+from smbus2 import SMBus
+	
+def scan(force=False):
+    devices = []
+    for addr in range(0x03, 0x77 + 1):
+        read = SMBus.read_byte, (addr,), {'force':force}
+        write = SMBus.write_byte, (addr, 0), {'force':force}
 
-def i2cscan(busnum =-1):
-    _IC2_ADDR_RANGE = 128
+        for func, args, kwargs in (read, write):
+            try:
+                with SMBus(1) as bus:
+                    data = func(bus, *args, **kwargs)
+                    devices.append(addr)
+                    break
+            except OSError as expt:
+                if expt.errno == 16:
+                    # just busy, maybe permanent by a kernel driver or just temporary by some user code
+                    pass
 
-    try:
-        bus = smubus.SMBus(busnum if busnum >= 0 else 1)
-    except IOError as err:
-        print("[%s] i2c busnum '%d' does not seem toexist!" % (__name__,busnum))
-        return
-    devicesList = []
-    
+    return devices
 
 
-
+for addr in scan(force=True):
+    print('{:02X}'.format(addr))
