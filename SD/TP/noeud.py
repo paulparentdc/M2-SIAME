@@ -13,9 +13,10 @@ myIP     = None
 myPort   = None
 myKey    = None
 myNeigh  = {}       #table de voisinnage au format {clé:[key, ip, port], ...}
-myData   = {}
+myData   = {}       #données des key dont il est responsable
 
 amIFirst = False
+amIAlone = False
 
 contactIp   = None
 contactPort = None
@@ -23,19 +24,21 @@ contactPort = None
 #-----------------------------------------------------------------------------------------------
 #-------------------------------------Fonctions utilitaires-------------------------------------
 def affiche(msg):
-    print("Noeud "+str(myKey)+" : "+msg)
+    print("Noeud "+str(myKey)+" : "+str(msg))
 
 
 def firstNode(port):
-    global myIp, myPort, myKey, amIFirst, myNeigh
+    global myIp, myPort, myKey, amIFirst, myNeigh, amIAlone
     myIp            = socket.gethostbyname(socket.gethostname())
     myPort          = port
     myKey           = random.randint(0, SYSTEM_SIZE-1)
     amIFirst        = True
+    amIAlone        = True
     myNeigh["pred"] = [myKey, myIp, myPort]
     myNeigh["next"] = [myKey, myIp, myPort]
 
     affiche("created with ["+str(myIp)+":"+str(myPort)+"] !")
+    affiche("neigh : "+str(myNeigh))
 
 
 def newNode(port, cIp, cPort):
@@ -45,6 +48,7 @@ def newNode(port, cIp, cPort):
     contactIp   = cIp
     contactPort = cPort
     
+    affiche("created with ["+str(myIp)+":"+str(myPort)+"] !")
     tryToJoin(cIp, cPort)
     
 
@@ -56,11 +60,13 @@ def tryToJoin(contactIp, contactPort):
 
 
 def amIResp(key):#retourne True si l'on est responsable du noeud en paramètre
-    keyPred = myNeigh["pred"][0]
+    print(myNeigh)
+    keyPred = myNeigh['pred'][0]
 
     if key == myKey:
         return True
-
+    elif amIAlone == True:
+        return True
     elif keyPred <= myKey:#Cas normal
         if key >= keyPred:
             return True
@@ -73,6 +79,7 @@ def amIResp(key):#retourne True si l'on est responsable du noeud en paramètre
 
 
 def makeInit(key, ip, port):#gère la création des données pour un nouveau noeud
+    global myNeigh
     #Récupération des datas
     nodeData  = {}
     for k, v in myData.items():
@@ -83,11 +90,14 @@ def makeInit(key, ip, port):#gère la création des données pour un nouveau noe
             if k <= key and k > myKey:
                 nodeData[k] = v
 
-    #Màj de la table de voisinnage
-    myNeigh["pred"] = [key, ip, port]
+    
 
     #Envoi de l'INIT
     nodeNeigh = {"next":[myKey, myIp, myPort], "pred":myNeigh["pred"]}
+
+    #Màj de la table de voisinnage
+    myNeigh["pred"] = [key, ip, port]
+
     data = {"type":"init", "key":key, "data":nodeData, "tv":nodeNeigh}
     send(ip, port, data)
 
@@ -100,10 +110,10 @@ def put(key, val, idUniq, ip, port):
     if amIResp(key):
         #Màj des data
         myData[key] = val
-
+        affiche("data update : "+str(myData))
         #Envoi de l'ACK
-        dataMsg = {"type":"ack", "ok":"ok", "idUniq":idUniq}
-        send(ip, port, dataMsg)
+        #dataMsg = {"type":"ack", "ok":"ok", "idUniq":idUniq}
+        #send(ip, port, dataMsg)
     else:
         #Transmission au prédécesseur
         dataMsg = {"type":"put", "key":key, "val":val, "idUniq":idUniq, "ip":ip, "port":port}
@@ -129,19 +139,22 @@ def join(key, ip, port):
             dataMsg = {"type":"reject", "key":key}
             send(ip, port, dataMsg) #refus
         else:
+            amIAlone = False
             makeInit(key, ip, port)
             
     else:
+        affiche("not resp")
         #Transmission au prédécesseur
         dataMsg = {"type":"join", "key":key, "ip":ip, "port":port}
         send(myNeigh["pred"][1], myNeigh["pred"][2], dataMsg) 
 
 
 def init(key, data, tv):
+    global myKey, myData, myNeigh
     myKey   = key
     myData  = data
     myNeigh = tv
-    affiche("received INIT")
+    affiche("init with \n   "+str(myNeigh)+"\n   "+str(myData))
 
 
 def quit(key, msgGet, msgPut, mg):
@@ -163,7 +176,7 @@ def reject(key):
 
 def messageHandler(msg):
     type = msg["type"]
-    affiche("["+type+"] reçu : "+str(msg))
+    affiche("["+type+"] received : "+str(msg))
     if type == "join":
         join(msg["key"], msg["ip"], msg["port"])
     elif type == "put":
@@ -172,6 +185,8 @@ def messageHandler(msg):
         new(msg["key"], msg["ip"], msg["port"])
     elif type == "get":
         get(msg["key"], msg["ip"], msg["port"])
+    elif type == "init":
+        init(msg["key"], msg["data"], msg["tv"])
     else:
         pass
 
@@ -181,7 +196,7 @@ def messageHandler(msg):
 
 def send(ip, port, data):
     s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-    affiche("sending ["+ data["type"]+"] to "+str(ip)+":"+str(port))
+    #affiche("sending ["+ data["type"]+"] to "+str(ip)+":"+str(port))
     
     try:
         s.connect((ip, port))
@@ -191,8 +206,11 @@ def send(ip, port, data):
             s.connect((ip, port))
         except socket.error as e:
             s.close()
-            affiche("impossible to connect")
+            #affiche("impossible to connect")
+            send(ip, port, data)
             return
+
+    affiche("sending ["+ data["type"]+"] to "+str(ip)+":"+str(port))
     s.send(bytes(json.dumps(data), "utf-8"))
     s.close()
 
