@@ -59,9 +59,9 @@ MQTT_PASSWD=""
 
 # Measurement related
 # seconds between each measure.
-light_interleave = 10
-temp_interleave = 10
-interrupt_mode = True
+light_interleave = 5
+temp_interleave = 5
+interrupt_mode = False
 capture = False
 
 client      = None
