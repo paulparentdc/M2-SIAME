@@ -114,18 +114,21 @@ class Shutter(object):
 
         if(self._curCmd == Shutter.SHUTTER_ACTION_OPEN):
             if(order == 'down' or order == 'stop'):
+                print("STOP")
                 GPIO.output(self._GPIOup, GPIO.LOW)
                 self._thread.cancel()
                 self._curCmd = Shutter.SHUTTER_ACTION_STOP 
 
         elif(self._curCmd == Shutter.SHUTTER_ACTION_CLOSE):
             if(order == 'up' or order == 'stop'):
+                print("STOP")
                 GPIO.output(self._GPIOdown, GPIO.LOW)
                 self._thread.cancel()
                 self._curCmd = Shutter.SHUTTER_ACTION_STOP
             
         elif(self._curCmd == Shutter.SHUTTER_ACTION_STOP):
             if(order == 'down'):
+                print("CLOSING")
                 GPIO.output(self._GPIOdown, GPIO.HIGH)
                 self._curCmd = Shutter.SHUTTER_ACTION_CLOSE
                 self._status = Shutter.SHUTTER_POS_UNKNOWN
@@ -133,6 +136,7 @@ class Shutter(object):
                 self._thread.start()
 
             elif(order == 'up'):
+                print("OPENING")
                 GPIO.output(self._GPIOup, GPIO.HIGH)
                 self._curCmd = Shutter.SHUTTER_ACTION_OPEN
                 self._status = Shutter.SHUTTER_POS_UNKNOWN 
@@ -171,7 +175,7 @@ def main():
     _shutDownEvent = threading.Event()
     signal.signal(signal.SIGINT, signal_handler)
     
-    Shutter("front", 20, "192.168.0.208", "014/shutter/command", "014/shutter/", _shutDownEvent, 23, 22)
+    Shutter("front", 20, "192.168.0.214", "014/shutter/command", "014/shutter/", _shutDownEvent, 23, 24)
     #Shutter("center", 20, "192.168.0.214", "014/shutter/command", "014/shutter/", _shutDownEvent, 12, 6)
     #Shutter("back", 20, "192.168.0.214", "014/shutter/command", "014/shutter/", _shutDownEvent, 24, 27)
  

@@ -14,7 +14,7 @@ import RPi.GPIO as GPIO
 #
 # Global Variables
 #
-MQTT_SERVER="192.168.0.208"
+MQTT_SERVER="192.168.0.214"
 MQTT_PORT=1883
 # Full MQTT_topic = MQTT_BASE + MQTT_TYPE
 
@@ -47,6 +47,7 @@ lumi_min = 400
 lumi_max = 1200
 ampoule_on = False
 shutter_state = None
+moving = False
 
 luminosity = None
 temperature = None
@@ -74,12 +75,12 @@ def close_shutter():
 
 def on_ampoule():
     global ampoule_on
-    GPIO.output(8, GPIO.HIGH)
+    GPIO.output(12, GPIO.HIGH)
     ampoule_on = True
 
 def off_ampoule():
     global ampoule_on
-    GPIO.output(8, GPIO.LOW)
+    GPIO.output(12, GPIO.LOW)
     ampoule_on = False
 
 
@@ -114,7 +115,7 @@ def stopMonitoring():
 # --- MQTT related functions --------------------------------------------------
 # The callback for when the client receives a CONNACK response from the server.
 def on_connect(client, userdata, flags, rc):
-    global mesure_interleave
+    global mesure_interleave,moving
     log.info("Connected with result code : %d" % rc)
 
     if( rc == 0 ):
@@ -151,12 +152,27 @@ def on_message(client, userdata, msg):
 
 
 def manage():
+    global moving, shutter_state
+
+    print("Etat volet :")
+    print(shutter_state)
+    print("Moving :")
+    print(moving)
+    print("Luminosity :")
+    print(luminosity)
+    print("Ampoule allumé :")
+    print(ampoule_on)
+    
+    if (shutter_state == "CLOSED" or shutter_state == "OPEN"):
+        moving = False
+
     if(luminosity < lumi_min) : # not enough light
         print("Pas assez de lumière !")
-        if(shutter_state != "open"): 
+        if(shutter_state != "OPEN" and moving == False): 
             print("Envoie ouverture vollet")
             open_shutter()
-        else:
+            moving = True
+        elif(shutter_state == "OPEN" and ampoule_on == False): # Last option is switching on the light
             print("Allume ampoule")
             on_ampoule()
 
@@ -165,9 +181,10 @@ def manage():
         if (ampoule_on == True) :
             print("Eteind ampoule")
             off_ampoule()
-        elif(shutter_state != "close"):
+        elif(shutter_state != "CLOSED" and moving == False ):
             print("Envoie fermeture vollet")
             close_shutter()
+            moving = True
 
     else : # light is real goooood ;)
         print("Lumière ok")
@@ -201,8 +218,8 @@ def main():
 
     # GPIO ampoule setup
     GPIO.setmode(GPIO.BCM)
-    GPIO.setup(8, GPIO.OUT)
-    GPIO.output(8, GPIO.LOW)
+    GPIO.setup(12, GPIO.OUT)
+    GPIO.output(12, GPIO.LOW)
 
     # Trap CTRL+C (kill -2)
     signal.signal(signal.SIGINT, ctrlc_handler)

@@ -39,7 +39,7 @@ import Adafruit_MCP9808.MCP9808 as MCP9808
 #
 # Global Variables
 #
-MQTT_SERVER="192.168.0.208"
+MQTT_SERVER="192.168.0.214"
 MQTT_PORT=1883
 # Full MQTT_topic = MQTT_BASE + MQTT_TYPE
 MQTT_BASE_TOPIC = "1R1/014"
@@ -89,11 +89,12 @@ sensorsT = []
 # Functions
 #
 def interrupt(self):
-    global bus
-    print("Interrupt")
-    publishlight()
-    bus.write_byte_data(lights[0], 0xC0, 0x03)
-    bus.write_byte_data(lights[0],0x86,0x11)
+    global bus, interrupt_mode
+    if interrupt_mode == True:
+        print("Interrupt")
+        publishlight()
+        bus.write_byte_data(lights[0], 0xC0, 0x03)
+        bus.write_byte_data(lights[0],0x86,0x11)
 
 
 
@@ -194,7 +195,7 @@ def do_every_interrupt (worker_func, iterations = 0):
     # launch new timer
     if ( iterations != 1):
         timer = threading.Timer (
-                        1200,
+                        1200, 
                         do_every_light, [ worker_func, 0 if iterations == 0 else iterations-1])
         timer.start();
     # launch worker function
@@ -343,8 +344,6 @@ def main():
     # Launch Acquisition & publish sensors till shutdown
 
  
-    
-        
     do_every_light(publishlight)
     do_every_temp(publishTemp)
     do_every_interrupt(publishlight)
