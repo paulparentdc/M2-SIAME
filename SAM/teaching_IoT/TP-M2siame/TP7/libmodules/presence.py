@@ -96,16 +96,13 @@ def on_log(mosq, obj, level, string):
 def main():
 
     # Global variables
-    global client, timer, log
+    global client, timer, log,present
     but_pushed = False
 
     # GPIO ampoule setup
     GPIO.setmode(GPIO.BCM)
-    GPIO.setup(16, GPIO.OUT)
+    GPIO.setup(6, GPIO.IN, pull_up_down=GPIO.PUD_DOWN)
   
-
-    # Trap CTRL+C (kill -2)
-    signal.signal(signal.SIGINT, ctrlc_handler)
 
     # MQTT setup
     client = mqtt_client.Client( clean_session=True, userdata=None )
@@ -122,15 +119,18 @@ def main():
 
     # Launch Acquisition & publish sensors till shutdown
     while(1):
-        if GPIO.input(16) :
+        if GPIO.input(6) :
             but_pushed = True
         elif (but_pushed == True):
+            but_pushed = False
             if present == True:
                 present = False
                 send_absent()
+                print("Absent !!!!")
             else :
                 present = True
                 send_present()
+                print("Present !!!!")
 
             
 

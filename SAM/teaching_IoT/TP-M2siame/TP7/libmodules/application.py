@@ -28,6 +28,7 @@ MQTT_PUB_SHUTTER = "014/shutter/command"
 MQTT_SUB_T = "1R1/014/temperature"
 MQTT_SUB_L = "1R1/014/luminosity"
 MQTT_SUB_SHUTTER = "014/shutter/"
+MQTT_SUB_PRESENCE = "1R1/014/presence"
 
 
 MQTT_QOS=0 # (default) no ACK from server
@@ -48,9 +49,11 @@ lumi_max = 1200
 ampoule_on = False
 shutter_state = None
 moving = False
+present = True
 
 luminosity = None
 temperature = None
+
 
 
 def ask_status():
@@ -124,10 +127,11 @@ def on_connect(client, userdata, flags, rc):
         client.subscribe(MQTT_SUB_T)
         client.subscribe(MQTT_SUB_L)
         client.subscribe(MQTT_SUB_SHUTTER)
+        client.subscribe(MQTT_SUB_PRESENCE)
 
 # The callback for a received message from the server.
 def on_message(client, userdata, msg):
-    global temp_interleave, light_interleave, interrupt_mode, capture, luminosity, temperature, shutter_state
+    global temp_interleave, light_interleave, interrupt_mode, capture, luminosity, temperature, shutter_state, present
     ''' process incoming message.
         WARNING: threaded environment! '''
     payload = json.loads(msg.payload.decode('utf-8'))
@@ -145,6 +149,9 @@ def on_message(client, userdata, msg):
         shutter_state = payload["status"]
         manage()
 
+    elif((msg.topic == MQTT_SUB_PRESENCE)):
+        present = payload['value']
+        manage()
 
     log.warning("TODO: process incoming message!")
 
@@ -162,35 +169,45 @@ def manage():
     print(luminosity)
     print("Ampoule allumé :")
     print(ampoule_on)
-    
+    print("Presence :")
+    print(present)
+
     if (shutter_state == "CLOSED" or shutter_state == "OPEN"):
         moving = False
 
-    if(luminosity < lumi_min) : # not enough light
-        print("Pas assez de lumière !")
-        if(shutter_state != "OPEN" and moving == False): 
-            print("Envoie ouverture vollet")
-            open_shutter()
-            moving = True
-        elif(shutter_state == "OPEN" and ampoule_on == False): # Last option is switching on the light
-            print("Allume ampoule")
-            on_ampoule()
+    if present : # someone is in the room
+        if(luminosity < lumi_min) : # not enough light
+            print("Pas assez de lumière !")
+            if(shutter_state != "OPEN" and moving == False): 
+                print("Envoie ouverture vollet")
+                open_shutter()
+                moving = True
+            elif(shutter_state == "OPEN" and ampoule_on == False): # Last option is switching on the light
+                print("Allume ampoule")
+                on_ampoule()
 
-    elif ( luminosity > lumi_max): # Too much light
-        print("Trop de lumière !!!")
-        if (ampoule_on == True) :
-            print("Eteind ampoule")
-            off_ampoule()
-        elif(shutter_state != "CLOSED" and moving == False ):
-            print("Envoie fermeture vollet")
-            close_shutter()
-            moving = True
+        elif ( luminosity > lumi_max): # Too much light
+            print("Trop de lumière !!!")
+            if (ampoule_on == True) :
+                print("Eteind ampoule")
+                off_ampoule()
+            elif(shutter_state != "CLOSED" and moving == False ):
+                print("Envoie fermeture vollet")
+                close_shutter()
+                moving = True
 
-    else : # light is real goooood ;)
-        print("Lumière ok")
-        if (ampoule_on == True) :
-            print("Eteind ampoule")
+        else : # light is real goooood ;)
+            print("Lumière ok")
+            if (ampoule_on == True) :
+                print("Eteind ampoule")
+                off_ampoule()
+
+    else : # no one is in the room
+        if(ampoule_on):
             off_ampoule()
+
+
+
 
 
 

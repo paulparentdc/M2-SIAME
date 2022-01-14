@@ -226,21 +226,24 @@ def on_message(client, userdata, msg):
     if(msg.topic == MQTT_SUB_L):
         if(payload['order'] == "frequency"):
             log.debug("Frequency will be set to %s" % (payload['value']))
-            temp_interleave = int(payload['value'])
-            if temp_interleave <= 0:
+            light_interleave = int(payload['value'])
+            if light_interleave <= 0:
                 interrupt_mode = True
             else:
                 interrupt_mode = False
+            print("LIGHT INTER : ")
+            print(light_interleave)
+            
         elif(payload['order'] == "capture"):
             log.debug("Start an immediate capture")
             capture = True
-            do_every_temp(publishTemp, 1)
+            do_every_temp(publishlight, 1)
             capture = False
 
     elif((msg.topic == MQTT_SUB_T) and (payload['dest'] == str(getmac()))):
         if(payload['order'] == "frequency"):
             log.debug("Frequency will be set to %s" % (payload['value']))
-            light_INTER = int(payload['value'])
+            temp_interleave = int(payload['value'])
         elif(payload['order'] == "capture"):
             log.debug("Start an immediate capture")
             do_every_light(publishlight, 1)
@@ -320,8 +323,8 @@ def main():
     bus.write_byte_data(lights[0],0x86,0x11)
 
     #write into the threshold bounds registers
-    bus.write_byte_data(lights[0],0xA2,0x00)
-    bus.write_byte_data(lights[0],0xA3,0x00)
+    bus.write_byte_data(lights[0],0xA2,0x90)
+    bus.write_byte_data(lights[0],0xA3,0x01)
     bus.write_byte_data(lights[0],0xA4,0xE8)
     bus.write_byte_data(lights[0],0xA5,0x03)
 

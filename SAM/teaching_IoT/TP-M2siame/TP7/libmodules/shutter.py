@@ -65,7 +65,7 @@ class Shutter(object):
 
     # attributes
     _status = SHUTTER_POS_UNKNOWN
-    _courseTime  = 10;       # (seconds) max. time for shutter to get fully open / close
+    _courseTime  = 5;       # (seconds) max. time for shutter to get fully open / close
 
     _GPIOup     = None
     _GPIOdown   = None
