@@ -20,6 +20,7 @@ def scan(force=False):
 
     return devices
 
-
+print(scan)
 for addr in scan(force=True):
+    print(addr)
     print('{:02X}'.format(addr))
