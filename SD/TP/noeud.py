@@ -4,6 +4,7 @@ import sys
 import json
 import socket
 import logging as log
+import time
 
 SYSTEM_SIZE = 32
 BUFFER_SIZE = 2048
@@ -15,8 +16,13 @@ myKey    = None
 myNeigh  = {}       #table de voisinnage au format {clé:[key, ip, port], ...}
 myData   = {}       #données des key dont il est responsable
 
-amIFirst = False
-amIAlone = False
+nbMsgGet = 0
+nbMsgPut = 0
+nbMsgGes = 0
+
+amIFirst   = False
+amIAlone   = False
+amILeaving = False
 
 contactIp   = None
 contactPort = None
@@ -38,7 +44,7 @@ def firstNode(port):
     myNeigh["next"] = [myKey, myIp, myPort]
 
     affiche("created with ["+str(myIp)+":"+str(myPort)+"] !")
-    affiche("neigh : "+str(myNeigh))
+    printNeigh()
 
 
 def newNode(port, cIp, cPort):
@@ -53,14 +59,15 @@ def newNode(port, cIp, cPort):
     
 
 def tryToJoin(contactIp, contactPort):
+    global nbMsgGes
     affiche("trying to join")
     trialKey = random.randint(0, SYSTEM_SIZE-1)
     dataMsg = {"type":"join", "key":trialKey, "ip":myIp, "port":myPort}
+    nbMsgGes = nbMsgGes + 1 
     send(contactIp, contactPort, dataMsg)
 
 
 def amIResp(key):#retourne True si l'on est responsable du noeud en paramètre
-    print(myNeigh)
     keyPred = myNeigh['pred'][0]
 
     if key == myKey:
@@ -68,18 +75,18 @@ def amIResp(key):#retourne True si l'on est responsable du noeud en paramètre
     elif amIAlone == True:
         return True
     elif keyPred <= myKey:#Cas normal
-        if key >= keyPred:
+        if key > keyPred:
             return True
 
     elif keyPred >= myKey:#Cas "à cheval" sur la boucle
-        if key >= keyPred or key <= myKey:
+        if key > keyPred or key <= myKey:
             return True
 
     return False
 
 
 def makeInit(key, ip, port):#gère la création des données pour un nouveau noeud
-    global myNeigh
+    global myNeigh, nbMsgGes
     #Récupération des datas
     nodeData  = {}
     for k, v in myData.items():
@@ -99,7 +106,41 @@ def makeInit(key, ip, port):#gère la création des données pour un nouveau noe
     myNeigh["pred"] = [key, ip, port]
 
     data = {"type":"init", "key":key, "data":nodeData, "tv":nodeNeigh}
+    nbMsgGes = nbMsgGes + 1
     send(ip, port, data)
+
+
+def printNeigh():
+    print("My neighbours are : ")
+    print("  pred : "+str(myNeigh["pred"][0]))
+    print("  next : "+str(myNeigh["next"][0]))
+    print(" ")
+
+
+def printData():
+    print("My datas are : ")
+    for n, d in myData:
+        print(str(n)+" : "+str(str(d)))
+
+
+def updateNeighbours(key, ip, port):
+    pred = myNeigh["pred"]
+    next = myNeigh["next"]
+
+    if key > myKey:
+        if key<next[0]:
+            myNeigh["next"] = [key, ip, port]
+        elif next[0]<=myKey:
+            myNeigh["next"] = [key, ip, port]
+        elif pred[0]>=myKey and key>pred[0]:
+            myNeigh["pred"] = [key, ip, port]
+    elif key < myKey:
+        if key>pred[0]:
+            myNeigh["pred"] = [key, ip, port]
+        elif pred[0]>=myKey:
+            myNeigh["pred"] = [key, ip, port]
+        elif next[0]<=myKey and key<next[0]:
+            myNeigh["next"] = [key, ip, port]
 
 
 #-----------------------------------------------------------------------------------------------
@@ -107,6 +148,8 @@ def makeInit(key, ip, port):#gère la création des données pour un nouveau noe
 
 
 def put(key, val, idUniq, ip, port):
+    global nbMsgPut
+    nbMsgPut = nbMsgPut + 1
     if amIResp(key):
         #Màj des data
         myData[key] = val
@@ -121,8 +164,10 @@ def put(key, val, idUniq, ip, port):
 
 
 def get(key, ip, port):
+    global nbMsgGet
+    nbMsgGet = nbMsgGet + 1
     if amIResp(key):
-        if myData.has_key(key):
+        if key in myData:
             dataMsg = {"type":"answer", "key":key, "val":myData[key]}
         else:
             dataMsg = {"type":"answer", "key":key, "val":None}
@@ -133,10 +178,12 @@ def get(key, ip, port):
 
 
 def join(key, ip, port):
+    global nbMsgGes
     affiche("node "+str(key)+" is trying to join")
     if amIResp(key):
         if key == myKey:
             dataMsg = {"type":"reject", "key":key}
+            nbMsgGes = nbMsgGes + 1
             send(ip, port, dataMsg) #refus
         else:
             amIAlone = False
@@ -146,24 +193,49 @@ def join(key, ip, port):
         affiche("not resp")
         #Transmission au prédécesseur
         dataMsg = {"type":"join", "key":key, "ip":ip, "port":port}
+        nbMsgGes = nbMsgGes + 1
         send(myNeigh["pred"][1], myNeigh["pred"][2], dataMsg) 
 
 
 def init(key, data, tv):
-    global myKey, myData, myNeigh
+    global myKey, myData, myNeigh, nbMsgGes
     myKey   = key
     myData  = data
     myNeigh = tv
-    affiche("init with \n   "+str(myNeigh)+"\n   "+str(myData))
+    affiche("------INIT------")
+    printNeigh()
+    printData()
+    dataMsg = {"type":"new", "key":myKey, "ip":myIp, "port":myPort}
+    nbMsgGes = nbMsgGes + 1
+    send(myNeigh["pred"][1], myNeigh["pred"][2], dataMsg)
+    
 
 
-def quit(key, msgGet, msgPut, mg):
-    pass
+def quit(key, msgGet, msgPut, msgGest):
+    global amILeaving
+    if amILeaving:
+        affiche("Everybody left :")
+        affiche("     get    -> "+str(msgGet))
+        affiche("     put    -> "+str(msgPut))
+        affiche("     others -> "+str(msgGest))
+        exit()
+    else:
+        dataMsg = {"type":"quit", "key":key, "msgGet":msgGet+nbMsgGet, "msgPut":msgPut+nbMsgPut, "msgGest":msgGest+nbMsgGes+1}
+        send(myNeigh["pred"][1], myNeigh["pred"][2], dataMsg)
+        if msgGest == 0:
+            amILeaving = True
+        else:
+            exit()
+    
 
 
 def new(key, ip, port):
+    global nbMsgGes
     if key != myKey:
+        updateNeighbours(key, ip, port)
         dataMsg = {"type":"new", "key":key, "ip":ip, "port":port}
+        printNeigh()
+        nbMsgGes = nbMsgGes + 1 
         send(myNeigh["pred"][1], myNeigh["pred"][2], dataMsg)
     else:
         affiche("NEW has been received by everyone")
@@ -175,10 +247,13 @@ def reject(key):
 
 
 def messageHandler(msg):
+    time.sleep(1)
     type = msg["type"]
     affiche("["+type+"] received : "+str(msg))
     if type == "join":
         join(msg["key"], msg["ip"], msg["port"])
+    elif type == "reject":
+        reject(msg["key"])
     elif type == "put":
         put(msg["key"], msg["val"], msg["idUniq"], msg["ip"], msg["port"])
     elif type == "new":
@@ -187,6 +262,8 @@ def messageHandler(msg):
         get(msg["key"], msg["ip"], msg["port"])
     elif type == "init":
         init(msg["key"], msg["data"], msg["tv"])
+    elif type == "quit":
+        quit(msg["key"], msg["msgGet"], msg["msgPut"], msg["msgGest"])
     else:
         pass
 

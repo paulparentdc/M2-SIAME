@@ -2,10 +2,10 @@ LIBRARY IEEE;
 USE IEEE.STD_LOGIC_1164.ALL;
 USE IEEE.NUMERIC_STD.ALL;
 
+
 PACKAGE bus_mux_pkg IS
 	TYPE bus_mux_array IS ARRAY(NATURAL RANGE<>) OF STD_LOGIC_VECTOR(31 DOWNTO 0);
 END PACKAGE bus_mux_pkg;
-
 -------------------------------------------------
 
 -- Register

@@ -5,6 +5,8 @@ import json
 import socket
 import logging as log
 
+BUFFER_SIZE = 2048
+
 myPort = None
 myId   = None
 idUniq = random.randint(0, 1024)
@@ -63,23 +65,25 @@ def receive():
     except Exception as e:
         print("Error while loading")
         return
-    if(msg["type"] == "ack"):
-        print("Ack received")
+    if(msg["type"] == "answer"):
+        print("Response : "+str(msg["key"])+" : "+str(msg["val"]))
     
     else:
         print("WTF?")
 
 
 
-if len(sys.argv) < 6:
+if len(sys.argv) < 5:
     print("Not enough arguments, call format must be : put.py [port] [contact_ip] [contact_port] [node] [value]")
     exit()
-elif len(sys.argv) == 6:
+elif len(sys.argv) == 5:
     myIp    = socket.gethostbyname(socket.gethostname())
-    myPort  = sys.argv[1]
-    dataMsg = {"type":"put", "key":int(sys.argv[4]), "val":sys.argv[5], "idUniq":idUniq, "ip":myIp, "port":myPort}
+    myPort  = int(sys.argv[1])
+    dataMsg = {"type":"get", "key":int(sys.argv[4]), "ip":myIp, "port":myPort}
     send(sys.argv[2], int(sys.argv[3]), dataMsg)
 else:
-    print("Too much arguments, call format must be : put.py [port] [contact_ip] [contact_port] [node] [value]")
+    print("Too much arguments, call format must be : put.py [port] [contact_ip] [contact_port] [node]")
     exit()
 
+while(1):
+    receive()

@@ -71,15 +71,12 @@ def receive():
 
 
 
-if len(sys.argv) < 6:
-    print("Not enough arguments, call format must be : put.py [port] [contact_ip] [contact_port] [node] [value]")
+if len(sys.argv) < 4:
+    print("Not enough arguments, call format must be : quit.py [contact_ip] [contact_port] [key]")
     exit()
-elif len(sys.argv) == 6:
-    myIp    = socket.gethostbyname(socket.gethostname())
-    myPort  = sys.argv[1]
-    dataMsg = {"type":"put", "key":int(sys.argv[4]), "val":sys.argv[5], "idUniq":idUniq, "ip":myIp, "port":myPort}
-    send(sys.argv[2], int(sys.argv[3]), dataMsg)
+elif len(sys.argv) == 4:
+    dataMsg = {"type":"quit", "key":sys.argv[3], "msgGet":0, "msgPut":0, "msgGest":0}
+    send(sys.argv[1], int(sys.argv[2]), dataMsg)
 else:
-    print("Too much arguments, call format must be : put.py [port] [contact_ip] [contact_port] [node] [value]")
+    print("Too many arguments, call format must be : quit.py [contact_ip] [contact_port] [key]")
     exit()
-
